@@ -1,0 +1,1890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>AEM Blueprint | Your Numbers. Your Long Game.</title>
+<meta name="description" content="A 90-second assessment that engineers your calories, macros and a dated transformation timeline, then builds your personal execution blueprint.">
+<link rel="icon" type="image/png" href="logo-am.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The AEM Blueprint — Your Numbers. Your Long Game.">
+<meta property="og:description" content="A 90-second assessment. Your calories, your macros, and a dated timeline for your goal. Built like a plan, not a guess.">
+<meta property="og:url" content="https://apexedgefit-tech.github.io/aem-blueprint/">
+<meta property="og:image" content="https://apexedgefit-tech.github.io/aem-blueprint/logo-am.png"><!-- update if a custom domain is added -->
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* original dark neutrals — the light paper surfaces carry the warmth */
+  --color-obsidian:#000000;--color-carbon:#040302;--color-graphite:#14110c;--color-slate:#1f1b15;
+  --color-iron:#322d25;--color-steel:#4b4539;--color-ash:#9d9486;--color-pearl:#d3ccbb;
+  --color-chalk:#cfc7b6;--color-bone:#e9e2d4;
+  --grad-gold:#ffac2e; /* flat gold — gradient retired */
+  --bg:var(--color-obsidian);--bg-3:var(--color-carbon);--card:rgba(10,9,8,0.55);
+  --ink:var(--color-bone);--ink-2:var(--color-chalk);--muted:var(--color-pearl);--dim:var(--color-ash);
+  --accent:#ffac2e;--accent-bright:#ffc266;--accent-deep:#c2641e;
+  --ink-rgb:233,226,212;--accent-rgb:255,172,46;
+  --zone:#0d0d0f;--line:rgba(var(--ink-rgb),0.14);--glow:rgba(var(--accent-rgb),0.32);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden;}
+/* ambient light for the glass to refract */
+.orbs{position:fixed;inset:0;z-index:0;pointer-events:none;}
+.orbs i{position:absolute;display:block;border-radius:50%;filter:blur(90px);opacity:.3;}
+.orbs i:nth-child(1){width:540px;height:540px;left:-160px;top:6%;background:radial-gradient(circle,#8a5215,transparent 70%);}
+.orbs i:nth-child(2){width:660px;height:660px;right:-200px;top:36%;background:radial-gradient(circle,#5e3a10,transparent 70%);}
+.orbs i:nth-child(3){width:580px;height:580px;left:18%;bottom:-220px;background:radial-gradient(circle,#7a4a12,transparent 70%);}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.gi{background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic;}
+a{color:var(--accent);}
+button{font-family:inherit;}
+
+/* ── Header ── */
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:16px min(6vw,72px);position:sticky;top:0;z-index:40;
+  background:rgba(0,0,0,0.5);-webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6);
+  border-bottom:1px solid rgba(var(--ink-rgb),0.08);}
+.hdr-lab{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);}
+/* progress rail */
+.prail{position:fixed;top:0;left:0;right:0;height:5px;background:rgba(var(--ink-rgb),0.12);z-index:50;}
+.prail-fill{height:100%;width:0%;background:var(--grad-gold);transition:width .5s cubic-bezier(0.22,1,0.36,1);box-shadow:0 0 14px rgba(var(--accent-rgb),0.8),0 1px 6px rgba(var(--accent-rgb),0.5);border-radius:0 3px 3px 0;}
+
+/* ── Screens ── */
+.scr{display:none;max-width:680px;margin:0 auto;padding:32px 24px 90px;position:relative;z-index:1;}
+.scr.on{display:block;animation:scrIn .55s cubic-bezier(0.22,1,0.36,1);}
+@keyframes scrIn{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:none;}}
+.wide{max-width:860px;}
+/* glass theme — every panel is a frosted surface over the ambient glow */
+.paper, .bp-sec, .gate-card, .stat3, .mc, .chart-card{--ink:#e9e2d4;--ink-2:#cfc7b6;--muted:#d3ccbb;--dim:#9d9486;--ink-rgb:233,226,212;
+  --zone:rgba(255,255,255,0.06);--card:rgba(255,255,255,0.06);--line:rgba(233,226,212,0.16);--accent:#ffac2e;--accent-bright:#ffc266;--accent-rgb:255,172,46;
+  color:var(--ink);}
+#scr-quiz, .proof-wrap, .bp-sec, .gate-card, .pivot, .stat3, .mc, .chart-card, .proof-card, .quote-card, .lk, .hg-grid>div{
+  -webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);
+  box-shadow:0 12px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.07);}
+.stat3 .st-num{background:none;color:var(--accent);-webkit-text-fill-color:var(--accent);}
+.mc .mc-bar{background:var(--accent);}
+.paper .f-in::placeholder, .gate-card .f-in::placeholder{color:rgba(233,226,212,0.45);}
+.paper .pace-warn, .bp-sec .pace-warn{color:#e07a5f;}
+.paper .f-lab{color:var(--ink);font-weight:700;}
+#scr-quiz{background:rgba(20,16,12,0.5);border:1px solid rgba(233,226,212,0.13);border-radius:14px;margin:30px auto;padding:44px 40px 60px;}
+
+/* ── Hero ── */
+.hero{min-height:78vh;flex-direction:column;justify-content:center;text-align:center;position:relative;max-width:1240px;}
+.hero.on{display:flex;}
+.hero-glow{position:absolute;left:50%;top:40%;width:min(680px,94%);height:440px;background:radial-gradient(ellipse at center,var(--glow),transparent 70%);filter:blur(14px);pointer-events:none;opacity:.20;transform:translate(-50%,-50%);z-index:-1;}
+.kicker{display:flex;align-items:center;gap:18px;justify-content:center;margin-bottom:40px;}
+.kicker-lab{color:var(--accent);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;white-space:nowrap;}
+.kicker-rule{width:56px;height:1px;background:rgba(var(--ink-rgb),0.16);}
+.hero h1{font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(2.1rem,6.4vw,3.6rem);line-height:1.07;letter-spacing:-0.02em;max-width:17ch;margin:0 auto 26px;text-wrap:balance;}
+.hero-sub{color:var(--ink-2);font-size:.97rem;line-height:1.85;max-width:46ch;margin:0 auto 44px;}
+/* hero: what you get */
+.hero-get{margin-top:48px;}
+.hg-lab{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+.hg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:560px;margin:0 auto;}
+.hg-grid>div{border:1px solid rgba(var(--ink-rgb),0.22);padding:20px 10px;background:rgba(255,255,255,0.04);border-radius:14px;}
+.hg-grid b{display:block;font-family:'Manrope',sans-serif;font-weight:800;font-size:.95rem;letter-spacing:.06em;text-transform:uppercase;line-height:1.35;color:var(--accent);}
+.hg-grid span{display:block;margin-top:8px;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+.hg-note{margin:14px auto 0;font-size:.78rem;color:var(--muted);line-height:1.65;max-width:46ch;}
+/* proof section */
+.proof-wrap{max-width:1340px;margin:34px auto 0;padding:56px 34px 70px;background:rgba(20,16,12,0.45);border:1px solid rgba(233,226,212,0.1);border-radius:16px;}
+.proof-eyebrow{text-align:center;color:var(--accent);font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;margin-bottom:14px;}
+.proof-h2{text-align:center;font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(1.45rem,3.8vw,2.1rem);letter-spacing:-.015em;margin-bottom:56px;text-wrap:balance;}
+.proof-grid{display:grid;grid-template-columns:1fr;gap:48px;max-width:780px;margin:0 auto;}
+.proof-card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px;}
+.proof-who{display:flex;align-items:center;gap:13px;margin-bottom:18px;}
+.proof-who img{width:46px;height:46px;border-radius:50%;object-fit:cover;flex-shrink:0;}
+.proof-who b{display:block;font-family:'Manrope',sans-serif;font-weight:700;font-size:.95rem;}
+.proof-who span{display:block;font-size:.74rem;color:var(--dim);margin-top:2px;}
+.proof-ba{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px;}
+.proof-ba div{position:relative;border-radius:6px;overflow:hidden;}
+.proof-ba img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;display:block;}
+.proof-ba span{position:absolute;bottom:9px;left:9px;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#f0e8d9;background:rgba(20,14,10,0.72);padding:4px 9px;border-radius:3px;}
+.proof-ba div:last-child span{left:auto;right:9px;color:#fff6e6;background:var(--accent);}
+.proof-quote{font-size:.87rem;color:var(--ink-2);line-height:1.75;font-style:italic;}
+.proof-sub{text-align:center;color:var(--accent);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;margin:70px 0 30px;}
+.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:620px;margin:0 auto;}
+.video-card{text-align:center;}
+.video-frame{position:relative;width:100%;padding-bottom:177.78%;border-radius:8px;overflow:hidden;background:var(--card);border:1px solid var(--line);}
+.video-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+.video-card b{display:block;font-family:'Manrope',sans-serif;font-weight:700;font-size:.9rem;margin-top:14px;}
+.video-card span{display:block;font-size:.72rem;color:var(--dim);margin-top:3px;}
+.quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.quote-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:26px;display:flex;flex-direction:column;}
+.quote-stars{color:var(--accent);font-size:.82rem;letter-spacing:2.5px;margin-bottom:14px;}
+.quote-card p{font-size:.85rem;color:var(--ink-2);line-height:1.8;font-style:italic;flex:1;margin-bottom:20px;}
+.quote-by{display:flex;align-items:center;gap:12px;padding-top:16px;border-top:1px solid var(--line);}
+.quote-by img{width:40px;height:40px;border-radius:50%;object-fit:cover;}
+.quote-by b{display:block;font-size:.84rem;font-family:'Manrope',sans-serif;font-weight:700;}
+.quote-by span{display:block;font-size:.72rem;color:var(--dim);margin-top:2px;}
+.proof-cta{text-align:center;margin-top:60px;}
+@media(max-width:900px){
+  .proof-grid{gap:36px;max-width:none;}
+  .proof-wrap{padding:44px 14px 60px;}
+  .proof-card{padding:10px;}
+  .quote-grid{grid-template-columns:1fr;}
+  .video-grid{grid-template-columns:1fr;max-width:320px;}
+}
+
+/* ── CTAs ── */
+.cta{display:inline-block;font-weight:700;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--bg);background:var(--grad-gold);padding:17px 46px;border-radius:4px;transition:box-shadow .25s ease,transform .15s ease;text-decoration:none;border:none;cursor:pointer;}
+.cta:hover{box-shadow:0 0 30px rgba(var(--accent-rgb),0.5);}
+.cta:active{transform:translateY(1px);}
+.cta:disabled{opacity:.35;cursor:not-allowed;box-shadow:none;}
+.cta-o{display:inline-block;font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);background:transparent;padding:15px 38px;border-radius:4px;transition:background .2s,color .2s,box-shadow .2s;text-decoration:none;cursor:pointer;}
+.cta-o:hover{background:var(--accent);color:var(--bg);box-shadow:0 0 28px rgba(var(--accent-rgb),0.4);}
+.ghost{background:none;border:none;color:var(--dim);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;padding:12px 18px;transition:color .2s;}
+.ghost:hover{color:var(--muted);}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;}
+
+/* ── Quiz ── */
+.q-eyebrow{font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.q-eyebrow em{color:var(--ink-2);font-style:normal;letter-spacing:.14em;background:rgba(var(--accent-rgb),0.1);border:1px solid rgba(var(--accent-rgb),0.25);border-radius:100px;padding:3px 10px;margin-left:2px;}
+.q-title{font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(1.5rem,4.4vw,2.1rem);line-height:1.15;letter-spacing:-0.015em;margin-bottom:10px;text-wrap:balance;}
+.q-help{color:var(--ink-2);font-size:.9rem;line-height:1.75;margin-bottom:34px;max-width:52ch;}
+.q-fields{display:flex;flex-direction:column;gap:22px;margin-bottom:38px;}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.f-lab{display:block;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:9px;}
+.f-in{width:100%;background:var(--zone);border:1px solid var(--line);border-radius:4px;color:var(--ink);font-size:1.05rem;font-family:'Manrope',sans-serif;font-weight:600;padding:15px 16px;transition:border-color .2s;-moz-appearance:textfield;}
+.f-in::-webkit-outer-spin-button,.f-in::-webkit-inner-spin-button{-webkit-appearance:none;}
+.f-in:focus{border-color:rgba(var(--accent-rgb),0.55);outline:none;}
+.f-in::placeholder{color:var(--color-steel);font-weight:400;}
+select.f-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239d9486' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;cursor:pointer;}
+.f-unit{position:relative;}
+.f-unit span{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--dim);font-size:.72rem;letter-spacing:.08em;pointer-events:none;}
+/* choice cards */
+.opts{display:flex;flex-direction:column;gap:12px;}
+.opts.cols2{display:grid;grid-template-columns:1fr 1fr;}
+.opt{background:var(--zone);border:1px solid var(--line);border-radius:5px;padding:17px 19px;cursor:pointer;text-align:left;transition:border-color .18s,background .18s;color:var(--ink-2);position:relative;}
+.opt:hover{border-color:rgba(var(--accent-rgb),0.4);}
+.opt.sel{border-color:var(--accent);background:rgba(var(--accent-rgb),0.06);}
+.opt.sel::after{content:"";position:absolute;right:16px;top:50%;transform:translateY(-50%);width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px rgba(var(--accent-rgb),0.6);}
+.opt b{display:block;font-family:'Manrope',sans-serif;font-weight:700;font-size:.95rem;color:var(--ink);margin-bottom:3px;padding-right:26px;}
+.opt small{font-size:.78rem;color:var(--ink-2);line-height:1.55;display:block;padding-right:26px;}
+/* segmented unit toggle */
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:4px;overflow:hidden;}
+.seg button{background:transparent;border:none;color:var(--dim);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:9px 18px;cursor:pointer;transition:background .2s,color .2s;}
+.seg button.sel{background:rgba(var(--accent-rgb),0.12);color:var(--accent);}
+/* milestones */
+.miles{border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:14px;background:var(--card);}
+.mile{display:grid;grid-template-columns:1.2fr 1fr auto;gap:14px;padding:13px 20px;border-bottom:1px solid var(--line);align-items:baseline;}
+.mile:last-child{border-bottom:none;}
+.mile.head{background:var(--zone);padding:10px 20px;}
+.mile.head span{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);}
+.mile .mi-date{font-size:.8rem;color:var(--ink-2);}
+.mile .mi-w{font-family:'Manrope',sans-serif;font-weight:700;font-size:.85rem;}
+.mile .mi-d{font-family:'Manrope',sans-serif;font-weight:600;font-size:.75rem;color:var(--accent);}
+.mile.final{background:rgba(var(--accent-rgb),0.05);}
+.mile.final .mi-date{color:var(--accent);}
+.pace-warn{color:#e07a5f;font-weight:600;}
+/* pace slider */
+.pace-wrap{background:var(--zone);border:1px solid var(--line);border-radius:6px;padding:26px 24px 22px;}
+.pace-val{font-family:'Manrope',sans-serif;font-weight:800;font-size:2rem;letter-spacing:-.02em;margin-bottom:2px;}
+.pace-name{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;}
+input[type=range]{width:100%;appearance:none;-webkit-appearance:none;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--accent) var(--fill,50%),rgba(var(--ink-rgb),0.12) var(--fill,50%));outline:none;margin:10px 0 8px;}
+input[type=range]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--grad-gold);cursor:pointer;box-shadow:0 0 14px rgba(var(--accent-rgb),0.55);border:none;}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#ffac2e;cursor:pointer;box-shadow:0 0 14px rgba(var(--accent-rgb),0.55);border:none;}
+.pace-ends{display:flex;justify-content:space-between;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);}
+.pace-ticks{display:flex;justify-content:space-between;font-family:'Manrope',sans-serif;font-weight:600;font-size:.72rem;color:var(--muted);margin-top:10px;padding:0 2px;}
+.pace-ticks span{flex:1;text-align:center;}
+.pace-ticks span:first-child{text-align:left;}
+.pace-ticks span:last-child{text-align:right;}
+.pace-note{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:.8rem;line-height:1.65;}
+.pace-note b{color:var(--accent);font-weight:600;}
+/* chips multi-select */
+.chips{display:flex;flex-wrap:wrap;gap:10px;}
+.chip{background:var(--zone);border:1px solid var(--line);border-radius:100px;color:var(--ink-2);font-size:.78rem;padding:10px 18px;cursor:pointer;transition:border-color .18s,background .18s,color .18s;}
+.chip:hover{border-color:rgba(var(--accent-rgb),0.4);}
+.chip.sel{border-color:var(--accent);color:var(--accent);background:rgba(var(--accent-rgb),0.07);}
+/* quiz nav */
+.q-nav{display:flex;align-items:center;justify-content:space-between;gap:14px;}
+.q-nav .cta{padding:16px 40px;}
+
+/* ── Reveal ── */
+.rv-head{text-align:center;margin-bottom:44px;}
+.rv-eyebrow{font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+.rv-title{font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(1.7rem,5vw,2.6rem);line-height:1.1;letter-spacing:-0.018em;text-wrap:balance;}
+.rv-sub{color:var(--ink-2);font-size:.88rem;line-height:1.75;max-width:52ch;margin:14px auto 0;}
+.stat3{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-bottom:16px;}
+.stat3>div{padding:28px 18px;text-align:center;background:var(--card);}
+.stat3>div:not(:last-child){border-right:1px solid var(--line);}
+.st-num{font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(1.9rem,4.5vw,2.7rem);line-height:1;letter-spacing:-.025em;background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.st-num small{font-size:.45em;letter-spacing:0;}
+.st-lab{font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:12px;}
+.macro3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:40px;}
+.mc{background:var(--zone);border:1px solid var(--line);border-radius:6px;padding:20px 16px;text-align:center;}
+.mc-num{font-family:'Manrope',sans-serif;font-weight:800;font-size:1.6rem;letter-spacing:-.02em;}
+.mc-num small{font-size:.55em;color:var(--dim);font-weight:600;}
+.mc-lab{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:8px;}
+.mc-bar{height:3px;border-radius:2px;background:var(--grad-gold);margin:14px auto 0;transition:width 1.1s cubic-bezier(0.22,1,0.36,1);width:0;}
+.rv-block{margin-bottom:44px;}
+.rv-block h3{font-family:'Manrope',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:-.01em;margin-bottom:6px;}
+.rv-block .bk-sub{color:var(--ink-2);font-size:.84rem;line-height:1.7;margin-bottom:20px;max-width:60ch;}
+.chart-card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:22px 18px 14px;}
+.chart-legend{display:flex;gap:22px;margin-top:10px;padding:0 6px;flex-wrap:wrap;}
+.chart-legend span{font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);display:flex;align-items:center;gap:8px;}
+.chart-caveat{font-size:.76rem;color:var(--dim);line-height:1.65;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);}
+.lg-line{width:22px;height:2px;background:var(--accent);display:inline-block;}
+.lg-dash{width:22px;height:0;border-top:2px dashed rgba(var(--ink-rgb),0.4);display:inline-block;}
+
+
+/* ── Gate ── */
+.gate-zone{position:relative;margin-top:48px;}
+.locked-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.lk{background:#161411;border:1px solid rgba(var(--ink-rgb),0.18);border-radius:6px;padding:22px 20px;position:relative;overflow:hidden;min-height:118px;}
+.lk-blur{filter:blur(3px);opacity:.95;pointer-events:none;user-select:none;}
+.lk-tag{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+.lk b{display:block;font-family:'Manrope',sans-serif;font-weight:700;font-size:.95rem;margin-bottom:6px;}
+.lk p{font-size:.76rem;color:var(--ink-2);line-height:1.6;}
+.lk-lock{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:2;}
+.lk-lock svg{width:20px;height:20px;stroke:var(--muted);fill:none;stroke-width:1.5;}
+.gate-overlay{position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(ellipse at center,rgba(0,0,0,0.1),rgba(0,0,0,0.38));-webkit-backdrop-filter:blur(7px) saturate(1.3);backdrop-filter:blur(7px) saturate(1.3);}
+.gate-card{max-width:520px;width:100%;background:rgba(22,17,12,0.72);border:1px solid rgba(255,172,46,0.4);border-radius:14px;padding:38px 34px;text-align:center;}
+.gate-card h3{font-family:'Manrope',sans-serif;font-weight:800;font-size:1.45rem;letter-spacing:-.015em;margin-bottom:10px;text-wrap:balance;}
+.gate-card>p{color:var(--muted);font-size:.85rem;line-height:1.75;margin-bottom:26px;}
+.gate-form{display:flex;flex-direction:column;gap:12px;}
+.gate-form .f-in{text-align:center;font-family:'Inter',sans-serif;font-weight:500;font-size:.95rem;}
+.gate-fine{font-size:.68rem;color:var(--dim);line-height:1.6;margin-top:16px;}
+.gate-err{color:#e07a5f;font-size:.75rem;margin-top:10px;display:none;}
+
+/* ── Blueprint ── */
+.bp-sec{border:1px solid var(--line);border-radius:10px;background:rgba(20,16,12,0.5);padding:36px 32px;margin-bottom:26px;position:relative;}
+.bp-tag{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+.bp-tag i{flex:1;height:1px;background:var(--line);}
+.bp-sec h2{font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(1.3rem,3.6vw,1.7rem);letter-spacing:-.015em;margin-bottom:8px;text-wrap:balance;}
+.bp-lead{color:var(--ink-2);font-size:.9rem;line-height:1.8;margin-bottom:26px;max-width:62ch;}
+.bp-lead b{color:var(--ink);font-weight:600;}
+.kv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:8px;}
+.kv{background:var(--zone);border:1px solid var(--line);border-radius:5px;padding:16px;}
+.kv b{display:block;font-family:'Manrope',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:-.015em;}
+.kv b small{font-size:.6em;color:var(--dim);font-weight:600;}
+.kv span{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);display:block;margin-top:6px;}
+.lever{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);}
+.lever:last-child{border-bottom:none;}
+.lever-n{font-family:'Manrope',sans-serif;font-weight:800;color:var(--accent);font-size:.95rem;min-width:20px;}
+.lever div b{display:block;font-weight:600;font-size:.9rem;margin-bottom:4px;}
+.lever div p{color:var(--ink-2);font-size:.83rem;line-height:1.7;}
+/* food blocks */
+.fb-target{display:flex;align-items:baseline;gap:14px;margin:26px 0 14px;flex-wrap:wrap;}
+.fb-target b{font-family:'Manrope',sans-serif;font-weight:800;font-size:1.15rem;color:var(--accent);}
+.fb-target span{font-size:.78rem;color:var(--muted);}
+.fb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
+.fb{background:var(--zone);border:1px solid var(--line);border-radius:5px;padding:14px 15px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.fb b{font-size:.82rem;font-weight:600;color:var(--ink-2);display:block;}
+.fb small{font-size:.68rem;color:var(--dim);display:block;margin-top:2px;}
+.fb em{font-family:'Manrope',sans-serif;font-weight:800;font-style:normal;font-size:.85rem;color:var(--accent);white-space:nowrap;}
+/* meal plan */
+.day-tabs{display:flex;gap:8px;margin-bottom:18px;}
+.day-tab{background:var(--zone);border:1px solid var(--line);border-radius:4px;color:var(--dim);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;padding:10px 20px;cursor:pointer;transition:all .18s;}
+.day-tab.sel{border-color:var(--accent);color:var(--accent);background:rgba(var(--accent-rgb),0.07);}
+.meal{display:grid;grid-template-columns:110px 1fr auto;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);align-items:baseline;}
+.meal:last-child{border-bottom:none;}
+.meal-slot{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);}
+.meal-what{font-size:.84rem;color:var(--ink-2);line-height:1.6;}
+.meal-mac{font-size:.7rem;color:var(--muted);font-family:'Manrope',sans-serif;font-weight:600;white-space:nowrap;}
+/* grocery */
+.gr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;}
+.gr-col h4{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--line);}
+.gr-col li{list-style:none;font-size:.82rem;color:var(--ink);padding:5px 0;display:flex;gap:9px;align-items:baseline;}
+.gr-col li::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--color-steel);flex-shrink:0;position:relative;top:-2px;}
+
+/* pivot */
+.pivot{text-align:center;padding:52px 32px 58px;border:1px solid rgba(var(--accent-rgb),0.35);border-radius:8px;background:radial-gradient(ellipse at 50% 0%,rgba(var(--accent-rgb),0.07),transparent 65%),var(--card);margin-bottom:26px;}
+.pivot h2{font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(1.5rem,4.6vw,2.2rem);letter-spacing:-.018em;line-height:1.12;max-width:22ch;margin:0 auto 18px;text-wrap:balance;}
+.pivot>p{color:var(--muted);font-size:.9rem;line-height:1.85;max-width:54ch;margin:0 auto 20px;}
+.pivot-stats{display:flex;gap:36px;justify-content:center;margin:30px 0 34px;flex-wrap:wrap;}
+.pivot-stats div b{font-family:'Manrope',sans-serif;font-weight:800;font-size:1.9rem;background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;color:transparent;display:block;line-height:1;}
+.pivot-stats div span{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);display:block;margin-top:9px;}
+.bp-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:38px 0 10px;}
+.dl-note{text-align:center;color:var(--dim);font-size:.72rem;margin-top:8px;}
+/* footer */
+.foot{max-width:860px;margin:70px auto 0;padding:34px 24px 60px;border-top:1px solid var(--line);text-align:center;}
+.foot p{color:var(--dim);font-size:.7rem;line-height:1.8;max-width:72ch;margin:0 auto 10px;}
+.foot a{color:var(--dim);text-decoration:none;}
+
+/* ── Editorial design language: squared corners, caps display, hairline boxes ── */
+.cta,.cta-o,.opt,.f-in,.seg,.pace-wrap,.chip,.day-tab,.stat3,.mc,.chart-card,.lk,.gate-card,.bp-sec,.kv,.fb,.proof-card,.quote-card,.video-frame,#scr-quiz,.proof-wrap,.proof-ba div,.q-eyebrow em,.gr-col,.pivot{border-radius:14px;}
+.cta,.cta-o,.f-in,.opt,.day-tab,.kv,.fb{border-radius:12px;}
+.proof-ba img{border-radius:12px 12px 0 0;}
+.hero h1,.proof-h2,.rv-title,.bp-sec h2,.pivot h2,.q-title,.gate-card h3{text-transform:uppercase;letter-spacing:.02em;line-height:1.1;}
+.hero h1{max-width:24ch;}
+.proof-quote,.quote-card p{font-family:'Lora',serif;}
+.proof-card,.quote-card{background:rgba(255,255,255,0.045);border:1px solid rgba(233,226,212,0.16);}
+.quote-card{padding:44px 30px;text-align:center;}
+.quote-by{flex-direction:column;align-items:center;gap:8px;border-top:none;padding-top:10px;}
+.proof-ba div{background:rgba(255,255,255,0.05);border:1px solid rgba(233,226,212,0.18);overflow:visible;}
+.proof-ba span{position:static;display:block;text-align:center;background:none;color:var(--ink);font-size:.78rem;letter-spacing:.18em;padding:12px 0 14px;}
+.proof-ba div:last-child span{color:var(--accent);background:none;}
+.stat3,.mc,.chart-card{border-color:rgba(233,226,212,0.18);background:rgba(20,16,12,0.5);}
+.lk{border-color:rgba(var(--ink-rgb),0.32);background:rgba(255,255,255,0.05);}
+
+@media(max-width:680px){
+  .scr{padding:22px 18px 80px;}
+  #scr-quiz{margin:14px 12px 50px;padding:30px 18px 54px;}
+  /* raise the smallest labels so nothing is squint-sized on phones */
+  .st-lab{font-size:.68rem;}
+  .kv span,.mc-lab,.meal-slot,.fb small{font-size:.66rem;}
+  .hg-grid span{font-size:.6rem;}
+  .hg-grid b{font-size:.8rem;}
+  .chart-caveat{font-size:.8rem;}
+  .gate-fine{font-size:.72rem;}
+  .meal-mac{font-size:.74rem;}
+  .q-help{font-size:.94rem;}
+  .f-row{grid-template-columns:1fr;}
+  .opts.cols2{grid-template-columns:1fr;}
+  .stat3{grid-template-columns:1fr;}
+  .stat3>div:not(:last-child){border-right:none;border-bottom:1px solid var(--line);}
+  .macro3{grid-template-columns:1fr 1fr 1fr;gap:8px;}
+  .mc{padding:14px 8px;}
+  .mc-num{font-size:1.15rem;}
+  .locked-grid{grid-template-columns:1fr;}
+  .gate-overlay{padding:10px;}
+  .gate-card{padding:30px 22px;}
+  .bp-sec{padding:26px 20px;}
+  .meal{grid-template-columns:1fr;gap:4px;padding:14px 0;}
+  .meal-mac{margin-top:2px;}
+  .pivot{padding:40px 20px;}
+  .hero{min-height:70vh;}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001s!important;transition-duration:.001s!important;}
+  .scr.on{animation:none;}
+}
+</style>
+</head>
+<body>
+<div class="orbs" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="prail" aria-hidden="true"><div class="prail-fill" id="prail"></div></div>
+
+<header class="hdr">
+  <img src="logo-am.png" alt="Alex Maywood AM monogram" decoding="async" style="height:52px;width:auto;display:inline-block;">
+  <div class="hdr-lab" id="hdrStep">Alex Maywood</div>
+</header>
+
+<main id="app">
+  <!-- Screens injected / toggled by JS -->
+  <section class="scr hero on" id="scr-hero" aria-label="Start">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="kicker">
+      <span class="kicker-rule"></span>
+      <span class="kicker-lab">The AEM Blueprint</span>
+      <span class="kicker-rule"></span>
+    </div>
+    <h1>Your body runs on numbers. <span class="gi">Get yours.</span></h1>
+    <p class="hero-sub">A 90-second assessment. Your calories, your macros, and a dated timeline for your goal. Built like a plan, not a guess.</p>
+    <div><button class="cta" id="startBtn">Start the assessment</button></div>
+    <div class="hero-get">
+      <p class="hg-lab">What you get</p>
+      <div class="hg-grid">
+        <div><b>Calories &amp; macros</b><span>Your daily targets</span></div>
+        <div><b>Training plan</b><span>For your schedule</span></div>
+        <div><b>3-day meal plan</b><span>Foods you actually eat</span></div>
+      </div>
+      <p class="hg-note">All calculated from your answers — plus a grocery list, your goal date, and a PDF to keep.</p>
+    </div>
+  <div class="proof-wrap paper" aria-label="Client results">
+    <p class="proof-eyebrow">Real people, real numbers</p>
+    <h2 class="proof-h2">I built this from what actually worked. For me, and for the people I coach.</h2>
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="proof-who"><img src="images/luke-avatar.jpg" alt="Luke M."><div><b>Luke M.</b><span>Senior Data Analyst</span></div></div>
+        <div class="proof-ba">
+          <div><img src="images/luke-before.webp" alt="Luke before"><span>Before</span></div>
+          <div><img src="images/luke-after.webp" alt="Luke after"><span>After</span></div>
+        </div>
+        <p class="proof-quote">&ldquo;I&rsquo;ve lost 20 lbs of fat and gained muscle at the same time. I was already working out and putting in the effort but wasn&rsquo;t seeing real results. He helped optimize my nutrition, habits, and gave me a program tailored to my goals and lifestyle.&rdquo;</p>
+      </div>
+      <div class="proof-card">
+        <div class="proof-who"><img src="images/abdullah-avatar.jpg" alt="Abdullah Al-Shalabi"><div><b>Abdullah Al-Shalabi</b><span>Capital Planner</span></div></div>
+        <div class="proof-ba">
+          <div><img src="images/abdullah-before.webp" alt="Abdullah before"><span>Before</span></div>
+          <div><img src="images/abdullah-after.webp" alt="Abdullah after"><span>After</span></div>
+        </div>
+        <p class="proof-quote">&ldquo;Within just 6 weeks I noticed my belt size. I moved from the 3rd hole to the 4th hole. My body composition clearly changed. I lost fat and gained muscle. The biggest change has been understanding that nutrition truly drives results.&rdquo;</p>
+      </div>
+      <div class="proof-card">
+        <div class="proof-who"><img src="images/alex-avatar.webp" alt="Alex Maywood"><div><b>Alex Maywood</b><span>Coach, and client zero</span></div></div>
+        <div class="proof-ba">
+          <div><img src="images/alex-before.webp" alt="Alex Maywood before"><span>Before</span></div>
+          <div><img src="images/alex-after.webp" alt="Alex Maywood after"><span>After</span></div>
+        </div>
+        <p class="proof-quote">&ldquo;I was 30 lbs overweight, wearing bigger clothes to hide my body, and carrying a heaviness I couldn&rsquo;t shift no matter what I tried. The frustration wasn&rsquo;t really about the weight. It was the gap between the person I knew I was and the one I saw in the mirror every morning.&rdquo;</p>
+      </div>
+    </div>
+
+    <p class="proof-sub">Hear it from them</p>
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="video-frame"><iframe src="https://www.youtube.com/embed/xvERIBby2xg" title="Omar testimonial" loading="lazy" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>
+        <b>Omar Tarabishi</b><span>Founder, Leftover Love Inc.</span>
+      </div>
+      <div class="video-card">
+        <div class="video-frame"><iframe src="https://www.youtube.com/embed/V8GRGtSlNwY" title="Raghda testimonial" loading="lazy" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>
+        <b>Raghda</b><span>Program Coordinator</span>
+      </div>
+    </div>
+
+    <p class="proof-sub">In their words</p>
+    <div class="quote-grid">
+      <div class="quote-card">
+        <div class="quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>&ldquo;I lost 10 lbs in the first 6 weeks! Alex helped me optimize my nutrition and protein intake throughout the entire day, not just around my workout. Before starting with Alex, I ate a lot of sweets and now I only have one sweet thing at dinner, if that. I highly recommend Alex as your coach. Access to Alex is great!&rdquo;</p>
+        <div class="quote-by"><img src="images/omar-avatar.jpg" alt="Omar Tarabishi"><div><b>Omar Tarabishi</b><span>Founder, Leftover Love Inc.</span></div></div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>&ldquo;My online experience with Alex has been amazing and very helpful. He listened to my needs and concerns and then took actions that benefited me and my goals. After one month of consistency, I saw improvements and changes that proved his program was working. I went down from a size 6 to a size 4 and most of my clothes are big on me now. I&rsquo;ve had three coaches in the last two years including Alex, and Alex has been the best coach I&rsquo;ve had so far.&rdquo;</p>
+        <div class="quote-by"><img src="images/raghda-avatar.jpg" alt="Raghda"><div><b>Raghda</b><span>Program Coordinator</span></div></div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>&ldquo;Working with Alex was different from the first conversation. He asked me questions nobody had asked me before, about my schedule, my pain history, my actual goal, and my lifestyle as a whole. I went from deadlifting a 35lb kettlebell to deadlifting 105lb using a trap bar and no back pain or knee pain. My energy is consistent in a way it was not before.&rdquo;</p>
+        <div class="quote-by"><img src="images/maha-avatar.jpg" alt="Maha Mahmood"><div><b>Maha Mahmood</b><span>Lead Technical Architect</span></div></div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>&ldquo;Training with Alex has been an exceptional experience. From the beginning, he demonstrated a high level of professionalism. Not only is he highly knowledgeable and motivating, but also very patient, making the training both easier and more enjoyable. His structured and safety-focused approach allowed me to progress effectively toward my goals and train safely without risk of injury.&rdquo;</p>
+        <div class="quote-by"><img src="images/lana-avatar.jpg" alt="Lana Adnan"><div><b>Lana Adnan</b><span>Geotechnical Project Engineer</span></div></div>
+      </div>
+    </div>
+
+  </div>
+  </section>
+
+  <section class="scr paper" id="scr-quiz" aria-label="Assessment"></section>
+
+  <section class="scr wide" id="scr-results" aria-label="Your results"></section>
+</main>
+
+<footer class="foot">
+  <p>The AEM Blueprint is an educational tool, not medical advice. Every output — calories, macros, meals, timelines and training — is an estimate and a starting point, built on published equations (Mifflin-St Jeor and Katch-McArdle BMR, standard activity multipliers) and standard evidence-based training guidelines. Real-world results vary with adherence, sleep, stress and training; adjust with your own data. Consult a physician before changing your nutrition or training, especially with any existing condition.</p>
+  <p>© <span id="yr"></span> Alex Maywood · The AEM Method · <a href="https://www.alexmaywood.com" rel="noopener">alexmaywood.com</a></p>
+</footer>
+
+<script>
+/* ══════════════ CONFIG — edit these before launch ══════════════ */
+const CONFIG = {
+  // Kit (ConvertKit) form: create an incentive-free form in Kit, grab its numeric ID
+  // from the embed code, and paste it here. Leave "" to test without Kit.
+  KIT_FORM_ID: "",
+  // Custom field keys as defined in Kit (Settings → Custom fields)
+  KIT_FIELDS: { goal:"goal", calories:"calories", protein:"protein", link:"blueprint_link", blocker:"blocker", why:"why_now" },
+  COACHING_URL: "https://forms.gle/qKe3vV7riGPVmta89"
+};
+
+/* ══════════════ STATE ══════════════ */
+const S = {
+  unit:"imperial", name:"", age:null, sex:"", htCm:null, wtKg:null, bf:null,
+  goal:"", goalWtKg:null, pace:0.75, surplusPct:0.15, recompDef:150, level:"",
+  why:"", blocker:"", vision:"",
+  activity:"", trainDays:3, sleep:"", stress:5, steps:"", diet:"standard", restrictions:[],
+  unlocked:false
+};
+
+/* ══════════════ REFERENCE DATA ══════════════ */
+// Standard TDEE activity multipliers (Mifflin-St Jeor convention)
+const ACT = { sed:1.2, light:1.375, mod:1.55, very:1.725, extra:1.9 };
+const ACT_LABEL = { sed:"sedentary", light:"lightly active", mod:"moderately active", very:"very active", extra:"extra active" };
+
+/* ══════════════ FOOD DATA — the real-food translator ══════════════ */
+// Each item: name, portion, macro grams per portion, tags for diet filtering.
+// t: v=vegetarian-ok, vg=vegan-ok, k=keto-friendly, gf=gluten-free, df=dairy-free
+const FOODS = {
+  protein: [
+    {n:"Chicken breast", p:"6 oz cooked", g:52, t:["k","gf","df"]},
+    {n:"Lean beef (93/7)", p:"6 oz cooked", g:46, t:["k","gf","df"]},
+    {n:"Salmon fillet", p:"6 oz cooked", g:40, t:["k","gf","df"]},
+    {n:"White fish (cod, tilapia)", p:"6 oz cooked", g:41, t:["k","gf","df"]},
+    {n:"Whey protein", p:"2 scoops", g:48, t:["v","k","gf"]},
+    {n:"Greek yogurt 0–2%", p:"1 cup", g:20, t:["v","k","gf"]},
+    {n:"Whole eggs", p:"4 large", g:24, t:["v","k","gf","df"]},
+    {n:"Egg whites", p:"1 cup", g:26, t:["v","k","gf","df"]},
+    {n:"Cottage cheese", p:"1 cup", g:25, t:["v","k","gf"]},
+    {n:"Shrimp", p:"6 oz cooked", g:38, t:["k","gf","df"]},
+    {n:"Canned tuna (in water)", p:"2 cans (5 oz each), drained", g:44, t:["k","gf","df"]},
+    {n:"Turkey breast", p:"6 oz cooked", g:50, t:["k","gf","df"]},
+    {n:"Pork tenderloin", p:"6 oz cooked", g:48, t:["k","gf","df"]},
+    {n:"Extra-firm tofu", p:"1 block (350 g)", g:35, t:["v","vg","k","gf","df"]},
+    {n:"Tempeh", p:"1 cup", g:31, t:["v","vg","gf","df"]},
+    {n:"Lentils (cooked)", p:"1.5 cups", g:27, t:["v","vg","gf","df"]},
+    {n:"Seitan", p:"4 oz", g:28, t:["v","vg","df"]},
+    {n:"Pea protein", p:"2 scoops", g:44, t:["v","vg","k","gf","df"]},
+    {n:"Edamame", p:"1.5 cups", g:26, t:["v","vg","gf","df"]}
+  ],
+  carb: [
+    {n:"White or jasmine rice", p:"1 cup cooked", g:45, t:["v","vg","gf","df"]},
+    {n:"Oats", p:"1 cup dry", g:54, t:["v","vg","df"]},
+    {n:"Potatoes", p:"2 medium (400 g)", g:68, t:["v","vg","gf","df"]},
+    {n:"Sweet potato", p:"1 large (300 g)", g:60, t:["v","vg","gf","df"]},
+    {n:"Whole-grain bread", p:"3 slices", g:45, t:["v","vg","df"]},
+    {n:"Pasta", p:"2 oz dry", g:42, t:["v","vg","df"]},
+    {n:"Quinoa", p:"1 cup cooked", g:39, t:["v","vg","gf","df"]},
+    {n:"Banana", p:"2 medium", g:54, t:["v","vg","gf","df"]},
+    {n:"Berries", p:"2 cups", g:30, t:["v","vg","k","gf","df"]},
+    {n:"Apple", p:"2 medium", g:50, t:["v","vg","gf","df"]},
+    {n:"Beans (black, kidney)", p:"1 cup cooked", g:40, t:["v","vg","gf","df"]},
+    {n:"Rice cakes", p:"5 cakes", g:35, t:["v","vg","gf","df"]},
+    {n:"Couscous", p:"1 cup cooked", g:36, t:["v","vg","df"]}
+  ],
+  fat: [
+    {n:"Olive oil", p:"1 tbsp", g:14, t:["v","vg","k","gf","df"]},
+    {n:"Avocado", p:"1 medium", g:21, t:["v","vg","k","gf","df"]},
+    {n:"Almonds", p:"1 oz (23 nuts)", g:14, t:["v","vg","k","gf","df"]},
+    {n:"Peanut butter", p:"2 tbsp", g:16, t:["v","vg","k","gf","df"]},
+    {n:"Walnuts", p:"1 oz", g:18, t:["v","vg","k","gf","df"]},
+    {n:"Cheese", p:"1.5 oz", g:14, t:["v","k","gf"]},
+    {n:"Dark chocolate 85%", p:"3 squares (30 g)", g:14, t:["v","vg","k","gf","df"]},
+    {n:"Chia seeds", p:"2 tbsp", g:9, t:["v","vg","k","gf","df"]},
+    {n:"Butter or ghee", p:"1 tbsp", g:12, t:["v","k","gf"]},
+    {n:"Fatty fish (extra)", p:"included above", g:12, t:["k","gf","df"]}
+  ]
+};
+
+function foodFilter(list){
+  return list.filter(f=>{
+    if(S.diet==="mediterranean" && /beef|pork|butter/i.test(f.n)) return false;
+    if(S.diet!=="vegetarian" && /tofu|tempeh|seitan|pea protein|edamame|lentil/i.test(f.n)) return false;
+    if(S.diet==="vegetarian" && !(f.t.includes("v")||f.t.includes("vg"))) return false;
+    if(S.diet==="paleo" && /whey|yogurt|cottage|cheese|oat|bread|pasta|rice|quinoa|couscous|lentil|bean|edamame|tofu|tempeh|seitan|pea protein|peanut/i.test(f.n)) return false;
+    if(S.diet==="keto" && !f.t.includes("k")) return false;
+    if(S.restrictions.includes("nosoy") && /tofu|tempeh|edamame|soy/i.test(f.n)) return false;
+    if(S.restrictions.includes("dairyfree") && !f.t.includes("df")) return false;
+    if(S.restrictions.includes("glutenfree") && !f.t.includes("gf")) return false;
+    if(S.restrictions.includes("nopork") && /pork/i.test(f.n)) return false;
+    if(S.restrictions.includes("nonuts") && /almond|peanut|walnut|chia/i.test(f.n)) return false;
+    if(S.restrictions.includes("noseafood") && /salmon|fish|shrimp|tuna/i.test(f.n)) return false;
+    if(S.restrictions.includes("noredmeat") && /beef/i.test(f.n)) return false;
+    return true;
+  });
+}
+
+/* ══════════════ MEALS — real dishes, home-style, label-grounded macros ══════════════
+   p/cb/f grams · kcal per base portion · t = exclusion tags (matched to S.restrictions)
+   s = which component to scale · g = grocery items as "category:item"
+   (categories: p proteins · c carbs & grains · v produce · d dairy · f fats & nuts · s pantry) */
+const DISHES = {
+  eggsSourdough:{n:"Veggie scrambled eggs with sourdough toast", c:"3 eggs · spinach & tomato · 1 slice sourdough · 1 tsp olive oil", p:23,cb:24,f:20,kcal:370, t:["gluten"], s:"eggs for protein, toast for carbs", g:["p:Eggs","c:Sourdough bread","v:Spinach","v:Tomatoes","f:Olive oil"]},
+  yogurtBowl:{n:"Greek yogurt bowl with honey and walnuts", c:"1 cup Greek yogurt · 1 tbsp honey · 1 oz walnuts", p:24,cb:29,f:22,kcal:400, t:["dairy","nuts"], s:"yogurt for protein, honey and walnuts for calories", g:["d:Greek yogurt","s:Honey","f:Walnuts"]},
+  oatsPB:{n:"Oatmeal with banana and peanut butter", c:"1 cup cooked oats · 1 banana · 1 tbsp peanut butter", p:10,cb:57,f:11,kcal:350, t:["nuts"], s:"oats and banana for carbs, add whey for protein", g:["c:Oats","v:Bananas","f:Peanut butter"]},
+  sourdoughAvo:{n:"Sourdough avocado toast with tomato", c:"2 slices sourdough · ½ avocado · tomato · olive oil drizzle", p:10,cb:49,f:20,kcal:400, t:["gluten"], s:"toast for carbs, avocado for fat", g:["c:Sourdough bread","v:Avocados","v:Tomatoes","f:Olive oil"]},
+  cottageBerries:{n:"Cottage cheese bowl with berries and granola", c:"1 cup cottage cheese · ½ cup berries · ¼ cup granola", p:31,cb:36,f:7,kcal:340, t:["dairy","gluten"], s:"cottage cheese for protein, granola for calories", g:["d:Cottage cheese","v:Berries","c:Granola"]},
+  eggsAvocado:{n:"Scrambled eggs with avocado", c:"3 eggs · spinach & peppers · ½ avocado", p:21,cb:10,f:26,kcal:360, t:[], s:"eggs for protein, avocado for fat", g:["p:Eggs","v:Spinach","v:Bell peppers","v:Avocados"]},
+  turkeyHash:{n:"Turkey sausage with sweet potato hash", c:"3 turkey sausage patties · 1 cup sweet potato hash · 1 tbsp ghee", p:20,cb:35,f:33,kcal:470, t:["dairy"], s:"sausage for protein, hash for carbs", g:["p:Turkey sausage","v:Sweet potatoes","d:Ghee"]},
+  yogurtChia:{n:"Full-fat Greek yogurt with chia and berries", c:"1 cup full-fat Greek yogurt · 1 tbsp chia seeds · ¼ cup berries", p:22,cb:18,f:15,kcal:300, t:["dairy"], s:"yogurt for protein, chia for fat", g:["d:Greek yogurt (full-fat)","s:Chia seeds","v:Berries"]},
+  baconEggs:{n:"Bacon and eggs with sautéed spinach", c:"3 slices bacon · 2 eggs · spinach in butter", p:25,cb:5,f:28,kcal:370, t:["pork","dairy"], s:"eggs and bacon for protein and fat", g:["p:Eggs","p:Bacon","v:Spinach","d:Butter"]},
+  eggsPotato:{n:"Scrambled eggs with pan-fried potatoes", c:"3 eggs · 1 cup potatoes · olive oil", p:21,cb:30,f:18,kcal:370, t:[], s:"eggs for protein, potatoes for carbs", g:["p:Eggs","v:Potatoes","f:Olive oil"]},
+  chickenQuinoa:{n:"Grilled chicken with quinoa and roasted vegetables", c:"6 oz chicken breast · 1 cup quinoa · roasted vegetables · olive oil", p:64,cb:51,f:24,kcal:680, t:[], s:"chicken for protein, quinoa for calories", g:["p:Chicken breast","c:Quinoa","v:Mixed vegetables","f:Olive oil"]},
+  turkeyWrap:{n:"Turkey and hummus wrap with side salad", c:"whole wheat tortilla · 4 oz turkey breast · 3 tbsp hummus · side salad", p:32,cb:32,f:21,kcal:450, t:["gluten"], s:"turkey for protein, tortilla and hummus for carbs", g:["p:Deli turkey","c:Tortillas","s:Hummus","v:Salad greens"]},
+  beefStirfry:{n:"Beef stir-fry with brown rice", c:"5 oz lean sirloin · mixed vegetables · 1 cup brown rice · sesame oil & soy", p:50,cb:63,f:23,kcal:660, t:["redmeat","soy"], s:"beef for protein, rice for calories", g:["p:Sirloin steak","c:Brown rice","v:Stir-fry vegetables","s:Soy sauce","f:Sesame oil"]},
+  greekSalad:{n:"Greek salad with grilled chicken and feta", c:"5 oz chicken · greens, cucumber, tomato, olives · 1 oz feta · olive oil", p:50,cb:11,f:29,kcal:510, t:["dairy"], s:"chicken for protein, dressing for fat", g:["p:Chicken breast","v:Salad vegetables","d:Feta","v:Olives","f:Olive oil"]},
+  falafelPlate:{n:"Homemade falafel plate with hummus and pita", c:"6 baked falafel · 3 tbsp hummus · ½ pita · salad", p:21,cb:50,f:30,kcal:575, t:["gluten"], s:"falafel count for protein and calories", g:["c:Chickpeas (for falafel)","s:Hummus","c:Pita bread","v:Salad vegetables"]},
+  lentilSoup:{n:"Lentil soup with sourdough bread", c:"1½ cups lentil soup · 1 slice sourdough · olive oil", p:22,cb:68,f:17,kcal:495, t:["gluten"], s:"soup for protein, bread for calories", g:["c:Lentils","v:Onions & carrots","c:Sourdough bread","f:Olive oil"]},
+  halloumiSalad:{n:"Grilled halloumi salad with chickpeas", c:"3 oz halloumi · ¾ cup chickpeas · greens · olive oil", p:33,cb:40,f:45,kcal:690, t:["dairy"], s:"halloumi for protein, chickpeas for carbs — rich dish, smaller portions on a cut", g:["d:Halloumi","c:Chickpeas","v:Salad greens","f:Olive oil"]},
+  chickenAvoPaleo:{n:"Grilled chicken with roasted vegetables and avocado", c:"6 oz chicken breast · roasted vegetables · ½ avocado", p:58,cb:24,f:23,kcal:540, t:[], s:"chicken for protein, vegetables for carbs", g:["p:Chicken breast","v:Mixed vegetables","v:Avocados"]},
+  beefLettuce:{n:"Beef lettuce wraps", c:"5 oz lean ground beef · sautéed vegetables · lettuce cups", p:39,cb:12,f:27,kcal:455, t:["redmeat"], s:"beef for protein", g:["p:Ground beef","v:Lettuce","v:Stir-fry vegetables","s:Coconut aminos"]},
+  shrimpZoodle:{n:"Grilled shrimp with zucchini noodles", c:"6 oz shrimp · olive oil · 2 cups zucchini noodles", p:45,cb:12,f:17,kcal:360, t:["seafood"], s:"shrimp for protein, oil for calories", g:["p:Shrimp","v:Zucchini","f:Olive oil"]},
+  shawarmaKeto:{n:"Homemade chicken shawarma bowl over cauliflower rice", c:"6 oz shawarma-spiced chicken thigh · cauliflower rice · 2 tbsp tahini · pickles", p:53,cb:18,f:49,kcal:710, t:[], s:"chicken for protein, tahini for fat", g:["p:Chicken thighs","v:Cauliflower rice","s:Tahini","v:Pickles","s:Shawarma spices"]},
+  cobb:{n:"Cobb salad with chicken, bacon, egg and avocado", c:"5 oz chicken · 2 slices bacon · 1 egg · ½ avocado · greens", p:58,cb:10,f:43,kcal:660, t:["pork"], s:"chicken for protein, dressing for fat", g:["p:Chicken breast","p:Bacon","p:Eggs","v:Avocados","v:Salad greens"]},
+  tunaWraps:{n:"Tuna salad lettuce wraps with olives", c:"6 oz tuna in water · 1½ tbsp mayo · celery · olives · lettuce cups", p:44,cb:5,f:20,kcal:390, t:["seafood"], s:"tuna for protein, mayo for fat", g:["p:Canned tuna","s:Mayonnaise","v:Celery","v:Olives","v:Lettuce"]},
+  chickenRiceSafe:{n:"Grilled chicken with rice and vegetables", c:"6 oz chicken breast · 1 cup rice · vegetables · olive oil", p:54,cb:50,f:18,kcal:600, t:[], s:"chicken for protein, rice for calories", g:["p:Chicken breast","c:Rice","v:Mixed vegetables","f:Olive oil"]},
+  salmonSweet:{n:"Baked salmon with sweet potato and broccoli", c:"6 oz salmon · 1 sweet potato · broccoli · olive oil", p:45,cb:46,f:28,kcal:605, t:["seafood"], s:"salmon for protein and fat, sweet potato for carbs", g:["p:Salmon","v:Sweet potatoes","v:Broccoli","f:Olive oil"]},
+  shawarmaBowl:{n:"Homemade chicken shawarma bowl with rice and hummus", c:"6 oz shawarma-spiced chicken thigh · 1 cup basmati rice · 3 tbsp hummus · pickles", p:52,cb:55,f:40,kcal:800, t:[], s:"chicken for protein, rice for calories, less oil and hummus to trim fat", g:["p:Chicken thighs","c:Basmati rice","s:Hummus","v:Pickles","s:Shawarma spices"]},
+  koftaBulgur:{n:"Beef kofta in tomato sauce with bulgur", c:"5 oz grilled kofta · tomato sauce · 1 cup bulgur", p:38,cb:52,f:12,kcal:450, t:["redmeat","gluten"], s:"kofta for protein, bulgur for carbs", g:["p:Ground beef or lamb","c:Bulgur","v:Tomato sauce","v:Parsley & onion"]},
+  chickenKofta:{n:"Chicken kofta with tabbouleh and tzatziki", c:"5 oz chicken kofta · 1 cup tabbouleh · 3 tbsp tzatziki", p:38,cb:30,f:23,kcal:475, t:["dairy","gluten"], s:"kofta for protein, tabbouleh for carbs", g:["p:Ground chicken","c:Bulgur","v:Parsley & tomato","d:Yogurt (for tzatziki)"]},
+  shrimpCouscous:{n:"Shrimp skewers with couscous and grilled vegetables", c:"6 oz shrimp · 1 cup couscous · grilled vegetables", p:49,cb:49,f:16,kcal:525, t:["seafood","gluten"], s:"shrimp for protein, couscous for calories", g:["p:Shrimp","c:Couscous","v:Grilled vegetables","f:Olive oil"]},
+  tofuStirfry:{n:"Tofu and vegetable stir-fry with brown rice", c:"6 oz firm tofu · mixed vegetables · 1 cup brown rice", p:35,cb:69,f:25,kcal:610, t:["soy"], s:"tofu for protein, rice for calories", g:["p:Firm tofu","c:Brown rice","v:Stir-fry vegetables","f:Sesame oil"]},
+  chickpeaCurry:{n:"Chickpea and spinach curry with basmati rice", c:"1½ cups chickpea-spinach curry · 1 cup basmati rice", p:16,cb:87,f:15,kcal:555, t:[], s:"add yogurt or paneer for protein, rice for carbs", g:["c:Chickpeas","v:Spinach","s:Curry paste & coconut milk","c:Basmati rice"]},
+  halloumiQuinoa:{n:"Grilled halloumi with roasted vegetables and quinoa", c:"3 oz halloumi · roasted vegetables · 1 cup quinoa", p:32,cb:57,f:33,kcal:650, t:["dairy"], s:"halloumi for protein, quinoa for carbs", g:["d:Halloumi","c:Quinoa","v:Mixed vegetables"]},
+  salmonAsparagus:{n:"Baked salmon with asparagus and sweet potato", c:"6 oz salmon · roasted asparagus · 1 small sweet potato", p:43,cb:30,f:28,kcal:545, t:["seafood"], s:"salmon for protein, sweet potato for carbs", g:["p:Salmon","v:Asparagus","v:Sweet potatoes","f:Olive oil"]},
+  koftaLettuce:{n:"Beef kofta lettuce cups with cucumber-tomato salad", c:"5 oz kofta · cucumber-tomato salad · lettuce cups", p:32,cb:12,f:19,kcal:335, t:["redmeat"], s:"kofta for protein", g:["p:Ground beef","v:Lettuce","v:Cucumber & tomato","f:Olive oil"]},
+  roastChicken:{n:"Roast chicken thighs with cauliflower rice and green beans", c:"6 oz chicken thigh · cauliflower rice with ghee · green beans", p:49,cb:16,f:43,kcal:630, t:["dairy"], s:"chicken for protein, ghee for fat", g:["p:Chicken thighs","v:Cauliflower rice","v:Green beans","d:Ghee"]},
+  ribeye:{n:"Ribeye with garlic butter and roasted broccoli", c:"6 oz ribeye · garlic butter · roasted broccoli", p:47,cb:10,f:53,kcal:705, t:["redmeat","dairy"], s:"steak for protein, butter for fat", g:["p:Ribeye steak","d:Butter","v:Broccoli","f:Olive oil"]},
+  salmonButter:{n:"Baked salmon with garlic-butter asparagus", c:"6 oz salmon · asparagus · 1 tbsp butter", p:41,cb:8,f:34,kcal:510, t:["seafood","dairy"], s:"salmon for protein, butter for calories", g:["p:Salmon","v:Asparagus","d:Butter"]},
+  ketoKofta:{n:"Beef kofta with tzatziki and grilled zucchini", c:"5 oz kofta · 3 tbsp tzatziki · grilled zucchini", p:35,cb:13,f:22,kcal:390, t:["redmeat","dairy"], s:"kofta for protein", g:["p:Ground beef","d:Yogurt (for tzatziki)","v:Zucchini","f:Olive oil"]},
+  applePB:{n:"Apple with almond butter", c:"1 apple · 1 tbsp almond butter", p:3,cb:28,f:9,kcal:195, t:["nuts"], s:"almond butter for calories", g:["v:Apples","f:Almond butter"]},
+  cottagePine:{n:"Cottage cheese with pineapple", c:"1 cup cottage cheese · ½ cup pineapple", p:28,cb:16,f:2,kcal:205, t:["dairy"], s:"cottage cheese for protein", g:["d:Cottage cheese","v:Pineapple"]},
+  hummusVeg:{n:"Hummus with carrot and cucumber sticks", c:"3 tbsp hummus · carrot & cucumber sticks", p:5,cb:14,f:8,kcal:140, t:[], s:"hummus for calories", g:["s:Hummus","v:Carrots","v:Cucumbers"]},
+  nutsApricots:{n:"Mixed nuts and dried apricots", c:"1 oz mixed nuts · 3 dried apricots", p:6,cb:19,f:15,kcal:220, t:["nuts"], s:"nut portion for calories", g:["f:Mixed nuts","v:Dried apricots"]},
+  yogurtDip:{n:"Greek yogurt-cucumber dip with pita chips", c:"½ cup Greek yogurt with cucumber & mint · pita chips", p:12,cb:19,f:5,kcal:185, t:["dairy","gluten"], s:"chips for carbs", g:["d:Greek yogurt","v:Cucumbers","c:Pita chips"]},
+  hbEggs:{n:"Hard-boiled eggs with cucumber", c:"2 hard-boiled eggs · cucumber slices", p:13,cb:5,f:10,kcal:155, t:[], s:"egg count for protein", g:["p:Eggs","v:Cucumbers"]},
+  cheeseOlives:{n:"Cheese and olives", c:"1½ oz cheddar · 10 olives", p:11,cb:4,f:19,kcal:220, t:["dairy"], s:"cheese for protein and fat", g:["d:Cheddar","v:Olives"]},
+  macadamia:{n:"Handful of macadamia nuts", c:"1 oz macadamia nuts", p:2,cb:4,f:21,kcal:205, t:["nuts"], s:"portion for calories", g:["f:Macadamia nuts"]},
+  wheyShake:{n:"Whey protein shake with banana", c:"1 scoop whey · 1 banana · water or ice", p:26,cb:29,f:2,kcal:230, t:["dairy"], s:"scoops for protein", g:["s:Whey protein","v:Bananas"]}
+};
+const MEALS = {
+  standard:{breakfast:["eggsSourdough","yogurtBowl","oatsPB"], lunch:["chickenQuinoa","turkeyWrap","beefStirfry"], dinner:["salmonSweet","shawarmaBowl","koftaBulgur"], snack:["applePB","cottagePine","wheyShake"]},
+  mediterranean:{breakfast:["yogurtBowl","sourdoughAvo","eggsSourdough"], lunch:["greekSalad","falafelPlate","lentilSoup"], dinner:["salmonSweet","chickenKofta","shrimpCouscous"], snack:["hummusVeg","nutsApricots","yogurtDip"]},
+  vegetarian:{breakfast:["eggsSourdough","oatsPB","cottageBerries"], lunch:["lentilSoup","falafelPlate","halloumiSalad"], dinner:["tofuStirfry","chickpeaCurry","halloumiQuinoa"], snack:["hummusVeg","cottagePine","nutsApricots"]},
+  paleo:{breakfast:["eggsAvocado","turkeyHash","eggsPotato"], lunch:["chickenAvoPaleo","beefLettuce","shrimpZoodle"], dinner:["salmonAsparagus","koftaLettuce","roastChicken"], snack:["applePB","nutsApricots","hbEggs"]},
+  keto:{breakfast:["eggsAvocado","yogurtChia","baconEggs"], lunch:["shawarmaKeto","cobb","tunaWraps"], dinner:["ribeye","salmonButter","ketoKofta"], snack:["cheeseOlives","hbEggs","macadamia"]}
+};
+const SLOT_SHARE = {breakfast:0.25, lunch:0.30, dinner:0.35, snack:0.10};
+
+/* ══════════════ TRAINING — sample weeks by available days ══════════════
+   Built on ≥2x/week per-muscle frequency and ~10-20 hard sets/muscle/week.
+   ex: [exercise, sets×reps, movement pattern] */
+const TRAIN = {
+  1:{split:"One full-body session — every big pattern, once, done well", days:[
+    {f:"Full body", ex:[["Barbell back squat","3×5-8","squat"],["Romanian deadlift","3×6-10","hinge"],["Bench press","3×6-10","push"],["Lat pulldown","3×8-12","pull"],["DB walking lunge","2×10-12/leg","lunge"],["Farmer's carry","3×30-40m","carry"],["Plank","3×30-45s","core"]]}],
+    sub:"goblet squat, DB Romanian deadlift, DB floor press, single-arm DB row."},
+  2:{split:"Two full-body sessions — one leads with the squat, one with the hinge", days:[
+    {f:"Full body A — squat focus", ex:[["Back squat","3×6-8","squat"],["Incline DB press","3×8-10","push"],["Cable row","3×8-12","pull"],["Walking lunge","2×10/leg","lunge"],["Hanging knee raise","3×10-15","core"]]},
+    {f:"Full body B — hinge focus", ex:[["Deadlift","3×5-6","hinge"],["Overhead press","3×6-10","push"],["Lat pulldown","3×8-12","pull"],["Bulgarian split squat","2×8-10/leg","lunge"],["Suitcase carry","3×30m/side","carry"]]}],
+    sub:"DB Romanian deadlift for the deadlift, goblet squat for the barbell squat, single-arm DB row for cable row."},
+  3:{split:"Three full-body sessions with rotating emphasis", days:[
+    {f:"Full body A", ex:[["Back squat","3×6-8","squat"],["Bench press","3×6-10","push"],["Seated cable row","3×8-12","pull"],["Lying leg curl","3×10-12","hinge"],["Plank","3×30-45s","core"]]},
+    {f:"Full body B", ex:[["Deadlift","3×5-6","hinge"],["Overhead press","3×8-10","push"],["Lat pulldown","3×8-12","pull"],["Walking lunge","2×10/leg","lunge"],["Cable crunch","3×12-15","core"]]},
+    {f:"Full body C", ex:[["Leg press","3×8-10","squat"],["Incline DB press","3×8-12","push"],["DB row","3×8-12","pull"],["Hip thrust","3×8-12","hinge"],["Farmer's carry","3×30-40m","carry"]]}],
+    sub:"goblet or DB split squat for barbell squats, DB Romanian deadlift for the deadlift, single-arm DB row for machine rows."},
+  4:{split:"Upper / lower, twice through — the classic four-day structure", days:[
+    {f:"Upper A", ex:[["Bench press","3×5-8","push"],["Barbell row","3×6-10","pull"],["Overhead press","3×8-10","push"],["Lat pulldown","3×8-12","pull"],["Lateral raise","3×12-15","isolation"],["DB curl","2×12-15","isolation"]]},
+    {f:"Lower A", ex:[["Back squat","3×5-8","squat"],["Romanian deadlift","3×6-10","hinge"],["Leg press","3×8-12","squat"],["Leg curl","3×10-12","hinge"],["Standing calf raise","3×12-15","isolation"],["Hanging knee raise","3×10-15","core"]]},
+    {f:"Upper B", ex:[["Incline DB press","3×6-10","push"],["Pull-up or pulldown","3×6-10","pull"],["DB shoulder press","3×8-12","push"],["Cable row","3×8-12","pull"],["Rear delt fly","2×12-15","isolation"],["Triceps pushdown","2×12-15","isolation"]]},
+    {f:"Lower B", ex:[["Trap bar deadlift","3×5-6","hinge"],["Front or goblet squat","3×8-10","squat"],["Bulgarian split squat","3×8-10/leg","lunge"],["Hip thrust","3×8-12","hinge"],["Leg extension","2×12-15","isolation"],["Pallof press","3×30-45s","core"]]}],
+    sub:"goblet squat, DB Romanian deadlift, DB bench press, single-arm DB row, DB shoulder press cover every barbell lift."},
+  5:{split:"Upper / lower / push / pull / legs — volume spread across five focused days", days:[
+    {f:"Upper", ex:[["Bench press","3×5-8","push"],["Barbell row","3×6-10","pull"],["Overhead press","3×8-10","push"],["Lat pulldown","3×8-12","pull"],["Lateral raise","3×12-15","isolation"]]},
+    {f:"Lower", ex:[["Back squat","3×5-8","squat"],["Romanian deadlift","3×6-10","hinge"],["Leg press","3×8-12","squat"],["Leg curl","3×10-12","hinge"],["Calf raise","3×12-15","isolation"]]},
+    {f:"Push", ex:[["Incline bench press","3×6-10","push"],["DB shoulder press","3×8-12","push"],["Cable fly","2×12-15","isolation"],["Triceps pushdown","3×10-15","isolation"],["Lateral raise","2×15","isolation"]]},
+    {f:"Pull", ex:[["Pull-up","3×6-10","pull"],["Cable row","3×8-12","pull"],["Face pull","3×12-15","isolation"],["DB curl","2×12-15","isolation"],["Hammer curl","2×12-15","isolation"]]},
+    {f:"Legs", ex:[["Front squat","3×6-8","squat"],["Hip thrust","3×8-12","hinge"],["Walking lunge","2×10/leg","lunge"],["Leg extension","2×12-15","isolation"],["Hanging leg raise","3×10-15","core"]]}],
+    sub:"DB press variations, DB Romanian deadlift, goblet squat and single-arm DB row cover the barbell work."},
+  6:{split:"Push / pull / legs, twice through — recovery becomes the skill to manage", days:[
+    {f:"Push A", ex:[["Bench press","3×5-8","push"],["Overhead press","3×8-10","push"],["Incline DB press","3×8-12","push"],["Lateral raise","3×12-15","isolation"],["Triceps pushdown","2×12-15","isolation"]]},
+    {f:"Pull A", ex:[["Deadlift","3×5-6","hinge"],["Pull-up","3×6-10","pull"],["Cable row","3×8-12","pull"],["Face pull","3×12-15","isolation"],["DB curl","2×12-15","isolation"]]},
+    {f:"Legs A", ex:[["Back squat","3×5-8","squat"],["Romanian deadlift","3×6-10","hinge"],["Leg press","3×8-12","squat"],["Leg curl","3×10-12","hinge"],["Calf raise","3×12-15","isolation"]]},
+    {f:"Push B", ex:[["DB bench press","3×8-10","push"],["Arnold press","3×8-12","push"],["Cable fly","3×12-15","isolation"],["Dips","3×8-12","push"],["Overhead triceps extension","2×12-15","isolation"]]},
+    {f:"Pull B", ex:[["Barbell row","3×6-10","pull"],["Lat pulldown","3×8-12","pull"],["Seated cable row","3×8-12","pull"],["Rear delt fly","3×12-15","isolation"],["Hammer curl","2×12-15","isolation"]]},
+    {f:"Legs B", ex:[["Front squat or leg press","3×8-10","squat"],["Bulgarian split squat","3×8-10/leg","lunge"],["Hip thrust","3×8-12","hinge"],["Leg extension","2×12-15","isolation"],["Standing calf raise","3×15-20","isolation"]]}],
+    sub:"DB Romanian deadlift, goblet or DB split squat, single-arm DB row, DB bench and shoulder press replace the barbell lifts."}
+};
+const TRAIN_ADJ = {
+  nov:"As a novice, cut the listed sets by a third, keep everything at 8-12 reps, and treat form as the goal — load comes later.",
+  beg:"Run it as written, and make small weekly jumps in weight or reps your one job.",
+  int:"As an intermediate, add a set to your weakest muscle groups over time and introduce pauses or slower tempo when progress stalls.",
+  adv:"As an advanced lifter, push sets toward the top of the volume range and use intensity techniques sparingly on the last set of accessories."
+};
+const EXCL_TAG = {dairyfree:"dairy", glutenfree:"gluten", nonuts:"nuts", noseafood:"seafood", nopork:"pork", noredmeat:"redmeat", nosoy:"soy"};
+function mealOk(key){ return !S.restrictions.some(r=>DISHES[key].t.includes(EXCL_TAG[r])); }
+function slotPool(slot){
+  const pool=(MEALS[S.diet]||MEALS.standard)[slot].filter(mealOk);
+  if(pool.length) return pool;
+  const safe = S.diet==="keto" ? {breakfast:"eggsAvocado",lunch:"shawarmaKeto",dinner:"shawarmaKeto",snack:"hbEggs"}
+    : S.diet==="vegetarian" ? {breakfast:"eggsPotato",lunch:"chickpeaCurry",dinner:"chickpeaCurry",snack:"hbEggs"}
+    : {breakfast:"eggsPotato",lunch:"chickenRiceSafe",dinner:"chickenRiceSafe",snack:"hbEggs"};
+  return [safe[slot]];
+}
+function dayMeals(d){
+  return Object.keys(SLOT_SHARE).map(slot=>{
+    const pool=slotPool(slot);
+    const dish=DISHES[pool[d % pool.length]];
+    const target=PLAN.cal*SLOT_SHARE[slot];
+    const fac=Math.min(1.5, Math.max(0.7, target/dish.kcal));
+    return {slot, dish, fac, p:Math.round(dish.p*fac), kcal:Math.round(dish.kcal*fac/10)*10};
+  });
+}
+function gatherGrocery(){
+  const cats={p:"Proteins", c:"Carbs & grains", v:"Produce", d:"Dairy", f:"Fats & nuts", s:"Pantry & sauces"};
+  const sets={}; Object.keys(cats).forEach(k=>sets[k]=new Set());
+  for(let d=0; d<3; d++) dayMeals(d).forEach(m=>m.dish.g.forEach(it=>{ const i=it.indexOf(":"); const c=it.slice(0,i); if(sets[c]) sets[c].add(it.slice(i+1)); }));
+  ["Salt & pepper","Herbs & spices you like","Coffee or tea","Sparkling water","Diet sodas & juices","Light salad dressing","Light mayo"].forEach(x=>sets.s.add(x));
+  return Object.keys(cats).filter(k=>sets[k].size).map(k=>[cats[k], [...sets[k]]]);
+}
+
+/* ══════════════ ENGINES ══════════════ */
+const KG=0.45359237, CM=2.54;
+const lb = kg => kg/KG, kg_ = l => l*KG;
+function paceWt(){ return S.unit==="imperial" ? S.pace+" lb" : (Math.round(kg_(S.pace)*100)/100)+" kg"; }
+/* Classify a fat-loss pace relative to the person, not the slider position.
+   Research guideline: ~0.5-1% of body weight per week; people carrying more
+   body fat can safely sustain the upper end and slightly beyond. */
+function lossPaceInfo(){
+  const bw = S.wtKg ? lb(S.wtKg) : 0;
+  const rel = bw ? S.pace/bw*100 : 0; // % of body weight per week
+  const highBF = S.bf!=null && S.bf>0 && (S.sex==="f" ? S.bf>=32 : S.bf>=25);
+  let zone;
+  if(rel<=0.5) zone="slow";
+  else if(rel<=0.8) zone="moderate";
+  else if(rel<=1.0 || (highBF && rel<=1.5)) zone="fast";
+  else zone="aggressive";
+  return {rel:Math.round(rel*10)/10, highBF, zone};
+}
+function fmtWt(kgv){
+  if(S.unit==="imperial"){ const v=lb(kgv); return (v<10? Math.round(v*10)/10 : Math.round(v))+" lb"; }
+  return (Math.round(kgv*10)/10)+" kg";
+}
+
+function calcBMR(){
+  if(S.bf && S.bf>3 && S.bf<60){
+    const lean = S.wtKg*(1-S.bf/100);
+    return 370 + 21.6*lean; // Katch-McArdle
+  }
+  const base = 10*S.wtKg + 6.25*S.htCm - 5*S.age; // Mifflin-St Jeor
+  return S.sex==="m" ? base+5 : base-161;
+}
+function actFactor(){ return ACT[S.activity]||1.375; }
+function calcTDEE(){ return calcBMR() * actFactor(); }
+
+function calcPlan(){
+  const tdee = calcTDEE();
+  const lbTotal = lb(S.wtKg);
+  const r5 = x => Math.max(5, Math.round(x/5)*5); // spec: round macros to nearest 5 g
+  // Protein per spec: 2.2-3.0 g/kg lean mass when BF% is known, g/lb-total fallback,
+  // +1% per year of age above 40 (anabolic resistance)
+  function proteinTarget(){
+    const ageAdj = S.age>40 ? 1+(S.age-40)/100 : 1;
+    let g;
+    if(S.bf && S.bf>3 && S.bf<60){
+      const lbm = S.wtKg*(1-S.bf/100);
+      g = ({loss:2.6, gain:2.4, recomp:2.8, maintain:2.2}[S.goal]||2.4)*lbm;
+    } else {
+      g = ({loss:0.9, gain:0.8, recomp:1.0, maintain:0.8}[S.goal]||0.85)*lbTotal;
+    }
+    return g*ageAdj;
+  }
+  let cal, dailyDelta=0, effPaceWk=0;
+  if(S.goal==="loss"){
+    const wkKg = kg_(S.pace); // S.pace is lb per week
+    dailyDelta = -(wkKg*7700)/7;
+    cal = tdee + dailyDelta;
+    const floor = S.sex==="m" ? 1500 : 1200;
+    if(cal < floor){ cal = floor; dailyDelta = cal - tdee; }
+    effPaceWk = -dailyDelta*7/7700;
+  } else if(S.goal==="gain"){
+    dailyDelta = S.surplusPct*tdee; // spec tiers: conservative 5-10%, moderate 10-20%, aggressive 20-30% over TDEE
+    cal = tdee + dailyDelta;
+    effPaceWk = dailyDelta*7/7700;
+  } else if(S.goal==="recomp"){
+    dailyDelta = -S.recompDef; // spec: recomp runs 0 to -250 under maintenance
+    cal = tdee + dailyDelta;
+  } else { // maintain
+    cal = tdee;
+  }
+  let protein = r5(proteinTarget());
+  // never let protein consume the whole calorie budget (fat floor 0.5 g/kg for hormones)
+  const fFloor = r5(0.5*S.wtKg);
+  const reserved = S.diet==="keto" ? 30*4 + fFloor*9 : fFloor*9;
+  if(protein*4 > cal - reserved) protein = r5((cal - reserved)/4);
+  let fat;
+  if(S.diet==="keto"){
+    fat = r5((cal - protein*4 - 30*4)/9);
+    return {tdee:Math.round(tdee), bmr:Math.round(calcBMR()), cal:Math.round(cal), protein, fat, carbs:30, effPaceWk, dailyDelta:Math.round(dailyDelta)};
+  }
+  // Fat per spec: hard floor 0.35 g/lb bodyweight on a cut; ~30% of calories otherwise
+  if(S.goal==="loss") fat = r5(Math.max(0.35*lbTotal, 0.28*cal/9));
+  else fat = r5(0.30*cal/9);
+  let carbs = r5((cal - protein*4 - fat*9)/4);
+  if(carbs<50){ fat = r5(Math.max((cal - protein*4 - 50*4)/9, 0.5*S.wtKg)); carbs = r5((cal - protein*4 - fat*9)/4); }
+  if(carbs<0) carbs=0;
+  return {tdee:Math.round(tdee), bmr:Math.round(calcBMR()), cal:Math.round(cal), protein, fat, carbs, effPaceWk, dailyDelta:Math.round(dailyDelta)};
+}
+
+// Weekly weight projection to goal + 12 weeks of maintenance
+function calcTimeline(){
+  const plan = calcPlan();
+  const pts=[]; let w=S.wtKg; let wk=0;
+  const goal = S.goalWtKg || S.wtKg;
+  pts.push({wk, w});
+  if(S.goal==="loss" && goal < S.wtKg){
+    while(w>goal && wk<260){
+      wk++;
+      w = Math.max(goal, w - plan.effPaceWk);
+      pts.push({wk,w});
+    }
+  } else if(S.goal==="gain" && goal > S.wtKg){
+    while(w<goal && wk<260){
+      wk++;
+      w = Math.min(goal, w + plan.effPaceWk);
+      pts.push({wk,w});
+    }
+  }
+  const arriveWk = wk;
+  const reached = !goal || Math.abs(w-goal)<0.01 || S.goal==="maintain" || S.goal==="recomp";
+  for(let i=1;i<=12;i++){ pts.push({wk:arriveWk+i, w}); } // maintenance line
+  return {pts, arriveWk, goalW:w, reached};
+}
+
+/* ══════════════ QUIZ FLOW ══════════════ */
+const $ = s => document.querySelector(s);
+const quizEl = () => $("#scr-quiz");
+let step = 0;
+
+const PACES = [0.5,0.75,1,1.5]; // lb per week (fat loss)
+const GAIN_PCTS = [0.075,0.15,0.25]; // surplus tiers over TDEE, per macro-guidelines-spec
+const RECOMP_DEFS = [0,150,250]; // kcal under maintenance, per macro-guidelines-spec
+function esc(s){ return String(s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function optBtn(field,val,title,sub){
+  const sel = S[field]===val ? " sel":"";
+  return `<button type="button" class="opt${sel}" data-f="${field}" data-v="${val}"><b>${title}</b>${sub?`<small>${sub}</small>`:""}</button>`;
+}
+function chipBtn(val,label){
+  const sel = S.restrictions.includes(val) ? " sel":"";
+  return `<button type="button" class="chip${sel}" data-chip="${val}">${label}</button>`;
+}
+function header(part,title,help){
+  const idx = ["The basics","The mission","The lifestyle"].indexOf(part)+1;
+  return `<div class="q-eyebrow">Part ${idx} of 3 · ${part} <em>${step+1} / ${SCREENS.length}</em></div>
+    <h2 class="q-title">${title}</h2>${help?`<p class="q-help">${help}</p>`:""}`;
+}
+function navBtns(nextLabel){
+  return `<div class="q-nav">
+    <button type="button" class="ghost" id="backBtn" ${step===0?'style="visibility:hidden" tabindex="-1" aria-hidden="true"':""}>&larr; Back</button>
+    <button type="button" class="cta" id="nextBtn">${nextLabel||"Continue"}</button>
+  </div>`;
+}
+function numIn(id,label,ph,unit,val,attrs){
+  return `<div><label class="f-lab" for="${id}">${label}</label>
+    <div class="f-unit"><input class="f-in" type="number" inputmode="decimal" id="${id}" placeholder="${ph}" value="${val!=null?val:""}" ${attrs||""}>${unit?`<span>${unit}</span>`:""}</div></div>`;
+}
+
+const SCREENS = [
+/* 0 · name/age/sex */
+{ part:"The basics",
+  render(){ return header("The basics","Let's start with you.",
+      "Your numbers are calculated from your body, not an average.")+
+    `<div class="q-fields">
+      <div style="display:flex;justify-content:flex-end"><div class="seg" role="group" aria-label="Units">
+        <button type="button" data-unit="imperial" class="${S.unit==="imperial"?"sel":""}">lb / ft</button>
+        <button type="button" data-unit="metric" class="${S.unit==="metric"?"sel":""}">kg / cm</button>
+      </div></div>
+      <div><label class="f-lab" for="inName">First name</label>
+        <input class="f-in" type="text" id="inName" placeholder="Your name" value="${esc(S.name)}" autocomplete="given-name"></div>
+      <div class="f-row">
+        ${numIn("inAge","Age","34","years",S.age,'min="16" max="90"')}
+        <div><label class="f-lab">Sex (for the equations)</label>
+          <div class="opts cols2" style="gap:10px">
+            ${optBtn("sex","m","Male","")}${optBtn("sex","f","Female","")}
+          </div></div>
+      </div>
+    </div>`+navBtns();
+  },
+  valid(){ return S.name.trim().length>0 && S.age>=16 && S.age<=90 && (S.sex==="m"||S.sex==="f"); },
+  bind(){
+    $("#inName").addEventListener("input",e=>{S.name=e.target.value; refresh();});
+    $("#inAge").addEventListener("input",e=>{S.age=parseInt(e.target.value)||null; refresh();});
+  }
+},
+/* 1 · height/weight/bf */
+{ part:"The basics",
+  render(){
+    const imp = S.unit==="imperial";
+    const ft = S.htCm? Math.floor(S.htCm/CM/12):null, inch = S.htCm? Math.round(S.htCm/CM - ft*12):null;
+    const hFields = imp
+      ? `<div class="f-row">${numIn("inFt","Height / feet","5","ft",ft,'min="3" max="8"')}${numIn("inIn","Height / inches","10","in",inch,'min="0" max="11"')}</div>`
+      : numIn("inCm","Height","178","cm",S.htCm?Math.round(S.htCm):null,'min="120" max="230"');
+    const w = S.wtKg ? (imp? Math.round(lb(S.wtKg)) : Math.round(S.wtKg*10)/10) : null;
+    return header("The basics","Now your height and weight.",
+      "Body fat is optional — it sharpens the math if you know it.")+
+    `<div class="q-fields">${hFields}
+      <div class="f-row">
+        ${numIn("inWt","Current weight", imp?"185":"84", imp?"lb":"kg", w,'min="30"')}
+        ${numIn("inBf","Body fat, optional","","%",S.bf,'min="4" max="60"')}
+      </div>
+    </div>`+navBtns();
+  },
+  valid(){ return S.htCm>=120 && S.htCm<=230 && S.wtKg>=35 && S.wtKg<=300; },
+  bind(){
+    const imp = S.unit==="imperial";
+    const setH = ()=>{ if(imp){const f=parseFloat($("#inFt").value)||0,i=parseFloat($("#inIn").value)||0; S.htCm=(f*12+i)*CM;} else S.htCm=parseFloat($("#inCm").value)||null; refresh(); };
+    if(imp){ $("#inFt").addEventListener("input",setH); $("#inIn").addEventListener("input",setH); }
+    else $("#inCm").addEventListener("input",setH);
+    $("#inWt").addEventListener("input",e=>{const v=parseFloat(e.target.value); S.wtKg = v? (imp?kg_(v):v):null; refresh();});
+    $("#inBf").addEventListener("input",e=>{S.bf=parseFloat(e.target.value)||null; refresh();});
+  }
+},
+/* 2 · goal + fitness level */
+{ part:"The mission",
+  render(){ return header("The mission","What's your goal?",
+      null)+
+    `<div class="q-fields">
+      <div class="opts">
+        ${optBtn("goal","loss","Lose fat","")}
+        ${optBtn("goal","gain","Build muscle","")}
+        ${optBtn("goal","maintain","Maintain","")}
+        ${optBtn("goal","recomp","Recomposition","Lose fat and build muscle at the same time.")}
+      </div>
+      <div><label class="f-lab">What is your fitness level?</label>
+        <div class="opts cols2">
+          ${optBtn("level","nov","Novice","Just starting, or under 6 months in")}
+          ${optBtn("level","beg","Beginner","6 to 18 months of consistent training")}
+          ${optBtn("level","int","Intermediate","18 months to 3 years in")}
+          ${optBtn("level","adv","Advanced","3+ years of serious training")}
+        </div></div>
+    </div>`+navBtns();
+  },
+  valid(){ return !!S.goal && !!S.level; },
+  bind(){}
+},
+/* 3 · why now (emotional) */
+{ part:"The mission",
+  render(){ return header("The mission","What brought you here?",
+      "Pick whichever is closest.")+
+    `<div class="q-fields"><div class="opts">
+      ${optBtn("why","event","There's a date on the calendar","A wedding, a trip, a deadline.")}
+      ${optBtn("why","guessing","I'm done guessing","Tired of conflicting advice.")}
+      ${optBtn("why","health","A wake-up call","A doctor's warning, a photo you didn't recognize, getting winded on the stairs.")}
+      ${optBtn("why","overdue","I've put it off long enough","No event. No crisis. Just enough is enough.")}
+      ${optBtn("why","momentum","I've got momentum","Already moving. Now I want real numbers.")}
+    </div></div>`+navBtns();
+  },
+  valid(){ return !!S.why; },
+  bind(){}
+},
+/* 4 · goal weight + pace */
+{ part:"The mission",
+  render(){
+    const imp = S.unit==="imperial";
+    const isLoss = S.goal==="loss", isGain = S.goal==="gain", isRecomp = S.goal==="recomp";
+    const gw = S.goalWtKg ? (imp? Math.round(lb(S.goalWtKg)) : Math.round(S.goalWtKg*10)/10) : null;
+    let paceBlock="";
+    if(isLoss){
+      paceBlock = `<div class="pace-wrap">
+        <div class="pace-val" id="paceVal"></div>
+        <div class="pace-name" id="paceName"></div>
+        <input type="range" id="paceRange" min="0" max="3" step="1" value="${Math.max(0,PACES.indexOf(S.pace))}" aria-label="Rate of loss">
+        <div class="pace-ends"><span>Slower</span><span>Faster</span></div>
+        <div class="pace-ticks">${PACES.map(v=>`<span>${imp? v+" lb" : (Math.round(kg_(v)*100)/100)+" kg"}</span>`).join("")}</div>
+        <div class="pace-note" id="paceNote"></div>
+      </div>`;
+    } else if(isGain){
+      const gi = Math.max(0, GAIN_PCTS.indexOf(S.surplusPct));
+      paceBlock = `<div class="pace-wrap">
+        <div class="pace-val" id="paceVal"></div>
+        <div class="pace-name" id="paceName"></div>
+        <input type="range" id="paceRange" min="0" max="2" step="1" value="${gi}" aria-label="Surplus size">
+        <div class="pace-ends"><span>Conservative</span><span>Aggressive</span></div>
+        <div class="pace-ticks">${GAIN_PCTS.map(v=>`<span>+${Math.round(v*1000)/10}%</span>`).join("")}</div>
+        <div class="pace-note" id="paceNote"></div>
+      </div>`;
+    } else if(isRecomp){
+      const ri = Math.max(0, RECOMP_DEFS.indexOf(S.recompDef));
+      paceBlock = `<div class="pace-wrap">
+        <div class="pace-val" id="paceVal"></div>
+        <div class="pace-name" id="paceName"></div>
+        <input type="range" id="paceRange" min="0" max="2" step="1" value="${ri}" aria-label="Recomp calorie position">
+        <div class="pace-ends"><span>True maintenance</span><span>Deficit edge</span></div>
+        <div class="pace-ticks">${RECOMP_DEFS.map(v=>`<span>${v===0?"0":"-"+v} cal</span>`).join("")}</div>
+        <div class="pace-note" id="paceNote"></div>
+      </div>`;
+    } else {
+      paceBlock = `<div class="pace-wrap"><div class="pace-note" style="border:none;padding:0;margin:0">We set your intake at your <b>maintenance</b> — the calories where your weight stays the same — and keep protein high. The first 3 weeks verify the number against your scale average.</div></div>`;
+    }
+    return header("The mission", (isLoss||isGain)?"Where do you want to end up, and how fast?":isRecomp?"How hard do you want the recomp to lean?":"Holding steady, on purpose.",
+      isLoss?"Set your goal weight and pace. Research supports 0.5 to 1% of your body weight per week.":
+      isGain?"Set your target weight and surplus. Smaller surplus, leaner gain.":
+      isRecomp?"Recomp runs at or just under maintenance. Pick where you want to sit.":null)+
+    `<div class="q-fields">
+      ${(isLoss||isGain) ? `<div class="f-row">${numIn("inGw", isLoss?"Goal weight":"Target weight", imp?(isLoss?"170":"195"):(isLoss?"77":"88"), imp?"lb":"kg", gw)}<div></div></div>`:""}
+      ${paceBlock}
+    </div>`+navBtns();
+  },
+  valid(){
+    if(S.goal==="recomp"||S.goal==="maintain") return true;
+    if(!S.goalWtKg) return false;
+    if(S.goal==="loss") return S.goalWtKg < S.wtKg && S.goalWtKg > S.wtKg*0.55;
+    return S.goalWtKg > S.wtKg && S.goalWtKg < S.wtKg*1.35;
+  },
+  bind(){
+    const imp = S.unit==="imperial";
+    const lossRead=()=>{
+      const pi=lossPaceInfo();
+      const relTxt = pi.rel ? `About ${pi.rel}% of your body weight per week. ` : "";
+      if(pi.zone==="slow") return ["Slow and steady", relTxt+"Easiest to stick with. Safest for muscle."];
+      if(pi.zone==="moderate") return ["Moderate", relTxt+"Inside the range research supports."];
+      if(pi.zone==="fast") return ["Fast", relTxt+(pi.highBF
+        ? "Your body fat gives you room to run this pace safely. Keep protein high."
+        : "Top of the recommended range. Protein and training become non-negotiable.")];
+      return ["Very fast", relTxt+`<span class="pace-warn">Faster than recommended for your size.</span> Expect hunger and muscle risk. Keep it to 6-8 weeks.`];
+    };
+    const gainNames=["Conservative","Moderate","Aggressive"];
+    const recompN=[["True maintenance","The scale holds while fat trades for muscle."],
+      ["Slight deficit","The standard position. Speeds up the fat side."],
+      ["Deficit edge","As firm as recomp gets before it becomes a slow cut."]];
+    const upd=()=>{
+      const r=$("#paceRange"); if(!r) return;
+      const idx=parseInt(r.value);
+      const maxIdx=parseInt(r.max);
+      r.style.setProperty("--fill", (idx/maxIdx*100)+"%");
+      if(S.goal==="loss"){
+        S.pace=PACES[idx];
+        const lr=lossRead();
+        $("#paceVal").textContent = imp ? S.pace+" lb / week" : (Math.round(kg_(S.pace)*100)/100)+" kg / week";
+        $("#paceName").textContent = lr[0];
+        $("#paceNote").innerHTML = lr[1];
+      } else if(S.goal==="gain"){
+        S.surplusPct=GAIN_PCTS[idx];
+        const extra = (S.wtKg && S.activity) ? Math.round(S.surplusPct*calcTDEE()) : 0;
+        const pct = Math.round(S.surplusPct*1000)/10;
+        $("#paceVal").textContent = "+"+pct+"% over maintenance";
+        $("#paceName").textContent = gainNames[idx];
+        $("#paceNote").innerHTML = `+${pct}% means you eat ${pct}% more calories than your body burns in a day${extra?`. For you, that's about <b>+${extra} calories a day</b>`:""}.`;
+      } else {
+        S.recompDef=RECOMP_DEFS[idx];
+        $("#paceVal").textContent = S.recompDef===0 ? "At maintenance" : "-"+S.recompDef+" calories / day";
+        $("#paceName").textContent = recompN[idx][0];
+        $("#paceNote").innerHTML = recompN[idx][1];
+      }
+    };
+    const r=$("#paceRange");
+    if(r){ r.addEventListener("input",()=>{upd(); refresh();}); upd(); }
+    const g=$("#inGw");
+    if(g) g.addEventListener("input",e=>{const v=parseFloat(e.target.value); S.goalWtKg=v?(imp?kg_(v):v):null; refresh();});
+  }
+},
+/* 5 · activity level + steps + training days */
+{ part:"The lifestyle",
+  render(){ return header("The lifestyle","How active is a normal day?",
+      "Answer for your typical week right now — your calorie numbers are built from this.")+
+    `<div class="q-fields">
+      <div class="opts">
+        ${optBtn("activity","sed","Sedentary","Little or no exercise. Desk life.")}
+        ${optBtn("activity","light","Lightly active","Light exercise 1 to 3 days a week")}
+        ${optBtn("activity","mod","Moderately active","Moderate exercise 3 to 5 days a week")}
+        ${optBtn("activity","very","Very active","Hard exercise 6 to 7 days a week")}
+        ${optBtn("activity","extra","Extra active","Very hard exercise or training twice a day")}
+      </div>
+      <div><label class="f-lab">Daily steps, roughly</label>
+      <div class="opts cols2">
+        ${optBtn("steps","st35","3,000 to 5,000","")}
+        ${optBtn("steps","st57","5,000 to 7,000","")}
+        ${optBtn("steps","st79","7,000 to 9,000","")}
+        ${optBtn("steps","st911","9,000 to 11,000","")}
+        ${optBtn("steps","st1113","11,000 to 13,000","")}
+        ${optBtn("steps","st13","13,000+","")}
+      </div></div>
+      <div><label class="f-lab">How many days are you realistically able to train?</label>
+      <div class="opts cols2">
+        ${optBtn("trainDays","1","1 day","")}
+        ${optBtn("trainDays","2","2 days","")}
+        ${optBtn("trainDays","3","3 days","")}
+        ${optBtn("trainDays","4","4 days","")}
+        ${optBtn("trainDays","5","5 days","")}
+        ${optBtn("trainDays","6","6+ days","")}
+      </div></div>
+    </div>`+navBtns();
+  },
+  valid(){ return !!S.activity && !!S.steps && S.trainDays>=1; },
+  bind(){}
+},
+/* 6 · sleep + stress */
+{ part:"The lifestyle",
+  render(){ return header("The lifestyle","Sleep and stress.",
+      "These decide how much of your training your body actually keeps.")+
+    `<div class="q-fields">
+      <div><label class="f-lab">Most nights you sleep</label>
+      <div class="opts cols2">
+        ${optBtn("sleep","s5","Under 6 hours","")}
+        ${optBtn("sleep","s6","6 to 7 hours","")}
+        ${optBtn("sleep","s7","7 to 9 hours","")}
+        ${optBtn("sleep","s9","9+ hours","")}
+      </div></div>
+      <div><label class="f-lab">Stress level lately: <b style="color:var(--accent);font-family:Manrope" id="strVal">${S.stress}</b>/10</label>
+        <input type="range" id="strRange" min="1" max="10" step="1" value="${S.stress}" aria-label="Stress"></div>
+    </div>`+navBtns();
+  },
+  valid(){ return !!S.sleep; },
+  bind(){
+    const r=$("#strRange");
+    const upd=()=>{ S.stress=parseInt(r.value); $("#strVal").textContent=r.value; r.style.setProperty("--fill",((r.value-1)/9*100)+"%"); };
+    r.addEventListener("input",()=>{upd(); refresh();}); upd();
+  }
+},
+/* 7 · diet + restrictions */
+{ part:"The lifestyle",
+  render(){ return header("The lifestyle","How do you like to eat?",
+      "Your meal plan and grocery list are built from foods you'll actually eat.")+
+    `<div class="q-fields">
+      <div class="opts cols2">
+        ${optBtn("diet","standard","Balanced","Everything on the table")}
+        ${optBtn("diet","mediterranean","Mediterranean","Fish, olive oil, whole foods")}
+        ${optBtn("diet","vegetarian","Vegetarian","No meat or fish")}
+        ${optBtn("diet","paleo","Paleo","Meat, fish, eggs, produce. No grains or dairy")}
+        ${optBtn("diet","keto","Low-carb / keto","Carbs held near 30 g")}
+      </div>
+      <div><label class="f-lab">Anything to leave out?</label>
+      <div class="chips">
+        ${chipBtn("dairyfree","No dairy")}
+        ${chipBtn("glutenfree","No gluten")}
+        ${chipBtn("nopork","No pork")}
+        ${chipBtn("nosoy","No soy")}
+        ${chipBtn("nonuts","No nuts")}
+        ${chipBtn("noseafood","No seafood")}
+        ${chipBtn("noredmeat","No red meat")}
+      </div></div>
+    </div>`+navBtns();
+  },
+  valid(){ return !!S.diet; },
+  bind(){}
+},
+/* 8 · blocker (emotional) */
+{ part:"The lifestyle",
+  render(){ return header("The lifestyle","What usually gets in the way?",
+      "Every failed plan had a reason. We build this one around yours.")+
+    `<div class="q-fields"><div class="opts">
+      ${optBtn("blocker","consistency","Starting strong, fading by week 3","Motivation launches it; nothing holds it up.")}
+      ${optBtn("blocker","knowledge","Never knowing what to actually eat","Grams and percentages that never became meals.")}
+      ${optBtn("blocker","stress","Stress and responsibilities","Work, family, everything else. The plan slips.")}
+      ${optBtn("blocker","social","Weekends and social life","Five good days, then Saturday takes the week back.")}
+      ${optBtn("blocker","allornothing","All-or-nothing thinking","One slip reads as failure, and failure means quit.")}
+      ${optBtn("blocker","noplan","There was never a real plan","Workouts from one app, diet from another, nothing tying them together.")}
+    </div></div>`+navBtns();
+  },
+  valid(){ return !!S.blocker; },
+  bind(){}
+},
+/* 9 · vision (emotional) */
+{ part:"The lifestyle",
+  render(){ return header("The lifestyle","Picture yourself a year from now.",
+      "It worked. What matters most?")+
+    `<div class="q-fields"><div class="opts">
+      ${optBtn("vision","look","The mirror","Clothes fit right. The reflection matches the effort.")}
+      ${optBtn("vision","energy","Energy and confidence","Walking into rooms differently.")}
+      ${optBtn("vision","perform","Strength and performance","Numbers on the bar. Capability you can measure.")}
+      ${optBtn("vision","partner","Finding a partner","Showing up with confidence.")}
+      ${optBtn("vision","longevity","The long game","Strong and capable at 50, 60, 70.")}
+    </div></div>`+navBtns("See my numbers");
+  },
+  valid(){ return !!S.vision; },
+  bind(){}
+}
+];
+
+function refresh(){
+  const btn=$("#nextBtn");
+  if(btn) btn.disabled = !SCREENS[step].valid();
+}
+function renderStep(){
+  const scr=SCREENS[step];
+  quizEl().innerHTML = scr.render();
+  scr.bind();
+  bindDelegates();
+  refresh();
+  $("#prail").style.width = ((step+1)/(SCREENS.length+1)*100)+"%";
+  window.scrollTo({top:0, behavior:"smooth"});
+  $("#backBtn").addEventListener("click", ()=>{ if(step>0){ step--; renderStep(); } });
+  $("#nextBtn").addEventListener("click", next);
+}
+function next(){
+  if(step < SCREENS.length-1){
+    if(!SCREENS[step].valid()) return;
+    step++; renderStep();
+  } else {
+    showResults();
+  }
+}
+function bindDelegates(){
+  quizEl().querySelectorAll(".opt[data-f]").forEach(b=>{
+    b.addEventListener("click",()=>{
+      const f=b.dataset.f;
+      let v=b.dataset.v;
+      if(f==="trainDays") v=parseInt(v);
+      S[f]=v;
+      quizEl().querySelectorAll(`.opt[data-f="${f}"]`).forEach(x=>x.classList.toggle("sel",x===b));
+      refresh();
+    });
+  });
+  quizEl().querySelectorAll(".chip[data-chip]").forEach(c=>{
+    c.addEventListener("click",()=>{
+      const v=c.dataset.chip;
+      const i=S.restrictions.indexOf(v);
+      if(i>=0) S.restrictions.splice(i,1); else S.restrictions.push(v);
+      c.classList.toggle("sel");
+    });
+  });
+  quizEl().querySelectorAll(".seg [data-unit]").forEach(b=>{
+    b.addEventListener("click",()=>{ S.unit=b.dataset.unit; renderStep(); });
+  });
+}
+
+/* ══════════════ SCREEN SWITCHING ══════════════ */
+function showScreen(id){
+  document.querySelectorAll(".scr").forEach(s=>s.classList.remove("on"));
+  $("#"+id).classList.add("on");
+  window.scrollTo({top:0});
+}
+
+/* ══════════════ RESULTS ══════════════ */
+let PLAN=null, TL=null;
+
+function goalWord(){ return S.goal==="loss"?"fat loss":S.goal==="gain"?"muscle building":S.goal==="maintain"?"maintenance":"recomposition"; }
+const WHY_LINE = {
+  event:"There's a date on your calendar. Good. Deadlines make math matter.",
+  guessing:"You're done guessing. From here, you run on your numbers.",
+  health:"You heard the knock. This is the answer: measured, not dramatic.",
+  overdue:"No crisis, no event. Just a decision. Those are the ones that hold.",
+  momentum:"You're already moving. These numbers put steering on it."
+};
+const VISION_WORD = { look:"the mirror", energy:"how you carry every day", perform:"what your body can do", partner:"the confidence you bring when you meet people", longevity:"the next few decades" };
+const BLOCKER_PIVOT = {
+  consistency:"You told us what kills your plans: they start on motivation and nothing holds them up when it fades. That's not a character flaw, it's a structure gap. Motivation starts plans; systems and accountability finish them.",
+  knowledge:"You said the wall has always been knowing what to actually eat. Look up: that wall is gone. Sections 3, 4 and 5 turned your numbers into meals. What's left isn't a knowledge problem anymore. It's an execution problem.",
+  social:"You told us Saturdays take back what the week built. A plan that can't survive your real life isn't a plan, it's a countdown. The structure you need flexes for social weeks without losing the month.",
+  stress:"You told us stress and responsibilities push the plan aside. A plan that only works in a calm week is not a plan. The structure you need runs on minimums during hard weeks and never asks you to start over.",
+  allornothing:"You said one slip reads as failure, and failure means quit. So hear this from the numbers themselves: a 3,000-calorie night inside a week that averages on-target changes almost nothing. The next meal is the reset. Someone just has to hold that standard with you.",
+  noplan:"You said there's never been a real plan. Training from one place, food from another, nothing tying them together. As of today that excuse is gone. This page is the plan. The question left is who holds you to it."
+};
+function fmtDate(weeksFromNow){
+  const d=new Date(); d.setDate(d.getDate()+weeksFromNow*7);
+  return d.toLocaleDateString(undefined,{month:"short", day:"numeric", year:"numeric"});
+}
+let SKIP_ANIM=false;
+function countUp(el,target,suffix){
+  if(SKIP_ANIM){ el.textContent=Math.round(target).toLocaleString()+(suffix||""); return; }
+  const dur=1100, t0=performance.now();
+  const tick=(t)=>{
+    const p=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-p,3);
+    el.textContent=Math.round(target*e).toLocaleString()+(suffix||"");
+    if(p<1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
+
+function timelineSVG(){
+  if(S.goal==="recomp" || !TL || TL.pts.length<3) return "";
+  const P=TL.pts, W=720, H=300, padL=52, padR=18, padT=54, padB=58;
+  const maxWk=P[P.length-1].wk;
+  const ws=P.map(p=>p.w), minW=Math.min(...ws), maxW=Math.max(...ws);
+  const span=Math.max(maxW-minW, 2);
+  const X=wk=> padL + (wk/maxWk)*(W-padL-padR);
+  const Y=w => padT + (1-(w-minW+span*0.08)/(span*1.16))*(H-padT-padB);
+  const pre=P.filter(p=>p.wk<=TL.arriveWk);
+  // Real weight change is not a straight line. Wobble it gently, then smooth the
+  // wobble into a curve rather than a hard staircase.
+  const stepKg = pre.length>1 ? Math.abs(pre[1].w-pre[0].w) : 0;
+  const wob = pre.map((pt,i)=> (i===0||i===pre.length-1) ? pt.w : pt.w + Math.sin(i*1.7)*stepKg*0.22);
+  const pts = pre.map((pt,i)=>[X(pt.wk), Y(wob[i])]);
+  let stair = `M ${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
+  for(let i=0;i<pts.length-1;i++){
+    const p0=pts[Math.max(0,i-1)], p1=pts[i], p2=pts[i+1], p3=pts[Math.min(pts.length-1,i+2)];
+    const c1x=p1[0]+(p2[0]-p0[0])/6, c1y=p1[1]+(p2[1]-p0[1])/6;
+    const c2x=p2[0]-(p3[0]-p1[0])/6, c2y=p2[1]-(p3[1]-p1[1])/6;
+    stair += ` C ${c1x.toFixed(1)} ${c1y.toFixed(1)}, ${c2x.toFixed(1)} ${c2y.toFixed(1)}, ${p2[0].toFixed(1)} ${p2[1].toFixed(1)}`;
+  }
+  const dash=P.filter(p=>p.wk>=TL.arriveWk).map(p=>`${X(p.wk).toFixed(1)},${Y(p.w).toFixed(1)}`).join(" ");
+  const gx=X(TL.arriveWk), gy=Y(TL.goalW);
+  const yTicks=[minW, (minW+maxW)/2, maxW];
+  const labX = Math.min(Math.max(gx, padL+90), W-120);
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Projected weight timeline">
+    ${yTicks.map(w=>`<line x1="${padL}" y1="${Y(w)}" x2="${W-padR}" y2="${Y(w)}" stroke="rgba(233,226,212,0.08)" stroke-width="1"/>
+      <text x="${padL-8}" y="${Y(w)+4}" text-anchor="end" font-family="Manrope" font-weight="600" font-size="11" fill="#9d9486">${S.unit==="imperial"?Math.round(lb(w)):Math.round(w)}</text>`).join("")}
+    <polyline points="${dash}" fill="none" stroke="rgba(233,226,212,0.4)" stroke-width="2" stroke-dasharray="3 6" stroke-linecap="round"/>
+    <path d="${stair}" fill="none" stroke="#ffac2e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="${X(0)}" cy="${Y(S.wtKg)}" r="4" fill="#e9e2d4"/>
+    <circle cx="${gx}" cy="${gy}" r="5.5" fill="#ffac2e" stroke="#0d0a08" stroke-width="2"/>
+    ${(()=>{ // label sits on the empty side of the line: above the dot when gaining, below when losing
+      const above = S.goal==="gain";
+      const plateY = above ? gy-46 : gy+10;
+      const mainY  = above ? gy-30 : gy+24;
+      const subY   = above ? gy-14 : gy+40;
+      return `<rect x="${labX-92}" y="${plateY}" width="184" height="38" rx="8" fill="rgba(10,8,6,0.85)"/>
+    <text x="${labX}" y="${mainY}" text-anchor="middle" font-family="Manrope" font-weight="800" font-size="13" fill="#ffc266">${fmtWt(TL.goalW)} · ${fmtDate(TL.arriveWk)}</text>
+    <text x="${labX}" y="${subY}" text-anchor="middle" font-family="Inter" font-size="10.5" fill="#cfc7b6" letter-spacing="0.5">${TL.arriveWk} week${TL.arriveWk===1?"":"s"} at your chosen pace</text>`;})()}
+    <text x="${padL}" y="${H-8}" font-family="Inter" font-size="10" fill="#9d9486" letter-spacing="1">TODAY</text>
+    <text x="${W-padR}" y="${H-8}" text-anchor="end" font-family="Inter" font-size="10" fill="#9d9486" letter-spacing="1">GOAL, THEN MAINTENANCE →</text>
+  </svg>`;
+}
+
+function revealHTML(){
+  const first = S.name.trim().split(/\s+/)[0];
+  const isRecomp = S.goal==="recomp", isMaint = S.goal==="maintain";
+  const tlBlock = isRecomp
+    ? `<div class="chart-card"><p style="color:var(--muted);font-size:.87rem;line-height:1.8;padding:6px 4px">Recomposition doesn't chart on a scale. That's the point. Over the next 16 weeks, slightly under maintenance with ${PLAN.protein} g of protein, the scale holds while your body changes underneath it. Progress photos and a waist measurement every 2 weeks are your chart.</p></div>`
+    : isMaint
+    ? `<div class="chart-card"><p style="color:var(--muted);font-size:.87rem;line-height:1.8;padding:6px 4px">Your maintenance number is <b style="color:var(--accent)">${PLAN.cal.toLocaleString()} calories</b>, and for the next 3 weeks it's a number to verify. Eat to it, weigh 3 to 4 mornings a week, and watch the 7-day average: steady within ±1% means the number is true. Drifting up or down? Adjust by 100 calories and re-check. Most people have never actually known this number. You're about to.</p></div>`
+    : `<div class="chart-card">${timelineSVG()}
+        <div class="chart-legend"><span><i class="lg-line"></i>Your ${goalWord()} phase</span><span><i class="lg-dash"></i>Maintenance — keeping the result</span></div>
+        <p class="chart-caveat">This is what the plan looks like on paper, built from the pace you chose. Your body will not move in a straight line, and depending on how long this phase runs, that is completely normal. ${S.goal==="loss"?"Your body adapts to a sustained deficit over time, so a diet break or a change to your deficit may be exactly what keeps things moving. That is not the plan failing, that is us managing it correctly.":"Progress rarely arrives exactly on schedule, so treat the dates as a guide we adjust against real data, not a deadline."}</p>
+      </div>`;
+  const requested = kg_(S.pace)*7700/7;
+  const floored = S.goal==="loss" && Math.abs(PLAN.dailyDelta) < requested-5;
+  const paceTxt = paceWt()+" a week";
+  const paceLine = S.goal==="loss"
+    ? (floored
+      ? `You chose ${paceTxt}, but we won't program below ${PLAN.cal.toLocaleString()} calories. That is the safety floor. At the pace it allows, you arrive around <b style="color:var(--accent)">${fmtDate(TL.arriveWk)}</b>. Slower on purpose: below this line you lose muscle, energy and consistency.`
+      : !TL.reached
+      ? `At ${paceTxt}, this is a long campaign. The chart shows your first five years; run the plan, then recalibrate with real data as the picture sharpens.`
+      : `At ${paceTxt} you arrive around <b style="color:var(--accent)">${fmtDate(TL.arriveWk)}</b>${lossPaceInfo().zone==="aggressive"?`. <span class="pace-warn">This is a fast pace for your size:</span> treat it as a short 6 to 8 week push, then re-assess`:", and the dashed line after it is the part most plans skip: keeping the result"}. The chart below maps the path week by week, so you always know whether you're on track.`)
+    : S.goal==="gain"
+    ? (!TL.reached
+      ? `On a +${(Math.round(S.surplusPct*1000)/10)}% surplus, this is a long campaign. The chart shows your first five years; run the plan, then recalibrate with real data as the picture sharpens.`
+      : `On a <b style="color:var(--accent)">+${(Math.round(S.surplusPct*1000)/10)}% surplus</b> over maintenance (+${PLAN.dailyDelta} calories a day, about ${fmtWt(PLAN.effPaceWk)} a week)${S.surplusPct>0.2?`, the <span class="pace-warn">aggressive lane</span>, size sooner with more fat by design,`:""} you reach ${fmtWt(TL.goalW)} around <b style="color:var(--accent)">${fmtDate(TL.arriveWk)}</b>, ${TL.arriveWk} weeks out. The chart below maps the path week by week.`)
+    : ``;
+  return `
+  <div class="rv-head">
+    <button type="button" class="ghost" id="editBtn" style="margin-bottom:14px">&larr; Edit my answers</button>
+    <div class="rv-eyebrow">The reveal</div>
+    <h1 class="rv-title">${esc(first)}, here are your numbers.</h1>
+    <p class="rv-sub">${WHY_LINE[S.why]||""} Engineered from your body, your week, and what you said matters: <b style="color:var(--ink)">${VISION_WORD[S.vision]||"the result"}</b>.</p>
+  </div>
+  <div class="stat3">
+    <div><div class="st-num" id="nTdee">0</div><div class="st-lab">Maintenance (TDEE) · calories</div></div>
+    <div><div class="st-num" id="nCal">0</div><div class="st-lab">Daily target · calories</div></div>
+    <div><div class="st-num" id="nDelta">0</div><div class="st-lab">${S.goal==="loss"||S.goal==="recomp"?"Daily deficit · calories":S.goal==="gain"?"Daily surplus · calories":"Protein target · g"}</div></div>
+  </div>
+  <div class="macro3">
+    <div class="mc"><div class="mc-num" id="nP">0<small> g</small></div><div class="mc-lab">Protein</div><div class="mc-bar" id="bP"></div></div>
+    <div class="mc"><div class="mc-num" id="nC">0<small> g</small></div><div class="mc-lab">Carbs</div><div class="mc-bar" id="bC"></div></div>
+    <div class="mc"><div class="mc-num" id="nF">0<small> g</small></div><div class="mc-lab">Fat</div><div class="mc-bar" id="bF"></div></div>
+  </div>
+  <p style="color:var(--dim);font-size:.76rem;line-height:1.7;margin:-26px 0 40px;text-align:center;max-width:56ch;margin-left:auto;margin-right:auto">BMR is what your body burns at rest: <b style="color:var(--muted)">${PLAN.bmr.toLocaleString()} calories</b>. Multiplied by <b style="color:var(--muted)">${actFactor()}</b> for your ${ACT_LABEL[S.activity]} life, you get your maintenance — eat that and your weight stays the same.</p>
+  <div class="rv-block">
+    <h3>${isMaint?"Your calibration protocol":isRecomp?"Your recomposition arc":"Your timeline: dated, numbered, including the part after the finish line"}</h3>
+    ${paceLine?`<p class="bk-sub">${paceLine}</p>`:""}
+    ${tlBlock}
+  </div>`;
+}
+
+/* ── Locked preview + gate ── */
+const BP_SECTIONS_META = [
+  ["Section 1","Personal breakdown","Your BMR, true maintenance, target and pace, plus a coach read on what you told us."],
+  ["Section 2","The strategy","What your numbers mean, why this calorie target, and the rules that make it stick."],
+  ["Section 3","Real-food translator","Your macros converted into food blocks. Pick 3 of these today, not grams on a screen."],
+  ["Section 4","3-day meal plan","Your targets arranged into breakfasts, lunches, dinners and snacks you'd actually eat."],
+  ["Section 5","Smart grocery list","One categorized list that stocks your kitchen for the plan, filtered to your preferences."],
+  ["Section 6","Your training week","A sample week built for the days you said you can train, at your level."],
+  ["Section 7","The progress protocol","Five instruments that prove it is working, even when the scale plays games."],
+  ["Section 8","The execution plan","The weekly structure, the tracking that matters, and why most people fail without it."]
+];
+
+const TOLD_WHY = {
+  event:"A real deadline is on the calendar. We build backwards from it: your checkpoints are dated for a reason.",
+  guessing:"You came here to stop guessing. Every number in this blueprint has a formula behind it and every food block has a gram count. No guesswork.",
+  health:"Something got your attention. The right response is not panic, it is process: a measured target, high protein, training, sleep. All of it is in here.",
+  overdue:"You decided without a deadline. That is the strongest kind of start, and this plan honors it by being sustainable instead of dramatic.",
+  momentum:"You are already in motion. This plan turns momentum into compounding: measured targets, dated checkpoints, deliberate progression."
+};
+const TOLD_BLOCK = {
+  consistency:"You start strong and fade by week 3. So this plan is built to be boring on purpose: same targets daily, a weekly rhythm, checkpoints close enough to keep score.",
+  knowledge:"Grams never became meals for you before. That is exactly why Sections 3, 4 and 5 translate every target into food, plates and a shopping list.",
+  stress:"You said stress from work, family and everything else pushes the plan aside. So this plan runs on minimums: hit your protein, train the days you can, reset at the next meal. On a hard week, the minimums keep the plan alive.",
+  social:"Your weekends fight your weekdays. The tolerance built into your targets, plus judging weekly averages instead of days, exists so a Saturday out is a data point, not a derailment.",
+  allornothing:"One slip used to end the whole plan. Here the unit of success is the week, not the day. A rough day inside an on-target week is a rounding error.",
+  noplan:"There was never one plan in one place. Now there is. This page and its PDF are the single source of truth."
+};
+function coachAdvice(){
+  const tips=[];
+  const lowSteps = ["st35","st57"].includes(S.steps);
+  const highSteps = ["st1113","st13"].includes(S.steps);
+  const sedLife = S.activity==="sed" || S.activity==="light";
+  if(lowSteps && sedLife) tips.push(["Walk before you run","Training is set, but the rest of your day is still. A low step count with a seated life is the biggest silent brake on results. Add a 10 minute walk after two meals and you close most of that gap without touching the gym."]);
+  else if(lowSteps) tips.push(["Raise the daily floor","Your activity level helps, but the step count says the quiet hours sit. Aim one bracket up. A morning or evening walk is the cheapest progress available."]);
+  else if(highSteps) tips.push(["Your daily movement is a weapon","At your step count, non-exercise movement is doing real work for your calorie budget and recovery. Protect it, especially on rest days."]);
+  else tips.push(["Solid movement base","7 to 11 thousand steps is a healthy floor. On rest days, push toward the top of your bracket. Off-day movement is active recovery."]);
+  if(S.sleep==="s5") tips.push(["Sleep is the leak","Under 6 hours changes the game: hunger climbs, recovery drops, and the same plan feels twice as hard. Before optimizing anything else, buy back 45 minutes of sleep. It will outperform any supplement."]);
+  else if(S.sleep==="s6") tips.push(["Guard the last hour","6 to 7 hours is workable, not optimal. A consistent lights-out time and no screens in the final 30 minutes usually buys back the half hour that changes how training feels."]);
+  if(S.stress>=7) tips.push(["Train the pressure, do not add to it","Your stress is running high, so build pressure-release into the plan: a daily walk, 5 minutes of slow breathing before bed, morning sunlight, time in nature, or simply a phone-free last hour. Keep sessions hard but short, and avoid stacking an aggressive deficit on a stressed system. Consistency beats intensity while the pressure is on."]);
+  const SPLIT = {
+    1:["One day is a start, two is a plan","One session a week maintains more than it builds. If you can find a second day, do it: two full-body sessions, each covering a squat, a hinge, a push and a pull, is the minimum effective dose that actually moves the needle. Until then, make your one day a full-body session with those same four patterns."],
+    2:["Two days, full body, no filler","Run two full-body sessions. Each one covers the big patterns: a squat, a hinge, a push and a pull, with a lunge or carry when you have gas left. Low frequency means every session counts, so effort and consistency carry the plan."],
+    3:["Three days, full body, rotating focus","Three full-body sessions is a genuinely great setup. Cover a squat, a hinge, a push and a pull each visit, and rotate the emphasis: day one leads with the squat, day two with the hinge, day three with a lunge. Simple, repeatable, effective."],
+    4:["Four days: upper / lower","Four days fits an upper/lower split perfectly. Upper days: a push and a pull, horizontal and vertical. Lower days: a squat, a hinge, and a lunge. Two of each per week is the rhythm most great physiques are built on."],
+    5:["Five days: upper / lower / full","Run upper, lower, upper, lower, then a fifth full-body day for whatever needs the most work. Same vocabulary throughout: squat, lunge, hinge, push, pull. At five days, recovery starts becoming the thing to manage."],
+    6:["Six days: push / pull / legs","Six days runs push / pull / legs, twice through. Push days press, pull days row and pull, leg days squat, hinge and lunge. This only works if sleep and food keep pace; if progress stalls, the fix is one less session, not one more."]
+  };
+  tips.push(SPLIT[Math.min(6,Math.max(1,S.trainDays))]);
+  return tips.slice(0,4);
+}
+const LEVEL_READ = {
+  nov:"You're a novice, which is the best hand in the deck: your body adapts faster right now than it ever will again. Simple training and consistent eating, repeated weekly, will look like magic for the next year.",
+  beg:"You're past the first wave of beginner gains. Progress now comes from doing the boring things well: the same lifts, a little heavier, week after week, with the nutrition holding steady underneath.",
+  int:"As an intermediate, the lever is precision. Small surpluses and deficits, tracked honestly, beat program-hopping every time. Your numbers above are tight for exactly that reason.",
+  adv:"You're advanced, so the margins are thin and earned. Recovery, sleep and adherence decide your results now more than any programming trick. Protect the basics like they're the secret, because at your stage they are."
+};
+const TOLD_VISION = {
+  look:"You are doing this for the mirror. Progress photos every 2 weeks and the waist tape will show it long before the scale does.",
+  energy:"You are doing this for energy and confidence. Expect the first returns inside 2 to 3 weeks: steadier mornings, better sessions, fewer crashes.",
+  perform:"You are chasing performance. Keep a training log; the bar tells the truth. Strength holding or climbing while the plan runs is the win condition.",
+  partner:"You want to show up with confidence when you meet people. That arrives early: better posture, better energy, clothes that fit. Give the plan 8 to 12 weeks and it shows before the goal weight does.",
+  longevity:"You are playing the long game. Every choice in this plan favors what you can hold for years over what impresses for weeks."
+};
+function gateHTML(){
+  return `
+  <div class="gate-zone">
+    <div class="locked-grid">
+      ${BP_SECTIONS_META.map(m=>`<div class="lk">
+        <div class="lk-lock" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+        <div class="lk-blur"><div class="lk-tag">${m[0]}</div><b>${m[1]}</b><p>${m[2]}</p></div>
+      </div>`).join("")}
+    </div>
+    <div class="gate-overlay">
+      <div class="gate-card">
+        <h3>Your numbers were the easy part.</h3>
+        <p>The full blueprint turns them into meals, a grocery list, and a weekly structure — built from your answers.</p>
+        <form class="gate-form" id="gateForm" novalidate>
+          <input class="f-in" type="text" id="gName" placeholder="First name" value="${esc(S.name)}" autocomplete="given-name">
+          <input class="f-in" type="email" id="gEmail" placeholder="you@email.com" autocomplete="email" required>
+          <button class="cta" type="submit" id="gateBtn">Unlock my full blueprint</button>
+        </form>
+        <div class="gate-err" id="gateErr">That email doesn't look right. Check it and try again.</div>
+        <p class="gate-fine">Your full blueprint opens right here, and a link to it lands in your inbox so you can come back to it anytime. No spam — just a few short emails on how to use your plan. Unsubscribe anytime.</p>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ══════════════ BLUEPRINT ══════════════ */
+function pickBlock(kind){ return {list: foodFilter(FOODS[kind])}; }
+function mealDayHTML(dayIdx){
+  const meals = dayMeals(dayIdx);
+  const totK = meals.reduce((a,m)=>a+m.kcal,0), totP = meals.reduce((a,m)=>a+m.p,0);
+  const rows = meals.map(m=>{
+    const fit = m.fac>1.12 ? `portions ×${m.fac.toFixed(1)} — scale ${m.dish.s}` : m.fac<0.88 ? `portions ×${m.fac.toFixed(1)} — lighter servings` : "as written";
+    return `<div class="meal">
+      <div class="meal-slot">${m.slot}</div>
+      <div class="meal-what"><b style="color:var(--ink);font-weight:600">${m.dish.n}</b><br><span style="color:var(--dim);font-size:.78rem">${m.dish.c} · ${fit}</span></div>
+      <div class="meal-mac">~${m.kcal} cal · ${m.p} g protein</div>
+    </div>`;
+  }).join("");
+  const short = totP < PLAN.protein*0.9 ? ` <span style="color:var(--accent)">Short on protein? Add a whey shake or upsize the protein in any meal.</span>` : "";
+  return rows+`<div class="meal" style="border-top:1px solid var(--line)">
+    <div class="meal-slot">day total</div>
+    <div class="meal-what" style="color:var(--muted)">Your targets: ${PLAN.cal.toLocaleString()} cal · ${PLAN.protein} g protein.${short}</div>
+    <div class="meal-mac">~${totK} cal · ${totP} g protein</div>
+  </div>`;
+}
+function groceryHTML(){
+  const col=(title,items)=>`<div class="gr-col"><h4>${title}</h4><ul>${items.map(i=>`<li>${i}</li>`).join("")}</ul></div>`;
+  return `<div class="gr-grid">${gatherGrocery().map(c=>col(c[0],c[1])).join("")}</div>`;
+}
+function trainDayHTML(i){
+  const T=TRAIN[Math.min(6,Math.max(1,S.trainDays))];
+  const d=T.days[i];
+  return `<div style="font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin:6px 0 4px">${d.f}</div>`+
+    d.ex.map(e=>`<div class="meal"><div class="meal-slot">${e[2]}</div><div class="meal-what">${e[0]}</div><div class="meal-mac">${e[1]}</div></div>`).join("");
+}
+function blueprintHTML(){
+  const first=esc(S.name.trim().split(/\s+/)[0]);
+  const pb=pickBlock("protein"), cb=pickBlock("carb"), fb=pickBlock("fat");
+  const dietLabel={standard:"balanced",mediterranean:"Mediterranean",vegetarian:"vegetarian",paleo:"paleo",keto:"low-carb"}[S.diet];
+  return `
+  <div class="rv-head" style="margin-top:64px">
+    <div class="rv-eyebrow">Unlocked</div>
+    <h1 class="rv-title">The ${first} Blueprint.</h1>
+    <p class="rv-sub">Eight sections. Everything above, turned into execution. This page is yours.</p>
+  </div>
+
+  <div class="bp-sec">
+    <div class="bp-tag">Sections 1 + 2 <i></i> Breakdown and strategy</div>
+    <h2>Where you're starting from, and what your numbers are doing.</h2>
+    <p class="bp-lead">Your body burns <b>${PLAN.bmr.toLocaleString()} calories</b> at rest. Your ${ACT_LABEL[S.activity]} life raises that to <b>${PLAN.tdee.toLocaleString()} calories</b> a day — your maintenance, the amount where your weight stays the same. Your ${goalWord()} target: <b>${PLAN.cal.toLocaleString()} calories</b> a day.</p>
+    <div class="kv-grid">
+      <div class="kv"><b>${PLAN.bmr.toLocaleString()}</b><span>BMR &middot; calories at rest</span></div>
+      <div class="kv"><b>&times;${actFactor()}</b><span>${ACT_LABEL[S.activity]}</span></div>
+      <div class="kv"><b>${PLAN.tdee.toLocaleString()}</b><span>Maintenance calories</span></div>
+      <div class="kv"><b>${PLAN.cal.toLocaleString()}</b><span>Daily target</span></div>
+      ${S.goal==="loss"?`<div class="kv"><b>${paceWt()}</b><span>Per week</span></div>`:S.goal==="gain"?`<div class="kv"><b>+${(Math.round(S.surplusPct*1000)/10)}%</b><span>Over maintenance</span></div>`:S.goal==="recomp"?`<div class="kv"><b>${S.recompDef===0?"0":"-"+S.recompDef}</b><span>calories under maintenance</span></div>`:""}
+    </div>
+    <p class="bp-lead" style="margin-top:26px">${
+      S.goal==="loss"
+      ? `Think of your body as a bank account. ${PLAN.tdee.toLocaleString()} calories a day is what it costs you to run, and eating ${PLAN.cal.toLocaleString()} is a withdrawal of ${Math.abs(PLAN.dailyDelta)} calories a day, about ${fmtWt(Math.abs(PLAN.effPaceWk))} a week paid out of stored fat. <b>Protein at ${PLAN.protein} g</b> is what tells your body to make that withdrawal from fat and not from muscle. The deficit sets the speed; protein and training decide what you actually lose.`
+      : S.goal==="gain"
+      ? `Muscle is built, not bought. Think of your body as a bank account again, except this time we are making a deposit. ${PLAN.cal.toLocaleString()} calories gives it a <b>+${(Math.round(S.surplusPct*1000)/10)}%</b> deposit over maintenance (${PLAN.dailyDelta} calories a day)${S.surplusPct>0.2?", the aggressive lane, with the fat share that comes with it":""}. <b>${PLAN.protein} g of protein</b> is the raw material the deposit gets converted into; training is what tells your body to convert it into muscle instead of storing it as fat.`
+      : S.goal==="maintain"
+      ? `${PLAN.cal.toLocaleString()} calories is your line to hold, and holding it is a skill almost nobody is ever taught. With protein at <b>${PLAN.protein} g</b>, your weight becomes something you control instead of something that drifts. Verify the number for 3 weeks against your 7-day scale average, then trust it.`
+      : `Just under maintenance (${PLAN.cal.toLocaleString()} calories, about 150 below) with protein pushed to <b>${PLAN.protein} g</b>: training creates demand for muscle, protein funds it, and stored fat quietly covers the gap. The scale holds still while your body changes underneath it.`
+    }</p>
+    <div class="kv-grid">
+      <div class="kv"><b>${PLAN.protein}<small> g</small></b><span>Protein, non-negotiable</span></div>
+      <div class="kv"><b>${PLAN.carbs}<small> g</small></b><span>Carbs, fuel for training</span></div>
+      <div class="kv"><b>${PLAN.fat}<small> g</small></b><span>Fat, hormones and health</span></div>
+      <div class="kv"><b>&plusmn;200</b><span>calories of wiggle room: a day within 200 of target is a day on plan</span></div>
+    </div>
+    <p style="color:var(--muted);font-size:.78rem;line-height:1.7;margin-top:14px">Split your protein across 3 to 5 meals. Not because your body can't handle more at once (it can), but because protein is your appetite's off switch: spread through the day, it keeps you full, steady and easy to coach.</p>
+    <div style="margin-top:26px">
+      <div class="lever"><div class="lever-n">01</div><div><b>Why you're here</b><p>${TOLD_WHY[S.why]||""}</p></div></div>
+      <div class="lever"><div class="lever-n">02</div><div><b>What breaks plans like this</b><p>${TOLD_BLOCK[S.blocker]||""}</p></div></div>
+      <div class="lever"><div class="lever-n">03</div><div><b>What winning looks like</b><p>${TOLD_VISION[S.vision]||""}</p></div></div>
+      <div class="lever"><div class="lever-n">04</div><div><b>Where you are as a lifter</b><p>${LEVEL_READ[S.level]||""}</p></div></div>
+    </div>
+    <div class="bp-tag" style="margin-top:34px">Coach's advice <i></i></div>
+    <div>
+      ${coachAdvice().map((t,i)=>`<div class="lever"><div class="lever-n">0${i+1}</div><div><b>${t[0]}</b><p>${t[1]}</p></div></div>`).join("")}
+    </div>
+  </div>
+
+  <div class="bp-sec">
+    <div class="bp-tag">Section 3 <i></i> The real-food translator</div>
+    <h2>Your macros, spoken in food.</h2>
+    <p class="bp-lead">Nobody eats grams. Each block below adds up to your daily target. <b>Pick your selections for the day and the math takes care of itself.</b> Filtered to ${dietLabel}${S.restrictions.length?" with your exclusions applied":""}.</p>
+    <div class="fb-target"><b>${PLAN.protein} g protein</b></div>
+    <div class="fb-grid">${pb.list.map(f=>`<div class="fb"><div><b>${f.n}</b><small>${f.p}</small></div><em>${f.g} g</em></div>`).join("")}</div>
+    ${S.diet!=="keto"?`
+    <div class="fb-target"><b>${PLAN.carbs} g carbs</b></div>
+    <div class="fb-grid">${cb.list.map(f=>`<div class="fb"><div><b>${f.n}</b><small>${f.p}</small></div><em>${f.g} g</em></div>`).join("")}</div>`
+    :`<div class="fb-target"><b>~30 g carbs</b></div>`}
+    <div class="fb-target"><b>${PLAN.fat} g fat</b></div>
+    <div class="fb-grid">${fb.list.map(f=>`<div class="fb"><div><b>${f.n}</b><small>${f.p}</small></div><em>${f.g} g</em></div>`).join("")}</div>
+  </div>
+
+  <div class="bp-sec">
+    <div class="bp-tag">Section 4 <i></i> The 3-day meal plan</div>
+    <h2>Three days, assembled for you.</h2>
+    <p class="bp-lead">Real meals, sized to your numbers. Each dish shows its calories and protein at the portion multiplier that fits your day — the scale notes tell you which component to adjust. Swap any dish for another from the same slot.</p>
+    <div class="day-tabs" id="dayTabs">
+      <button class="day-tab sel" data-day="0">Day 1</button>
+      <button class="day-tab" data-day="1">Day 2</button>
+      <button class="day-tab" data-day="2">Day 3</button>
+    </div>
+    <div id="dayBody">${mealDayHTML(0)}</div>
+  </div>
+
+  <div class="bp-sec">
+    <div class="bp-tag">Section 5 <i></i> The smart grocery list</div>
+    <h2>One trip stocks the whole plan.</h2>
+    <p class="bp-lead">Built from your blocks. Shop the list, and every meal in Section 4 is already in your kitchen.</p>
+    ${groceryHTML()}
+  </div>
+
+  <div class="bp-sec">
+    <div class="bp-tag">Section 6 <i></i> Your training week</div>
+    <h2>${S.trainDays>=6?"Six":["One","Two","Three","Four","Five"][S.trainDays-1]} day${S.trainDays>1?"s":""} a week, structured.</h2>
+    <p class="bp-lead">${TRAIN[Math.min(6,Math.max(1,S.trainDays))].split}. ${TRAIN_ADJ[S.level]||""}</p>
+    <div class="day-tabs" id="trTabs" style="flex-wrap:wrap">
+      ${TRAIN[Math.min(6,Math.max(1,S.trainDays))].days.map((d,i)=>`<button class="day-tab${i===0?" sel":""}" data-tr="${i}">Day ${i+1}</button>`).join("")}
+    </div>
+    <div id="trBody">${trainDayHTML(0)}</div>
+    <p style="color:var(--dim);font-size:.78rem;line-height:1.7;margin-top:18px">Dumbbells only? ${TRAIN[Math.min(6,Math.max(1,S.trainDays))].sub} New to a lift? Learn the movement light before loading it.</p>
+  </div>
+
+  <div class="bp-sec">
+    <div class="bp-tag">Section 7 <i></i> The progress protocol</div>
+    <h2>Track like a professional. The scale is one instrument, not the verdict.</h2>
+    <p class="bp-lead">Day to day, weight lies. Water, salt, sleep and stress all move it. Run these five instruments and read the trend, not the noise.</p>
+    <div style="margin-top:6px">
+      <div class="lever"><div class="lever-n">01</div><div><b>Scale, 3 to 4 mornings a week</b><p>Same time, after the bathroom, before food. Judge only the 7-day average. Ignore any single day.</p></div></div>
+      <div class="lever"><div class="lever-n">02</div><div><b>Waist at the navel, weekly</b><p>Relaxed, same day each week. ${S.goal==="loss"?"On a cut this often moves when the scale stalls. It is the honest one.":"If it climbs faster than planned, the surplus is running hot."}</p></div></div>
+      <div class="lever"><div class="lever-n">03</div><div><b>Photos every 2 weeks</b><p>Front, side, back. Same light, same spot, same time of day. You cannot see daily change in the mirror; the camera can.</p></div></div>
+      <div class="lever"><div class="lever-n">04</div><div><b>Training log, every session</b><p>${S.goal==="loss"?"Strength holding while weight drops means the loss is fat, not muscle. That is the whole test.":"Weights or reps climbing over the weeks is the proof your calories are being spent on muscle."}</p></div></div>
+      <div class="lever"><div class="lever-n">05</div><div><b>Biofeedback check, weekly</b><p>Energy on waking, sleep quality, hunger, mood. Two bad weeks in a row is data: adjust, do not push through blindly.</p></div></div>
+    </div>
+    <p style="color:var(--dim);font-size:.78rem;line-height:1.7;margin-top:18px">Adjustment rule: if the 7-day average moves at less than half your target pace for 2 straight weeks, shift daily calories by 150 and re-measure. One change at a time.</p>
+  </div>
+
+  <div class="pivot">
+    <div class="rv-eyebrow" style="margin-bottom:16px">Section 8 · The execution plan</div>
+    <h2>You now know more than 90% of people who fail.</h2>
+    <p>${BLOCKER_PIVOT[S.blocker]||"Most people who start with a plan this good still don't finish. Not because the numbers were wrong, but because nobody was watching."} Knowledge isn't the bottleneck anymore. <b style="color:var(--ink)">Structure and accountability are.</b></p>
+    <div class="pivot-stats">
+      <div><b>${PLAN.cal.toLocaleString()}</b><span>Your daily target</span></div>
+      <div><b>${(S.goal==="loss"||S.goal==="gain")&&TL?fmtDate(TL.arriveWk).split(",")[0]:S.goal==="maintain"?"3 wks":"16 wks"}</b><span>${S.goal==="recomp"?"First checkpoint":S.goal==="maintain"?"Calibration window":"Projected arrival"}</span></div>
+      <div><b>${PLAN.protein} g</b><span>Protein, every day</span></div>
+    </div>
+    <p>The AEM Method exists for exactly this gap: a coach who audits your week, engineers the adjustments, and holds the standard when motivation dips. If you want this blueprint executed, with someone in your corner who answers, apply below. It takes two minutes, and if it's not a fit, you'll hear that honestly too.</p>
+    <div class="bp-actions">
+      <a class="cta" href="${CONFIG.COACHING_URL}" target="_blank" rel="noopener">Apply for 1:1 coaching</a>
+      <button class="cta-o" id="pdfBtn">Download the PDF</button>
+    </div>
+    <div class="dl-note" id="pdfNote">Your blueprint as a keep-forever PDF, generated on your device.</div>
+  </div>`;
+}
+
+/* ══════════════ RENDER + WIRE RESULTS ══════════════ */
+function showResults(){
+  PLAN=calcPlan(); TL=calcTimeline();
+  persist();
+  const el=$("#scr-results");
+  el.innerHTML = revealHTML() + (S.unlocked ? blueprintHTML() : gateHTML());
+  showScreen("scr-results");
+  $("#prail").style.width="100%";
+  const eb=$("#editBtn");
+  if(eb) eb.addEventListener("click",()=>{ step=0; showScreen("scr-quiz"); renderStep(); });
+  // animations
+  requestAnimationFrame(()=>{
+    countUp($("#nTdee"),PLAN.tdee); countUp($("#nCal"),PLAN.cal);
+    countUp($("#nDelta"), S.goal==="maintain" ? PLAN.protein : Math.abs(PLAN.dailyDelta));
+    const totalG=PLAN.protein+PLAN.carbs+PLAN.fat;
+    [["#nP","#bP",PLAN.protein],["#nC","#bC",PLAN.carbs],["#nF","#bF",PLAN.fat]].forEach(([n,b,v])=>{
+      const nel=$(n);
+      if(SKIP_ANIM){ nel.innerHTML=Math.round(v)+"<small> g</small>"; $(b).style.width=Math.round(v/totalG*100)+"%"; return; }
+      const t0=performance.now(), dur=1000;
+      const tick=t=>{const p=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-p,3); nel.innerHTML=Math.round(v*e)+"<small> g</small>"; if(p<1)requestAnimationFrame(tick);};
+      requestAnimationFrame(tick);
+      setTimeout(()=>{ $(b).style.width=Math.round(v/totalG*100)+"%"; },150);
+    });
+  });
+  if(!S.unlocked) wireGate(); else wireBlueprint();
+}
+function wireBlueprint(){
+  const tabs=$("#dayTabs");
+  if(tabs) tabs.querySelectorAll(".day-tab").forEach(b=>{
+    b.addEventListener("click",()=>{
+      tabs.querySelectorAll(".day-tab").forEach(x=>x.classList.toggle("sel",x===b));
+      $("#dayBody").innerHTML=mealDayHTML(parseInt(b.dataset.day));
+    });
+  });
+  const tr=$("#trTabs");
+  if(tr) tr.querySelectorAll(".day-tab").forEach(b=>{
+    b.addEventListener("click",()=>{
+      tr.querySelectorAll(".day-tab").forEach(x=>x.classList.toggle("sel",x===b));
+      $("#trBody").innerHTML=trainDayHTML(parseInt(b.dataset.tr));
+    });
+  });
+  const pdf=$("#pdfBtn");
+  if(pdf) pdf.addEventListener("click",generatePDF);
+}
+
+/* ── Gate: Kit submission ── */
+function blueprintLink(){
+  const c={n:S.name,a:S.age,x:S.sex,h:Math.round(S.htCm),w:Math.round(S.wtKg*10)/10,b:S.bf,g:S.goal,gw:S.goalWtKg?Math.round(S.goalWtKg*10)/10:null,p:S.pace,gp:S.surplusPct,rd:S.recompDef,lv:S.level,ac:S.activity,wy:S.why,bl:S.blocker,vi:S.vision,td:S.trainDays,sl:S.sleep,st:S.stress,sp:S.steps,d:S.diet,r:S.restrictions,u:S.unit};
+  return location.origin+location.pathname+"#d="+btoa(unescape(encodeURIComponent(JSON.stringify(c))));
+}
+function restoreFromHash(){
+  if(!location.hash.startsWith("#d=")) return false;
+  try{
+    const c=JSON.parse(decodeURIComponent(escape(atob(location.hash.slice(3)))));
+    Object.assign(S,{name:c.n||"",age:c.a,sex:c.x,htCm:c.h,wtKg:c.w,bf:c.b,goal:c.g,goalWtKg:c.gw,pace:PACES.includes(c.p)?c.p:0.75,surplusPct:c.gp||0.15,recompDef:c.rd??150,level:c.lv||"int",activity:c.ac||"light",why:c.wy||"",blocker:c.bl||"",vision:c.vi||"",trainDays:c.td??3,sleep:c.sl,stress:c.st??5,steps:c.sp,diet:c.d||"standard",restrictions:c.r||[],unit:c.u||"imperial",unlocked:true});
+    return !!(S.age&&S.sex&&S.htCm&&S.wtKg&&S.goal&&S.activity&&S.sleep&&S.steps);
+  }catch(e){ return false; }
+}
+function persist(){
+  try{ localStorage.setItem("aem_bp", JSON.stringify({unlocked:S.unlocked})); }catch(e){}
+}
+function wireGate(){
+  $("#gateForm").addEventListener("submit", async e=>{
+    e.preventDefault();
+    const email=$("#gEmail").value.trim();
+    const name=$("#gName").value.trim()||S.name;
+    const err=$("#gateErr");
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ err.style.display="block"; return; }
+    err.style.display="none";
+    const btn=$("#gateBtn"); btn.disabled=true; btn.textContent="Unlocking…";
+    const fields=CONFIG.KIT_FIELDS;
+    try{
+      if(CONFIG.KIT_FORM_ID){
+        const fd=new FormData();
+        fd.append("email_address",email);
+        fd.append("first_name",name);
+        fd.append(`fields[${fields.goal}]`,S.goal);
+        fd.append(`fields[${fields.calories}]`,PLAN.cal);
+        fd.append(`fields[${fields.protein}]`,PLAN.protein);
+        fd.append(`fields[${fields.blocker}]`,S.blocker);
+        fd.append(`fields[${fields.why}]`,S.why);
+        fd.append(`fields[${fields.link}]`,blueprintLink());
+        await fetch(`https://app.kit.com/forms/${CONFIG.KIT_FORM_ID}/subscriptions`,{method:"POST",body:fd,headers:{"Accept":"application/json"}});
+      } else {
+        console.warn("AEM Blueprint: KIT_FORM_ID not set. Running in preview mode, no email captured.");
+        await new Promise(r=>setTimeout(r,700));
+      }
+    }catch(ex){ /* network hiccup — don't hold their result hostage */ }
+    S.unlocked=true; persist();
+    showResults();
+  });
+}
+
+/* ══════════════ PDF ══════════════ */
+let jspdfLoading=null;
+function loadJsPDF(){
+  if(window.jspdf) return Promise.resolve();
+  if(jspdfLoading) return jspdfLoading;
+  jspdfLoading=new Promise((res,rej)=>{
+    const s=document.createElement("script");
+    s.src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
+    s.onload=res; s.onerror=rej; document.head.appendChild(s);
+  });
+  return jspdfLoading;
+}
+async function generatePDF(){
+  const note=$("#pdfNote"); note.textContent="Building your PDF…";
+  try{ await loadJsPDF(); }catch(e){ note.textContent="Couldn't load the PDF engine. Check your connection and try again."; return; }
+  const {jsPDF}=window.jspdf;
+  const doc=new jsPDF({unit:"pt",format:"letter"});
+  const W=612,H=792,M=54,FOOT=50;
+  // Two palettes: dark espresso cover, warm paper interior (prints better, reads warmer)
+  const COVER={bg:[10,9,8], ink:[233,226,212], dim:[157,148,134], accent:[255,172,46], line:[60,55,45]};
+  const PAPER={bg:[247,241,229], ink:[30,23,16], dim:[110,99,82], accent:[158,81,16], line:[205,192,168]};
+  let P=COVER;
+  const first=S.name.trim().split(/\s+/)[0]||"Your";
+  let pageN=0, y=0;
+  // Flow layout: every block measures itself and breaks to a fresh page when it will not fit.
+  function newPage(){
+    doc.addPage && pageN>0 ? doc.addPage() : null;
+    pageN++;
+    P = pageN===1 ? COVER : PAPER;
+    doc.setFillColor(...P.bg); doc.rect(0,0,W,H,"F");
+    if(pageN>1){ doc.setFontSize(8); doc.setTextColor(...P.dim); doc.setFont("helvetica","normal");
+      doc.text("THE AEM BLUEPRINT  ·  "+first.toUpperCase(), M, H-28); doc.text(String(pageN), W-M, H-28,{align:"right"}); }
+    y=84;
+  }
+  function ensure(h){ if(y+h > H-FOOT) newPage(); }
+  function tag(t){ ensure(46); doc.setFont("helvetica","bold"); doc.setFontSize(8); doc.setTextColor(...P.accent); doc.text(t.toUpperCase(),M,y,{charSpace:2}); y+=22; }
+  function h1(t){ ensure(46); doc.setFont("helvetica","bold"); doc.setFontSize(21); doc.setTextColor(...P.ink); doc.text(t,M,y); y+=26; }
+  function body(t,w){ doc.setFont("helvetica","normal"); doc.setFontSize(10); const lines=doc.splitTextToSize(t,w||W-2*M); ensure(lines.length*14+10); doc.setTextColor(...P.ink); doc.text(lines,M,y); y+=lines.length*14+10; }
+  function dim(t,w){ doc.setFont("helvetica","normal"); doc.setFontSize(9); const lines=doc.splitTextToSize(t,w||W-2*M); ensure(lines.length*12.5+8); doc.setTextColor(...P.dim); doc.text(lines,M,y); y+=lines.length*12.5+8; }
+  function goldLine(t){ ensure(22); doc.setFont("helvetica","bold"); doc.setFontSize(10.5); doc.setTextColor(...P.accent); doc.text(t,M,y); y+=16; }
+  function item(title,text){ ensure(60); goldLine(title); dim(text); y+=2; }
+  function rule(){ ensure(28); doc.setDrawColor(...P.line); doc.setLineWidth(0.5); doc.line(M,y,W-M,y); y+=20; }
+  function statRow(items){
+    ensure(84);
+    const w=(W-2*M-(items.length-1)*10)/items.length;
+    items.forEach((it,i)=>{
+      const x=M+i*(w+10);
+      doc.setDrawColor(...P.line); doc.setLineWidth(0.7); doc.roundedRect(x,y,w,58,3,3);
+      doc.setFont("helvetica","bold"); doc.setFontSize(15); doc.setTextColor(...P.accent); doc.text(String(it[1]),x+12,y+26);
+      doc.setFontSize(7); doc.setTextColor(...P.dim); doc.text(String(it[0]).toUpperCase(),x+12,y+44,{charSpace:1});
+    });
+    y+=78;
+  }
+  function rowLR(left,right,leftBold){
+    ensure(17);
+    doc.setFont("helvetica",leftBold?"bold":"normal"); doc.setFontSize(9.5); doc.setTextColor(...P.ink);
+    doc.text(left,M+8,y);
+    if(right!=null){ doc.setFont("helvetica","bold"); doc.setTextColor(...P.accent); doc.text(String(right),W-M,y,{align:"right"}); }
+    y+=15;
+  }
+
+  // ── Cover ──
+  newPage();
+  doc.setFont("helvetica","bold"); doc.setFontSize(9); doc.setTextColor(...P.accent);
+  doc.text("THE AEM METHOD",M,120,{charSpace:3});
+  doc.setFontSize(40); doc.setTextColor(...P.ink);
+  doc.text(`The ${first}\nBlueprint.`,M,180);
+  doc.setFontSize(11); doc.setTextColor(...P.dim); doc.setFont("helvetica","normal");
+  doc.text(`Engineered ${new Date().toLocaleDateString(undefined,{month:"long",day:"numeric",year:"numeric"})} · ${goalWord()} · the long game`,M,265);
+  y=330;
+  statRow([["Daily target · calories",PLAN.cal.toLocaleString()],["Protein · g",PLAN.protein],["Maintenance · calories",PLAN.tdee.toLocaleString()]]);
+  doc.setFontSize(9); doc.setTextColor(...P.dim);
+  doc.text("Educational tool, not medical advice. Every number is an estimate and a starting point.",M,H-70);
+
+  // ── Sections 1 + 2 · Breakdown and strategy ──
+  newPage();
+  tag("Sections 1 + 2 · Breakdown and strategy");
+  h1("Where you're starting from.");
+  statRow([["BMR · calories",PLAN.bmr.toLocaleString()],["Multiplier","x "+actFactor()],["TDEE · calories",PLAN.tdee.toLocaleString()],["Target · calories",PLAN.cal.toLocaleString()]]);
+  body(`Goal: ${goalWord()}${S.goal==="loss"?` at ${paceWt()} per week (${PLAN.dailyDelta} calories/day)`:S.goal==="gain"?` at +${(Math.round(S.surplusPct*1000)/10)}% over maintenance (+${PLAN.dailyDelta} calories/day)`:S.goal==="recomp"?` at ${S.recompDef===0?"maintenance":S.recompDef+" calories under maintenance"}`:""}. Activity level: ${ACT_LABEL[S.activity]} (x ${actFactor()}). Fitness level: ${({nov:"novice",beg:"beginner",int:"intermediate",adv:"advanced"})[S.level]||""}.`);
+  const strat = S.goal==="loss"
+    ? `Think of your body as a bank account. ${PLAN.tdee.toLocaleString()} calories a day is what it costs to run, and eating ${PLAN.cal.toLocaleString()} is a withdrawal of ${Math.abs(PLAN.dailyDelta)} calories a day, roughly ${fmtWt(Math.abs(PLAN.effPaceWk))} a week, paid from stored fat. Protein at ${PLAN.protein} g is what tells your body to make that withdrawal from fat and not from muscle. The deficit sets the speed; protein and training decide what you actually lose.`
+    : S.goal==="gain"
+    ? `Same bank account, except now it is a deposit. ${PLAN.cal.toLocaleString()} calories gives your body a +${(Math.round(S.surplusPct*1000)/10)}% deposit over maintenance (${PLAN.dailyDelta} calories a day)${S.surplusPct>0.2?" (aggressive lane: a share of it will be fat, by design)":""}. ${PLAN.protein} g protein is the raw material the deposit gets converted into; progressive training is what tells your body to convert it into muscle instead of storing it as fat.`
+    : S.goal==="maintain"
+    ? `${PLAN.cal.toLocaleString()} calories is your line to hold. For 3 weeks, eat to it and watch your 7-day scale average: steady within 1% means the number is true; drifting means adjust 100 calories and re-check. Protein stays at ${PLAN.protein} g so what you keep is muscle.`
+    : `Just under maintenance with protein high (${PLAN.protein} g), training creates demand for muscle while stored fat quietly funds the energy gap. The scale holds; your body changes. Judge it by waist, photos and your training log, not the scale.`;
+  body(strat);
+  body(`Daily macros: ${PLAN.protein} g protein · ${PLAN.carbs} g carbs · ${PLAN.fat} g fat. Calories carry a ±200 calorie tolerance: a day within 200 of target is a day on plan.`);
+  dim("Split protein across 3 to 5 meals. Not a digestion limit, an appetite strategy: spread out, it keeps you full all day.");
+  if((S.goal==="loss"||S.goal==="gain") && TL && TL.arriveWk>1){
+    y+=4; goldLine("YOUR CHECKPOINTS");
+    const stepWk = TL.arriveWk>36?8:4;
+    const rows=[];
+    for(let wk=stepWk; wk<TL.arriveWk; wk+=stepWk){ const pt=TL.pts.find(pp=>pp.wk===wk); if(pt) rows.push([wk,pt.w,false]); }
+    rows.push([TL.arriveWk,TL.goalW,true]);
+    rows.forEach(r=>{
+      rowLR(`${r[2]?(TL.reached?"GOAL  ·  ":"YEAR FIVE  ·  "):""}${fmtDate(r[0])}  ·  week ${r[0]}`, `${fmtWt(r[1])}   (${S.goal==="loss"?"-":"+"}${fmtWt(Math.abs(S.wtKg-r[1]))})`, r[2]);
+    });
+    dim(`${TL.arriveWk} weeks total at your chosen ${S.goal==="loss"?"rate of loss":"surplus"}.`);
+  }
+  rule();
+  goldLine("THE RULES THAT MAKE IT STICK");
+  ["Hit protein daily. Everything else has a ±200 calorie tolerance.",
+   "Split protein across 3 to 5 meals. Not a digestion limit, an appetite strategy: spread out, it keeps you full all day.",
+   "Weigh in 3 to 4 mornings a week; judge the weekly average, never a single day.",
+   S.goal==="loss"?"Every 6 to 8 weeks, take a 1-week diet break at maintenance. It's a strategy, not a failure.":"Add weight or reps to something every week. The surplus only works if training earns it.",
+   "When a day goes sideways, the next meal is the reset. Not Monday."].forEach(r=>dim("•  "+r));
+  rule();
+  goldLine("WHAT YOU TOLD US");
+  [["Why you're here",TOLD_WHY[S.why]],["What breaks plans like this",TOLD_BLOCK[S.blocker]],["What winning looks like",TOLD_VISION[S.vision]],["Where you are as a lifter",LEVEL_READ[S.level]]].forEach(r=>{ if(r[1]) item(r[0],r[1]); });
+  rule();
+  goldLine("COACH'S ADVICE");
+  coachAdvice().forEach(t=>item(t[0],t[1]));
+
+  // ── Section 3 · Food blocks ──
+  newPage();
+  tag("Section 3 · The real-food translator");
+  h1("Your macros, spoken in food.");
+  const blocks=[["PROTEIN  ·  "+PLAN.protein+" g/day","protein"],(S.diet!=="keto"?["CARBS  ·  "+PLAN.carbs+" g/day","carb"]:null),["FAT  ·  "+PLAN.fat+" g/day","fat"]].filter(Boolean);
+  blocks.forEach(([title,kind])=>{
+    goldLine(title);
+    foodFilter(FOODS[kind]).forEach(f=>rowLR(`${f.n}  ·  ${f.p}`, f.g+" g"));
+    y+=10;
+  });
+  if(S.diet==="keto") dim("Carbs hold near 30 g: leafy greens, cauliflower rice, zucchini, and a small serving of berries.");
+
+  // ── Section 4 · Meal plan ──
+  newPage();
+  tag("Section 4 · The 3-day meal plan");
+  h1("Three days, assembled.");
+  for(let dIdx=0; dIdx<3; dIdx++){
+    ensure(90);
+    goldLine("DAY "+(dIdx+1));
+    dayMeals(dIdx).forEach(m=>{
+      const fit = m.fac>1.12 ? ` (portions x${m.fac.toFixed(1)})` : m.fac<0.88 ? ` (portions x${m.fac.toFixed(1)})` : "";
+      const lines=doc.splitTextToSize(`${m.dish.n} — ${m.dish.c}${fit}  ·  ~${m.kcal} cal / ${m.p} g protein`, W-2*M-90);
+      ensure(lines.length*12+9);
+      doc.setFont("helvetica","bold"); doc.setFontSize(8.5);
+      doc.setTextColor(...P.dim); doc.text(m.slot.toUpperCase(),M+8,y);
+      doc.setFont("helvetica","normal"); doc.setFontSize(9); doc.setTextColor(...P.ink);
+      doc.text(lines,M+90,y); y+=lines.length*12+9;
+    });
+    y+=8;
+  }
+  dim("Swap any dish for another in the same slot, and scale the noted component to hit your targets.");
+
+  // ── Section 5 · Grocery list ──
+  newPage();
+  tag("Section 5 · The smart grocery list");
+  h1("One trip, whole plan.");
+  const gCols=gatherGrocery().map(c=>[c[0].toUpperCase(), c[1]]);
+  const colW=(W-2*M)/2;
+  gCols.forEach(c=>{
+    ensure(30+Math.ceil(c[1].length/2)*14);
+    goldLine(c[0]);
+    for(let i=0;i<c[1].length;i+=2){
+      ensure(15);
+      doc.setFont("helvetica","normal"); doc.setFontSize(9); doc.setTextColor(...P.ink);
+      doc.text("□  "+c[1][i],M,y);
+      if(c[1][i+1]) doc.text("□  "+c[1][i+1],M+colW,y);
+      y+=13.5;
+    }
+    y+=10;
+  });
+
+  // ── Section 6 · Training week ──
+  newPage();
+  const TR = TRAIN[Math.min(6,Math.max(1,S.trainDays))];
+  tag("Section 6 · Your training week");
+  h1(S.trainDays+" day"+(S.trainDays>1?"s":"")+" a week, structured.");
+  body(TR.split+". "+(TRAIN_ADJ[S.level]||""));
+  TR.days.forEach((d,i)=>{
+    ensure(40+d.ex.length*15);
+    goldLine("DAY "+(i+1)+"  ·  "+d.f.toUpperCase());
+    d.ex.forEach(e=>rowLR(`${e[0]}  ·  ${e[2]}`, e[1]));
+    y+=8;
+  });
+  dim("Dumbbells only? "+TR.sub);
+
+  // ── Sections 7 + 8 · Protocol and execution ──
+  newPage();
+  tag("Section 7 · The progress protocol");
+  h1("Track the trend, not the noise.");
+  [["Scale, 3 to 4 mornings a week","Judge only the 7-day average. Ignore any single day."],
+   ["Waist at the navel, weekly","Relaxed, same day each week. Often moves when the scale stalls."],
+   ["Photos every 2 weeks","Front, side, back. Same light, same spot, same time of day."],
+   ["Training log, every session","Strength holding or climbing is the proof the plan is working."],
+   ["Biofeedback, weekly","Energy, sleep, hunger, mood. Two bad weeks in a row means adjust, not push."]].forEach(r=>item(r[0],r[1]));
+  dim("Adjustment rule: if the 7-day average moves at less than half your target pace for 2 straight weeks, shift daily calories by 150 and re-measure. One change at a time.");
+  rule();
+  tag("Section 8 · The execution plan");
+  h1("Structure beats motivation.");
+  body("The weekly operating rhythm: hit protein daily · train "+S.trainDays+"x with progressive overload · walk toward "+({st35:"5,000",st57:"7,000",st79:"9,000",st911:"11,000",st1113:"13,000",st13:"your current 13,000+"}[S.steps]||"8,000")+" steps · protect a 7 to 9 hour sleep window · weigh 3 to 4 mornings and log the average · review your checkpoints every 2 weeks.");
+  body("Most people who fail don't fail the plan. They fail the weeks nobody was watching. If you want this executed with a coach auditing your week, engineering adjustments and holding the standard, apply for 1:1 coaching:");
+  ensure(50);
+  doc.setFont("helvetica","bold"); doc.setFontSize(11); doc.setTextColor(...P.accent);
+  doc.textWithLink("→  Apply for AEM 1:1 Coaching", M, y, {url: CONFIG.COACHING_URL});
+  y+=24;
+  doc.setFont("helvetica","normal"); doc.setFontSize(10); doc.setTextColor(...P.dim);
+  doc.textWithLink("Your live blueprint (bookmark it): re-open anytime", M, y, {url: blueprintLink().slice(0,180)});
+
+  doc.save(`AEM-Blueprint-${first}.pdf`);
+  window.__pdfPages = doc.getNumberOfPages();
+  note.textContent="Saved. It's in your downloads, and yours for good.";
+}
+
+/* ══════════════ INIT ══════════════ */
+document.getElementById("yr").textContent=new Date().getFullYear();
+const startQuiz = ()=>{ step=0; showScreen("scr-quiz"); renderStep(); };
+document.getElementById("startBtn").addEventListener("click",startQuiz);
+if(restoreFromHash()){ showResults(); }
+</script>
+</body>
+</html>
