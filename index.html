@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>AEM Blueprint | Your Numbers. Your Long Game.</title>
-<meta name="description" content="A 90-second assessment that engineers your calories, macros and a dated transformation timeline, then builds your personal execution blueprint.">
+<title>The Blueprint | Your Calories, Macros and Goal Date</title>
+<meta name="description" content="A 60-second assessment that calculates your calories, macros and a dated timeline for your goal, then turns them into your personal blueprint: meals, groceries and training.">
 <link rel="icon" type="image/png" href="logo-am.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="The AEM Blueprint — Your Numbers. Your Long Game.">
-<meta property="og:description" content="A 90-second assessment. Your calories, your macros, and a dated timeline for your goal. Built like a plan, not a guess.">
+<meta property="og:title" content="The Blueprint | Your Calories, Macros and Goal Date">
+<meta property="og:description" content="Your calories, your macros, and a dated timeline for your goal, built from your answers in 60 seconds.">
 <meta property="og:url" content="https://www.alexmaywood.com/blueprint/">
 <meta property="og:image" content="https://www.alexmaywood.com/blueprint/logo-am.png">
 <meta name="twitter:card" content="summary">
@@ -19,13 +19,13 @@
 :root{
   /* original dark neutrals — the light paper surfaces carry the warmth */
   --color-obsidian:#000000;--color-carbon:#040302;--color-graphite:#14110c;--color-slate:#1f1b15;
-  --color-iron:#322d25;--color-steel:#4b4539;--color-ash:#9d9486;--color-pearl:#d3ccbb;
-  --color-chalk:#cfc7b6;--color-bone:#e9e2d4;
-  --grad-gold:#ffac2e; /* flat gold — gradient retired */
+  --color-iron:#322d25;--color-steel:#4b4539;--color-ash:#b3aa9b;--color-pearl:#e0d9c9;
+  --color-chalk:#d9d2c2;--color-bone:#e9e2d4;
+  --grad-gold:#ff962e; /* flat gold — gradient retired */
   --bg:var(--color-obsidian);--bg-3:var(--color-carbon);--card:rgba(10,9,8,0.55);
   --ink:var(--color-bone);--ink-2:var(--color-chalk);--muted:var(--color-pearl);--dim:var(--color-ash);
-  --accent:#ffac2e;--accent-bright:#ffc266;--accent-deep:#c2641e;
-  --ink-rgb:233,226,212;--accent-rgb:255,172,46;
+  --accent:#ff962e;--accent-bright:#ffb066;--accent-deep:#c2641e;
+  --ink-rgb:233,226,212;--accent-rgb:255,150,46;
   --zone:#0d0d0f;--line:rgba(var(--ink-rgb),0.14);--glow:rgba(var(--accent-rgb),0.32);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -57,8 +57,8 @@ button{font-family:inherit;}
 @keyframes scrIn{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:none;}}
 .wide{max-width:860px;}
 /* glass theme — every panel is a frosted surface over the ambient glow */
-.paper, .bp-sec, .gate-card, .stat3, .mc, .chart-card{--ink:#e9e2d4;--ink-2:#cfc7b6;--muted:#d3ccbb;--dim:#9d9486;--ink-rgb:233,226,212;
-  --zone:rgba(255,255,255,0.06);--card:rgba(255,255,255,0.06);--line:rgba(233,226,212,0.16);--accent:#ffac2e;--accent-bright:#ffc266;--accent-rgb:255,172,46;
+.paper, .bp-sec, .gate-card, .stat3, .mc, .chart-card{--ink:#e9e2d4;--ink-2:#d9d2c2;--muted:#e0d9c9;--dim:#b3aa9b;--ink-rgb:233,226,212;
+  --zone:rgba(255,255,255,0.06);--card:rgba(255,255,255,0.06);--line:rgba(233,226,212,0.16);--accent:#ff962e;--accent-bright:#ffb066;--accent-rgb:255,150,46;
   color:var(--ink);}
 #scr-quiz, .proof-wrap, .bp-sec, .gate-card, .pivot, .stat3, .mc, .chart-card, .proof-card, .quote-card, .lk, .hg-grid>div{
   -webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);
@@ -125,6 +125,7 @@ button{font-family:inherit;}
   .proof-card{padding:10px;}
   .quote-grid{grid-template-columns:1fr;}
   .video-grid{grid-template-columns:1fr;max-width:320px;}
+  .meal-mac{white-space:normal;text-align:right;}
 }
 
 /* ── CTAs ── */
@@ -184,7 +185,7 @@ select.f-in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmln
 .pace-name{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;}
 input[type=range]{width:100%;appearance:none;-webkit-appearance:none;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--accent) var(--fill,50%),rgba(var(--ink-rgb),0.12) var(--fill,50%));outline:none;margin:10px 0 8px;}
 input[type=range]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--grad-gold);cursor:pointer;box-shadow:0 0 14px rgba(var(--accent-rgb),0.55);border:none;}
-input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#ffac2e;cursor:pointer;box-shadow:0 0 14px rgba(var(--accent-rgb),0.55);border:none;}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#ff962e;cursor:pointer;box-shadow:0 0 14px rgba(var(--accent-rgb),0.55);border:none;}
 .pace-ends{display:flex;justify-content:space-between;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);}
 .pace-ticks{display:flex;justify-content:space-between;font-family:'Manrope',sans-serif;font-weight:600;font-size:.72rem;color:var(--muted);margin-top:10px;padding:0 2px;}
 .pace-ticks span{flex:1;text-align:center;}
@@ -240,7 +241,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .lk-lock{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:2;}
 .lk-lock svg{width:20px;height:20px;stroke:var(--muted);fill:none;stroke-width:1.5;}
 .gate-overlay{position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(ellipse at center,rgba(0,0,0,0.1),rgba(0,0,0,0.38));-webkit-backdrop-filter:blur(7px) saturate(1.3);backdrop-filter:blur(7px) saturate(1.3);}
-.gate-card{max-width:520px;width:100%;background:rgba(22,17,12,0.72);border:1px solid rgba(255,172,46,0.4);border-radius:14px;padding:38px 34px;text-align:center;}
+.gate-card{max-width:520px;width:100%;background:rgba(22,17,12,0.72);border:1px solid rgba(255,150,46,0.4);border-radius:14px;padding:38px 34px;text-align:center;}
 .gate-card h3{font-family:'Manrope',sans-serif;font-weight:800;font-size:1.45rem;letter-spacing:-.015em;margin-bottom:10px;text-wrap:balance;}
 .gate-card>p{color:var(--muted);font-size:.85rem;line-height:1.75;margin-bottom:26px;}
 .gate-form{display:flex;flex-direction:column;gap:12px;}
@@ -369,12 +370,12 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
     <div class="hero-glow" aria-hidden="true"></div>
     <div class="kicker">
       <span class="kicker-rule"></span>
-      <span class="kicker-lab">The AEM Blueprint</span>
+      <span class="kicker-lab">The Blueprint</span>
       <span class="kicker-rule"></span>
     </div>
     <h1>Your body runs on numbers. <span class="gi">Get yours.</span></h1>
-    <p class="hero-sub">A 90-second assessment. Your calories, your macros, and a dated timeline for your goal. Built like a plan, not a guess.</p>
-    <div><button class="cta" id="startBtn">Start the assessment</button></div>
+    <p class="hero-sub">A 60-second assessment that gives you your calories, your macros, and a dated timeline for your goal. Every number is calculated from your answers.</p>
+    <div><button class="cta" id="startBtn">Start your free assessment</button></div>
     <div class="hero-get">
       <p class="hg-lab">What you get</p>
       <div class="hg-grid">
@@ -382,11 +383,11 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
         <div><b>Training plan</b><span>For your schedule</span></div>
         <div><b>3-day meal plan</b><span>Foods you actually eat</span></div>
       </div>
-      <p class="hg-note">All calculated from your answers — plus a grocery list, your goal date, and a PDF to keep.</p>
+      <p class="hg-note">All calculated from your answers, plus a grocery list, your goal date, and a PDF to keep.</p>
     </div>
   <div class="proof-wrap paper" aria-label="Client results">
-    <p class="proof-eyebrow">Real people, real numbers</p>
-    <h2 class="proof-h2">I built this from what actually worked. For me, and for the people I coach.</h2>
+    <p class="proof-eyebrow">Client results</p>
+    <h2 class="proof-h2">I built this from what actually worked for me, and for the people I coach.</h2>
     <div class="proof-grid">
       <div class="proof-card">
         <div class="proof-who"><img src="images/luke-avatar.jpg" alt="Luke M."><div><b>Luke M.</b><span>Senior Data Analyst</span></div></div>
@@ -405,7 +406,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
         <p class="proof-quote">&ldquo;Within just 6 weeks I noticed my belt size. I moved from the 3rd hole to the 4th hole. My body composition clearly changed. I lost fat and gained muscle. The biggest change has been understanding that nutrition truly drives results.&rdquo;</p>
       </div>
       <div class="proof-card">
-        <div class="proof-who"><img src="images/alex-avatar.webp" alt="Alex Maywood"><div><b>Alex Maywood</b><span>Coach, and client zero</span></div></div>
+        <div class="proof-who"><img src="images/alex-avatar.webp" alt="Alex Maywood"><div><b>Alex Maywood</b><span>Coach, and the first client</span></div></div>
         <div class="proof-ba">
           <div><img src="images/alex-before.webp" alt="Alex Maywood before"><span>Before</span></div>
           <div><img src="images/alex-after.webp" alt="Alex Maywood after"><span>After</span></div>
@@ -459,8 +460,8 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 </main>
 
 <footer class="foot">
-  <p>The AEM Blueprint is an educational tool, not medical advice. Every output — calories, macros, meals, timelines and training — is an estimate and a starting point, built on published equations (Mifflin-St Jeor and Katch-McArdle BMR, standard activity multipliers) and standard evidence-based training guidelines. Real-world results vary with adherence, sleep, stress and training; adjust with your own data. Consult a physician before changing your nutrition or training, especially with any existing condition.</p>
-  <p>© <span id="yr"></span> Alex Maywood · The AEM Method · <a href="https://www.alexmaywood.com" rel="noopener">alexmaywood.com</a></p>
+  <p>The Blueprint is an educational tool, not medical advice. Every output (calories, macros, meals, timelines and training) is an estimate and a starting point, built on published equations (Mifflin-St Jeor and Katch-McArdle BMR, standard activity multipliers) and standard evidence-based training guidelines. Real-world results vary with adherence, sleep, stress and training; adjust with your own data. Consult a physician before changing your nutrition or training, especially with any existing condition.</p>
+  <p>© <span id="yr"></span> Alex Maywood · <a href="https://www.alexmaywood.com" rel="noopener">alexmaywood.com</a> · <a href="https://www.alexmaywood.com/privacy.html" rel="noopener">Privacy Policy</a></p>
 </footer>
 
 <script>
@@ -470,15 +471,17 @@ const CONFIG = {
   // from the embed code, and paste it here. Leave "" to test without Kit.
   KIT_FORM_ID: "9723137",
   // Custom field keys as defined in Kit (Settings → Custom fields)
-  KIT_FIELDS: { goal:"goal", calories:"calories", protein:"protein", link:"blueprint_link", blocker:"blocker", why:"why_now" },
-  COACHING_URL: "https://forms.gle/qKe3vV7riGPVmta89"
+  KIT_FIELDS: { goal:"goal", calories:"calories", protein:"protein", link:"blueprint_link" },
+  COACHING_URL: "https://forms.gle/qKe3vV7riGPVmta89",
+  // Optional: paste a Google Apps Script web-app URL here to log every gate submission
+  // (name, email, answers, targets) to your own Google Sheet. Leave "" to skip.
+  DATA_WEBHOOK_URL: ""
 };
 
 /* ══════════════ STATE ══════════════ */
 const S = {
   unit:"imperial", name:"", age:null, sex:"", htCm:null, wtKg:null, bf:null,
   goal:"", goalWtKg:null, pace:0.75, surplusPct:0.15, recompDef:150, level:"",
-  why:"", blocker:"", vision:"",
   activity:"", trainDays:3, sleep:"", stress:5, steps:"", diet:"standard", restrictions:[],
   unlocked:false
 };
@@ -581,7 +584,7 @@ const DISHES = {
   greekSalad:{n:"Greek salad with grilled chicken and feta", c:"5 oz chicken · greens, cucumber, tomato, olives · 1 oz feta · olive oil", p:50,cb:11,f:29,kcal:510, t:["dairy"], s:"chicken for protein, dressing for fat", g:["p:Chicken breast","v:Salad vegetables","d:Feta","v:Olives","f:Olive oil"]},
   falafelPlate:{n:"Homemade falafel plate with hummus and pita", c:"6 baked falafel · 3 tbsp hummus · ½ pita · salad", p:21,cb:50,f:30,kcal:575, t:["gluten"], s:"falafel count for protein and calories", g:["c:Chickpeas (for falafel)","s:Hummus","c:Pita bread","v:Salad vegetables"]},
   lentilSoup:{n:"Lentil soup with sourdough bread", c:"1½ cups lentil soup · 1 slice sourdough · olive oil", p:22,cb:68,f:17,kcal:495, t:["gluten"], s:"soup for protein, bread for calories", g:["c:Lentils","v:Onions & carrots","c:Sourdough bread","f:Olive oil"]},
-  halloumiSalad:{n:"Grilled halloumi salad with chickpeas", c:"3 oz halloumi · ¾ cup chickpeas · greens · olive oil", p:33,cb:40,f:45,kcal:690, t:["dairy"], s:"halloumi for protein, chickpeas for carbs — rich dish, smaller portions on a cut", g:["d:Halloumi","c:Chickpeas","v:Salad greens","f:Olive oil"]},
+  halloumiSalad:{n:"Grilled halloumi salad with chickpeas", c:"3 oz halloumi · ¾ cup chickpeas · greens · olive oil", p:33,cb:40,f:45,kcal:690, t:["dairy"], s:"halloumi for protein, chickpeas for carbs (rich dish, smaller portions on a cut)", g:["d:Halloumi","c:Chickpeas","v:Salad greens","f:Olive oil"]},
   chickenAvoPaleo:{n:"Grilled chicken with roasted vegetables and avocado", c:"6 oz chicken breast · roasted vegetables · ½ avocado", p:58,cb:24,f:23,kcal:540, t:[], s:"chicken for protein, vegetables for carbs", g:["p:Chicken breast","v:Mixed vegetables","v:Avocados"]},
   beefLettuce:{n:"Beef lettuce wraps", c:"5 oz lean ground beef · sautéed vegetables · lettuce cups", p:39,cb:12,f:27,kcal:455, t:["redmeat"], s:"beef for protein", g:["p:Ground beef","v:Lettuce","v:Stir-fry vegetables","s:Coconut aminos"]},
   shrimpZoodle:{n:"Grilled shrimp with zucchini noodles", c:"6 oz shrimp · olive oil · 2 cups zucchini noodles", p:45,cb:12,f:17,kcal:360, t:["seafood"], s:"shrimp for protein, oil for calories", g:["p:Shrimp","v:Zucchini","f:Olive oil"]},
@@ -626,32 +629,32 @@ const SLOT_SHARE = {breakfast:0.25, lunch:0.30, dinner:0.35, snack:0.10};
    Built on ≥2x/week per-muscle frequency and ~10-20 hard sets/muscle/week.
    ex: [exercise, sets×reps, movement pattern] */
 const TRAIN = {
-  1:{split:"One full-body session — every big pattern, once, done well", days:[
+  1:{split:"One full-body session that covers every big pattern, once, done well", days:[
     {f:"Full body", ex:[["Barbell back squat","3×5-8","squat"],["Romanian deadlift","3×6-10","hinge"],["Bench press","3×6-10","push"],["Lat pulldown","3×8-12","pull"],["DB walking lunge","2×10-12/leg","lunge"],["Farmer's carry","3×30-40m","carry"],["Plank","3×30-45s","core"]]}],
     sub:"goblet squat, DB Romanian deadlift, DB floor press, single-arm DB row."},
-  2:{split:"Two full-body sessions — one leads with the squat, one with the hinge", days:[
-    {f:"Full body A — squat focus", ex:[["Back squat","3×6-8","squat"],["Incline DB press","3×8-10","push"],["Cable row","3×8-12","pull"],["Walking lunge","2×10/leg","lunge"],["Hanging knee raise","3×10-15","core"]]},
-    {f:"Full body B — hinge focus", ex:[["Deadlift","3×5-6","hinge"],["Overhead press","3×6-10","push"],["Lat pulldown","3×8-12","pull"],["Bulgarian split squat","2×8-10/leg","lunge"],["Suitcase carry","3×30m/side","carry"]]}],
+  2:{split:"Two full-body sessions: one leads with the squat, one with the hinge", days:[
+    {f:"Full body A · squat focus", ex:[["Back squat","3×6-8","squat"],["Incline DB press","3×8-10","push"],["Cable row","3×8-12","pull"],["Walking lunge","2×10/leg","lunge"],["Hanging knee raise","3×10-15","core"]]},
+    {f:"Full body B · hinge focus", ex:[["Deadlift","3×5-6","hinge"],["Overhead press","3×6-10","push"],["Lat pulldown","3×8-12","pull"],["Bulgarian split squat","2×8-10/leg","lunge"],["Suitcase carry","3×30m/side","carry"]]}],
     sub:"DB Romanian deadlift for the deadlift, goblet squat for the barbell squat, single-arm DB row for cable row."},
   3:{split:"Three full-body sessions with rotating emphasis", days:[
     {f:"Full body A", ex:[["Back squat","3×6-8","squat"],["Bench press","3×6-10","push"],["Seated cable row","3×8-12","pull"],["Lying leg curl","3×10-12","hinge"],["Plank","3×30-45s","core"]]},
     {f:"Full body B", ex:[["Deadlift","3×5-6","hinge"],["Overhead press","3×8-10","push"],["Lat pulldown","3×8-12","pull"],["Walking lunge","2×10/leg","lunge"],["Cable crunch","3×12-15","core"]]},
     {f:"Full body C", ex:[["Leg press","3×8-10","squat"],["Incline DB press","3×8-12","push"],["DB row","3×8-12","pull"],["Hip thrust","3×8-12","hinge"],["Farmer's carry","3×30-40m","carry"]]}],
     sub:"goblet or DB split squat for barbell squats, DB Romanian deadlift for the deadlift, single-arm DB row for machine rows."},
-  4:{split:"Upper / lower, twice through — the classic four-day structure", days:[
+  4:{split:"Upper / lower, twice through, the classic four-day structure", days:[
     {f:"Upper A", ex:[["Bench press","3×5-8","push"],["Barbell row","3×6-10","pull"],["Overhead press","3×8-10","push"],["Lat pulldown","3×8-12","pull"],["Lateral raise","3×12-15","isolation"],["DB curl","2×12-15","isolation"]]},
     {f:"Lower A", ex:[["Back squat","3×5-8","squat"],["Romanian deadlift","3×6-10","hinge"],["Leg press","3×8-12","squat"],["Leg curl","3×10-12","hinge"],["Standing calf raise","3×12-15","isolation"],["Hanging knee raise","3×10-15","core"]]},
     {f:"Upper B", ex:[["Incline DB press","3×6-10","push"],["Pull-up or pulldown","3×6-10","pull"],["DB shoulder press","3×8-12","push"],["Cable row","3×8-12","pull"],["Rear delt fly","2×12-15","isolation"],["Triceps pushdown","2×12-15","isolation"]]},
     {f:"Lower B", ex:[["Trap bar deadlift","3×5-6","hinge"],["Front or goblet squat","3×8-10","squat"],["Bulgarian split squat","3×8-10/leg","lunge"],["Hip thrust","3×8-12","hinge"],["Leg extension","2×12-15","isolation"],["Pallof press","3×30-45s","core"]]}],
     sub:"goblet squat, DB Romanian deadlift, DB bench press, single-arm DB row, DB shoulder press cover every barbell lift."},
-  5:{split:"Upper / lower / push / pull / legs — volume spread across five focused days", days:[
+  5:{split:"Upper / lower / push / pull / legs, with volume spread across five focused days", days:[
     {f:"Upper", ex:[["Bench press","3×5-8","push"],["Barbell row","3×6-10","pull"],["Overhead press","3×8-10","push"],["Lat pulldown","3×8-12","pull"],["Lateral raise","3×12-15","isolation"]]},
     {f:"Lower", ex:[["Back squat","3×5-8","squat"],["Romanian deadlift","3×6-10","hinge"],["Leg press","3×8-12","squat"],["Leg curl","3×10-12","hinge"],["Calf raise","3×12-15","isolation"]]},
     {f:"Push", ex:[["Incline bench press","3×6-10","push"],["DB shoulder press","3×8-12","push"],["Cable fly","2×12-15","isolation"],["Triceps pushdown","3×10-15","isolation"],["Lateral raise","2×15","isolation"]]},
     {f:"Pull", ex:[["Pull-up","3×6-10","pull"],["Cable row","3×8-12","pull"],["Face pull","3×12-15","isolation"],["DB curl","2×12-15","isolation"],["Hammer curl","2×12-15","isolation"]]},
     {f:"Legs", ex:[["Front squat","3×6-8","squat"],["Hip thrust","3×8-12","hinge"],["Walking lunge","2×10/leg","lunge"],["Leg extension","2×12-15","isolation"],["Hanging leg raise","3×10-15","core"]]}],
     sub:"DB press variations, DB Romanian deadlift, goblet squat and single-arm DB row cover the barbell work."},
-  6:{split:"Push / pull / legs, twice through — recovery becomes the skill to manage", days:[
+  6:{split:"Push / pull / legs, twice through, where recovery becomes the skill to manage", days:[
     {f:"Push A", ex:[["Bench press","3×5-8","push"],["Overhead press","3×8-10","push"],["Incline DB press","3×8-12","push"],["Lateral raise","3×12-15","isolation"],["Triceps pushdown","2×12-15","isolation"]]},
     {f:"Pull A", ex:[["Deadlift","3×5-6","hinge"],["Pull-up","3×6-10","pull"],["Cable row","3×8-12","pull"],["Face pull","3×12-15","isolation"],["DB curl","2×12-15","isolation"]]},
     {f:"Legs A", ex:[["Back squat","3×5-8","squat"],["Romanian deadlift","3×6-10","hinge"],["Leg press","3×8-12","squat"],["Leg curl","3×10-12","hinge"],["Calf raise","3×12-15","isolation"]]},
@@ -661,11 +664,21 @@ const TRAIN = {
     sub:"DB Romanian deadlift, goblet or DB split squat, single-arm DB row, DB bench and shoulder press replace the barbell lifts."}
 };
 const TRAIN_ADJ = {
-  nov:"As a novice, cut the listed sets by a third, keep everything at 8-12 reps, and treat form as the goal — load comes later.",
+  nov:"As a novice, cut the listed sets by a third, keep everything at 8-12 reps, and treat form as the goal. Load comes later.",
   beg:"Run it as written, and make small weekly jumps in weight or reps your one job.",
   int:"As an intermediate, add a set to your weakest muscle groups over time and introduce pauses or slower tempo when progress stalls.",
   adv:"As an advanced lifter, push sets toward the top of the volume range and use intensity techniques sparingly on the last set of accessories."
 };
+/* "3×5-8" → "3 sets × 5–8 reps" · handles /leg, /side, s (seconds) and m (meters) suffixes */
+function fmtSetsReps(v){
+  const i=v.indexOf("×"); if(i<0) return v;
+  const sets=v.slice(0,i); let r=v.slice(i+1), per="";
+  const pm=r.match(/\/(leg|side)$/); if(pm){ per=" per "+pm[1]; r=r.slice(0,-pm[0].length); }
+  let unit=" reps";
+  if(/\dm$/.test(r)){ r=r.slice(0,-1); unit=" m"; }
+  else if(/\ds$/.test(r)){ r=r.slice(0,-1); unit=" sec"; }
+  return sets+" sets × "+r.replace("-","–")+unit+per;
+}
 const EXCL_TAG = {dairyfree:"dairy", glutenfree:"gluten", nonuts:"nuts", noseafood:"seafood", nopork:"pork", noredmeat:"redmeat", nosoy:"soy"};
 function mealOk(key){ return !S.restrictions.some(r=>DISHES[key].t.includes(EXCL_TAG[r])); }
 function slotPool(slot){
@@ -750,7 +763,8 @@ function calcPlan(){
     dailyDelta = -(wkKg*7700)/7;
     cal = tdee + dailyDelta;
     const floor = S.sex==="m" ? 1500 : 1200;
-    if(cal < floor){ cal = floor; dailyDelta = cal - tdee; }
+    // Floor can't exceed TDEE — otherwise a low-TDEE profile on a "loss" goal would be handed a surplus
+    if(cal < floor){ cal = Math.min(floor, tdee); dailyDelta = cal - tdee; }
     effPaceWk = -dailyDelta*7/7700;
   } else if(S.goal==="gain"){
     dailyDelta = S.surplusPct*tdee; // spec tiers: conservative 5-10%, moderate 10-20%, aggressive 20-30% over TDEE
@@ -811,12 +825,12 @@ const $ = s => document.querySelector(s);
 const quizEl = () => $("#scr-quiz");
 let step = 0;
 
-const PACES = [0.5,0.75,1,1.5]; // lb per week (fat loss)
+const PACES = [0.5,0.75,1,1.5,2]; // lb per week (fat loss)
 const GAIN_PCTS = [0.075,0.15,0.25]; // surplus tiers over TDEE, per macro-guidelines-spec
 const RECOMP_DEFS = [0,150,250]; // kcal under maintenance, per macro-guidelines-spec
 function esc(s){ return String(s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
 function optBtn(field,val,title,sub){
-  const sel = S[field]===val ? " sel":"";
+  const sel = String(S[field])===val ? " sel":"";
   return `<button type="button" class="opt${sel}" data-f="${field}" data-v="${val}"><b>${title}</b>${sub?`<small>${sub}</small>`:""}</button>`;
 }
 function chipBtn(val,label){
@@ -849,8 +863,8 @@ const SCREENS = [
         <button type="button" data-unit="imperial" class="${S.unit==="imperial"?"sel":""}">lb / ft</button>
         <button type="button" data-unit="metric" class="${S.unit==="metric"?"sel":""}">kg / cm</button>
       </div></div>
-      <div><label class="f-lab" for="inName">First name</label>
-        <input class="f-in" type="text" id="inName" placeholder="Your name" value="${esc(S.name)}" autocomplete="given-name"></div>
+      <div><label class="f-lab" for="inName">Your name</label>
+        <input class="f-in" type="text" id="inName" value="${esc(S.name)}" autocomplete="given-name"></div>
       <div class="f-row">
         ${numIn("inAge","Age","34","years",S.age,'min="16" max="90"')}
         <div><label class="f-lab">Sex (for the equations)</label>
@@ -876,7 +890,7 @@ const SCREENS = [
       : numIn("inCm","Height","178","cm",S.htCm?Math.round(S.htCm):null,'min="120" max="230"');
     const w = S.wtKg ? (imp? Math.round(lb(S.wtKg)) : Math.round(S.wtKg*10)/10) : null;
     return header("The basics","Now your height and weight.",
-      "Body fat is optional — it sharpens the math if you know it.")+
+      "Body fat is optional. If you know it, the math gets more accurate.")+
     `<div class="q-fields">${hFields}
       <div class="f-row">
         ${numIn("inWt","Current weight", imp?"185":"84", imp?"lb":"kg", w,'min="30"')}
@@ -917,22 +931,7 @@ const SCREENS = [
   valid(){ return !!S.goal && !!S.level; },
   bind(){}
 },
-/* 3 · why now (emotional) */
-{ part:"The mission",
-  render(){ return header("The mission","What brought you here?",
-      "Pick whichever is closest.")+
-    `<div class="q-fields"><div class="opts">
-      ${optBtn("why","event","There's a date on the calendar","A wedding, a trip, a deadline.")}
-      ${optBtn("why","guessing","I'm done guessing","Tired of conflicting advice.")}
-      ${optBtn("why","health","A wake-up call","A doctor's warning, a photo you didn't recognize, getting winded on the stairs.")}
-      ${optBtn("why","overdue","I've put it off long enough","No event. No crisis. Just enough is enough.")}
-      ${optBtn("why","momentum","I've got momentum","Already moving. Now I want real numbers.")}
-    </div></div>`+navBtns();
-  },
-  valid(){ return !!S.why; },
-  bind(){}
-},
-/* 4 · goal weight + pace */
+/* 3 · goal weight + pace */
 { part:"The mission",
   render(){
     const imp = S.unit==="imperial";
@@ -943,7 +942,7 @@ const SCREENS = [
       paceBlock = `<div class="pace-wrap">
         <div class="pace-val" id="paceVal"></div>
         <div class="pace-name" id="paceName"></div>
-        <input type="range" id="paceRange" min="0" max="3" step="1" value="${Math.max(0,PACES.indexOf(S.pace))}" aria-label="Rate of loss">
+        <input type="range" id="paceRange" min="0" max="4" step="1" value="${Math.max(0,PACES.indexOf(S.pace))}" aria-label="Rate of loss">
         <div class="pace-ends"><span>Slower</span><span>Faster</span></div>
         <div class="pace-ticks">${PACES.map(v=>`<span>${imp? v+" lb" : (Math.round(kg_(v)*100)/100)+" kg"}</span>`).join("")}</div>
         <div class="pace-note" id="paceNote"></div>
@@ -969,11 +968,11 @@ const SCREENS = [
         <div class="pace-note" id="paceNote"></div>
       </div>`;
     } else {
-      paceBlock = `<div class="pace-wrap"><div class="pace-note" style="border:none;padding:0;margin:0">We set your intake at your <b>maintenance</b> — the calories where your weight stays the same — and keep protein high. The first 3 weeks verify the number against your scale average.</div></div>`;
+      paceBlock = `<div class="pace-wrap"><div class="pace-note" style="border:none;padding:0;margin:0">We set your intake at your <b>maintenance</b>, the calories where your weight stays the same, and keep protein high. The first 3 weeks verify the number against your scale average.</div></div>`;
     }
-    return header("The mission", (isLoss||isGain)?"Where do you want to end up, and how fast?":isRecomp?"How hard do you want the recomp to lean?":"Holding steady, on purpose.",
+    return header("The mission", (isLoss||isGain)?"Where do you want to end up, and how fast?":isRecomp?"How hard do you want to push the recomp?":"Holding your weight steady.",
       isLoss?"Set your goal weight and pace. Research supports 0.5 to 1% of your body weight per week.":
-      isGain?"Set your target weight and surplus. Smaller surplus, leaner gain.":
+      isGain?"Set your target weight and surplus. A smaller surplus means leaner gains.":
       isRecomp?"Recomp runs at or just under maintenance. Pick where you want to sit.":null)+
     `<div class="q-fields">
       ${(isLoss||isGain) ? `<div class="f-row">${numIn("inGw", isLoss?"Goal weight":"Target weight", imp?(isLoss?"170":"195"):(isLoss?"77":"88"), imp?"lb":"kg", gw)}<div></div></div>`:""}
@@ -991,16 +990,17 @@ const SCREENS = [
     const lossRead=()=>{
       const pi=lossPaceInfo();
       const relTxt = pi.rel ? `About ${pi.rel}% of your body weight per week. ` : "";
-      if(pi.zone==="slow") return ["Slow and steady", relTxt+"Easiest to stick with. Safest for muscle."];
-      if(pi.zone==="moderate") return ["Moderate", relTxt+"Inside the range research supports."];
+      if(S.pace>=2 && pi.zone!=="aggressive") return ["Aggressive", relTxt+`<span class="pace-warn">2 lb a week is the aggressive end</span>, even with your size behind it. Treat it as a 6 to 8 week push with protein locked in, then re-assess.`];
+      if(pi.zone==="slow") return ["Slow and steady", relTxt+"The easiest pace to stick with, and the safest for muscle."];
+      if(pi.zone==="moderate") return ["Moderate", relTxt+"This sits inside the range research supports."];
       if(pi.zone==="fast") return ["Fast", relTxt+(pi.highBF
         ? "Your body fat gives you room to run this pace safely. Keep protein high."
-        : "Top of the recommended range. Protein and training become non-negotiable.")];
-      return ["Very fast", relTxt+`<span class="pace-warn">Faster than recommended for your size.</span> Expect hunger and muscle risk. Keep it to 6-8 weeks.`];
+        : "This is the top of the recommended range, so protein and training become non-negotiable.")];
+      return ["Aggressive", relTxt+`<span class="pace-warn">This is faster than recommended for your size.</span> Expect hunger and muscle risk, and keep it to 6 to 8 weeks.`];
     };
     const gainNames=["Conservative","Moderate","Aggressive"];
     const recompN=[["True maintenance","The scale holds while fat trades for muscle."],
-      ["Slight deficit","The standard position. Speeds up the fat side."],
+      ["Slight deficit","The standard position, and it speeds up the fat side."],
       ["Deficit edge","As firm as recomp gets before it becomes a slow cut."]];
     const upd=()=>{
       const r=$("#paceRange"); if(!r) return;
@@ -1019,7 +1019,7 @@ const SCREENS = [
         const pct = Math.round(S.surplusPct*1000)/10;
         $("#paceVal").textContent = "+"+pct+"% over maintenance";
         $("#paceName").textContent = gainNames[idx];
-        $("#paceNote").innerHTML = `+${pct}% means you eat ${pct}% more calories than your body burns in a day${extra?`. For you, that's about <b>+${extra} calories a day</b>`:""}.`;
+        $("#paceNote").innerHTML = `+${pct}% means you eat ${pct}% more calories than your body burns in a day${extra?`. For you, that's about <b>+${extra} calories a day</b>`:""}.${idx===2?` <span class="pace-warn">Aggressive lane:</span> size arrives sooner, and a share of it will be fat, by design.`:""}`;
       } else {
         S.recompDef=RECOMP_DEFS[idx];
         $("#paceVal").textContent = S.recompDef===0 ? "At maintenance" : "-"+S.recompDef+" calories / day";
@@ -1033,13 +1033,13 @@ const SCREENS = [
     if(g) g.addEventListener("input",e=>{const v=parseFloat(e.target.value); S.goalWtKg=v?(imp?kg_(v):v):null; refresh();});
   }
 },
-/* 5 · activity level + steps + training days */
+/* 4 · activity level + steps */
 { part:"The lifestyle",
   render(){ return header("The lifestyle","How active is a normal day?",
-      "Answer for your typical week right now — your calorie numbers are built from this.")+
+      "Answer for your typical week right now. Your calorie numbers are built from this.")+
     `<div class="q-fields">
       <div class="opts">
-        ${optBtn("activity","sed","Sedentary","Little or no exercise. Desk life.")}
+        ${optBtn("activity","sed","Sedentary","Little or no exercise, mostly sitting.")}
         ${optBtn("activity","light","Lightly active","Light exercise 1 to 3 days a week")}
         ${optBtn("activity","mod","Moderately active","Moderate exercise 3 to 5 days a week")}
         ${optBtn("activity","very","Very active","Hard exercise 6 to 7 days a week")}
@@ -1054,7 +1054,16 @@ const SCREENS = [
         ${optBtn("steps","st1113","11,000 to 13,000","")}
         ${optBtn("steps","st13","13,000+","")}
       </div></div>
-      <div><label class="f-lab">How many days are you realistically able to train?</label>
+    </div>`+navBtns();
+  },
+  valid(){ return !!S.activity && !!S.steps; },
+  bind(){}
+},
+/* 5 · training days */
+{ part:"The lifestyle",
+  render(){ return header("The lifestyle","How many days are you realistically able to train?",
+      "Be honest about your week. The program is built for the days you'll actually show up.")+
+    `<div class="q-fields">
       <div class="opts cols2">
         ${optBtn("trainDays","1","1 day","")}
         ${optBtn("trainDays","2","2 days","")}
@@ -1062,10 +1071,10 @@ const SCREENS = [
         ${optBtn("trainDays","4","4 days","")}
         ${optBtn("trainDays","5","5 days","")}
         ${optBtn("trainDays","6","6+ days","")}
-      </div></div>
+      </div>
     </div>`+navBtns();
   },
-  valid(){ return !!S.activity && !!S.steps && S.trainDays>=1; },
+  valid(){ return S.trainDays>=1; },
   bind(){}
 },
 /* 6 · sleep + stress */
@@ -1097,11 +1106,11 @@ const SCREENS = [
       "Your meal plan and grocery list are built from foods you'll actually eat.")+
     `<div class="q-fields">
       <div class="opts cols2">
-        ${optBtn("diet","standard","Balanced","Everything on the table")}
-        ${optBtn("diet","mediterranean","Mediterranean","Fish, olive oil, whole foods")}
-        ${optBtn("diet","vegetarian","Vegetarian","No meat or fish")}
-        ${optBtn("diet","paleo","Paleo","Meat, fish, eggs, produce. No grains or dairy")}
-        ${optBtn("diet","keto","Low-carb / keto","Carbs held near 30 g")}
+        ${optBtn("diet","standard","Balanced","ex: chicken and rice, eggs, yogurt, fruit · everything on the table")}
+        ${optBtn("diet","mediterranean","Mediterranean","ex: fish, olive oil, whole grains, produce")}
+        ${optBtn("diet","vegetarian","Vegetarian","ex: eggs, dairy, lentils, tofu · no meat or fish")}
+        ${optBtn("diet","paleo","Paleo","ex: meat, fish, eggs, produce · no grains or dairy")}
+        ${optBtn("diet","keto","Low-carb / keto","ex: eggs, meat, cheese, greens · carbs held near 30 g")}
       </div>
       <div><label class="f-lab">Anything to leave out?</label>
       <div class="chips">
@@ -1113,42 +1122,11 @@ const SCREENS = [
         ${chipBtn("noseafood","No seafood")}
         ${chipBtn("noredmeat","No red meat")}
       </div></div>
-    </div>`+navBtns();
+    </div>`+navBtns("See my numbers");
   },
   valid(){ return !!S.diet; },
   bind(){}
 },
-/* 8 · blocker (emotional) */
-{ part:"The lifestyle",
-  render(){ return header("The lifestyle","What usually gets in the way?",
-      "Every failed plan had a reason. We build this one around yours.")+
-    `<div class="q-fields"><div class="opts">
-      ${optBtn("blocker","consistency","Starting strong, fading by week 3","Motivation launches it; nothing holds it up.")}
-      ${optBtn("blocker","knowledge","Never knowing what to actually eat","Grams and percentages that never became meals.")}
-      ${optBtn("blocker","stress","Stress and responsibilities","Work, family, everything else. The plan slips.")}
-      ${optBtn("blocker","social","Weekends and social life","Five good days, then Saturday takes the week back.")}
-      ${optBtn("blocker","allornothing","All-or-nothing thinking","One slip reads as failure, and failure means quit.")}
-      ${optBtn("blocker","noplan","There was never a real plan","Workouts from one app, diet from another, nothing tying them together.")}
-    </div></div>`+navBtns();
-  },
-  valid(){ return !!S.blocker; },
-  bind(){}
-},
-/* 9 · vision (emotional) */
-{ part:"The lifestyle",
-  render(){ return header("The lifestyle","Picture yourself a year from now.",
-      "It worked. What matters most?")+
-    `<div class="q-fields"><div class="opts">
-      ${optBtn("vision","look","The mirror","Clothes fit right. The reflection matches the effort.")}
-      ${optBtn("vision","energy","Energy and confidence","Walking into rooms differently.")}
-      ${optBtn("vision","perform","Strength and performance","Numbers on the bar. Capability you can measure.")}
-      ${optBtn("vision","partner","Finding a partner","Showing up with confidence.")}
-      ${optBtn("vision","longevity","The long game","Strong and capable at 50, 60, 70.")}
-    </div></div>`+navBtns("See my numbers");
-  },
-  valid(){ return !!S.vision; },
-  bind(){}
-}
 ];
 
 function refresh(){
@@ -1209,22 +1187,6 @@ function showScreen(id){
 let PLAN=null, TL=null;
 
 function goalWord(){ return S.goal==="loss"?"fat loss":S.goal==="gain"?"muscle building":S.goal==="maintain"?"maintenance":"recomposition"; }
-const WHY_LINE = {
-  event:"There's a date on your calendar. Good. Deadlines make math matter.",
-  guessing:"You're done guessing. From here, you run on your numbers.",
-  health:"You heard the knock. This is the answer: measured, not dramatic.",
-  overdue:"No crisis, no event. Just a decision. Those are the ones that hold.",
-  momentum:"You're already moving. These numbers put steering on it."
-};
-const VISION_WORD = { look:"the mirror", energy:"how you carry every day", perform:"what your body can do", partner:"the confidence you bring when you meet people", longevity:"the next few decades" };
-const BLOCKER_PIVOT = {
-  consistency:"You told us what kills your plans: they start on motivation and nothing holds them up when it fades. That's not a character flaw, it's a structure gap. Motivation starts plans; systems and accountability finish them.",
-  knowledge:"You said the wall has always been knowing what to actually eat. Look up: that wall is gone. Sections 3, 4 and 5 turned your numbers into meals. What's left isn't a knowledge problem anymore. It's an execution problem.",
-  social:"You told us Saturdays take back what the week built. A plan that can't survive your real life isn't a plan, it's a countdown. The structure you need flexes for social weeks without losing the month.",
-  stress:"You told us stress and responsibilities push the plan aside. A plan that only works in a calm week is not a plan. The structure you need runs on minimums during hard weeks and never asks you to start over.",
-  allornothing:"You said one slip reads as failure, and failure means quit. So hear this from the numbers themselves: a 3,000-calorie night inside a week that averages on-target changes almost nothing. The next meal is the reset. Someone just has to hold that standard with you.",
-  noplan:"You said there's never been a real plan. Training from one place, food from another, nothing tying them together. As of today that excuse is gone. This page is the plan. The question left is who holds you to it."
-};
 function fmtDate(weeksFromNow){
   const d=new Date(); d.setDate(d.getDate()+weeksFromNow*7);
   return d.toLocaleDateString(undefined,{month:"short", day:"numeric", year:"numeric"});
@@ -1268,21 +1230,21 @@ function timelineSVG(){
   const labX = Math.min(Math.max(gx, padL+90), W-120);
   return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Projected weight timeline">
     ${yTicks.map(w=>`<line x1="${padL}" y1="${Y(w)}" x2="${W-padR}" y2="${Y(w)}" stroke="rgba(233,226,212,0.08)" stroke-width="1"/>
-      <text x="${padL-8}" y="${Y(w)+4}" text-anchor="end" font-family="Manrope" font-weight="600" font-size="11" fill="#9d9486">${S.unit==="imperial"?Math.round(lb(w)):Math.round(w)}</text>`).join("")}
+      <text x="${padL-8}" y="${Y(w)+4}" text-anchor="end" font-family="Manrope" font-weight="600" font-size="11" fill="#b3aa9b">${S.unit==="imperial"?Math.round(lb(w)):Math.round(w)}</text>`).join("")}
     <polyline points="${dash}" fill="none" stroke="rgba(233,226,212,0.4)" stroke-width="2" stroke-dasharray="3 6" stroke-linecap="round"/>
-    <path d="${stair}" fill="none" stroke="#ffac2e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="${stair}" fill="none" stroke="#ff962e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
     <circle cx="${X(0)}" cy="${Y(S.wtKg)}" r="4" fill="#e9e2d4"/>
-    <circle cx="${gx}" cy="${gy}" r="5.5" fill="#ffac2e" stroke="#0d0a08" stroke-width="2"/>
+    <circle cx="${gx}" cy="${gy}" r="5.5" fill="#ff962e" stroke="#0d0a08" stroke-width="2"/>
     ${(()=>{ // label sits on the empty side of the line: above the dot when gaining, below when losing
       const above = S.goal==="gain";
       const plateY = above ? gy-46 : gy+10;
       const mainY  = above ? gy-30 : gy+24;
       const subY   = above ? gy-14 : gy+40;
       return `<rect x="${labX-92}" y="${plateY}" width="184" height="38" rx="8" fill="rgba(10,8,6,0.85)"/>
-    <text x="${labX}" y="${mainY}" text-anchor="middle" font-family="Manrope" font-weight="800" font-size="13" fill="#ffc266">${fmtWt(TL.goalW)} · ${fmtDate(TL.arriveWk)}</text>
-    <text x="${labX}" y="${subY}" text-anchor="middle" font-family="Inter" font-size="10.5" fill="#cfc7b6" letter-spacing="0.5">${TL.arriveWk} week${TL.arriveWk===1?"":"s"} at your chosen pace</text>`;})()}
-    <text x="${padL}" y="${H-8}" font-family="Inter" font-size="10" fill="#9d9486" letter-spacing="1">TODAY</text>
-    <text x="${W-padR}" y="${H-8}" text-anchor="end" font-family="Inter" font-size="10" fill="#9d9486" letter-spacing="1">GOAL, THEN MAINTENANCE →</text>
+    <text x="${labX}" y="${mainY}" text-anchor="middle" font-family="Manrope" font-weight="800" font-size="13" fill="#ffb066">${fmtWt(TL.goalW)} · ${fmtDate(TL.arriveWk)}</text>
+    <text x="${labX}" y="${subY}" text-anchor="middle" font-family="Inter" font-size="10.5" fill="#d9d2c2" letter-spacing="0.5">${TL.arriveWk} week${TL.arriveWk===1?"":"s"} at your chosen pace</text>`;})()}
+    <text x="${padL}" y="${H-8}" font-family="Inter" font-size="10" fill="#b3aa9b" letter-spacing="1">TODAY</text>
+    <text x="${W-padR}" y="${H-8}" text-anchor="end" font-family="Inter" font-size="10" fill="#b3aa9b" letter-spacing="1">GOAL, THEN MAINTENANCE →</text>
   </svg>`;
 }
 
@@ -1292,31 +1254,17 @@ function revealHTML(){
   const tlBlock = isRecomp
     ? `<div class="chart-card"><p style="color:var(--muted);font-size:.87rem;line-height:1.8;padding:6px 4px">Recomposition doesn't chart on a scale. That's the point. Over the next 16 weeks, slightly under maintenance with ${PLAN.protein} g of protein, the scale holds while your body changes underneath it. Progress photos and a waist measurement every 2 weeks are your chart.</p></div>`
     : isMaint
-    ? `<div class="chart-card"><p style="color:var(--muted);font-size:.87rem;line-height:1.8;padding:6px 4px">Your maintenance number is <b style="color:var(--accent)">${PLAN.cal.toLocaleString()} calories</b>, and for the next 3 weeks it's a number to verify. Eat to it, weigh 3 to 4 mornings a week, and watch the 7-day average: steady within ±1% means the number is true. Drifting up or down? Adjust by 100 calories and re-check. Most people have never actually known this number. You're about to.</p></div>`
+    ? `<div class="chart-card"><p style="color:var(--muted);font-size:.87rem;line-height:1.8;padding:6px 4px">Your maintenance number is <b style="color:var(--accent)">${PLAN.cal.toLocaleString()} calories</b>, and for the next 3 weeks it's a number to verify. Eat to it, weigh 3 to 4 mornings a week, and watch the 7-day average: steady within ±1% means the number is true. If it drifts up or down, adjust by 100 calories and re-check. Most people have never actually known this number. After 3 weeks, you will.</p></div>`
     : `<div class="chart-card">${timelineSVG()}
-        <div class="chart-legend"><span><i class="lg-line"></i>Your ${goalWord()} phase</span><span><i class="lg-dash"></i>Maintenance — keeping the result</span></div>
+        <div class="chart-legend"><span><i class="lg-line"></i>Your ${goalWord()} phase</span><span><i class="lg-dash"></i>Maintenance · keeping the result</span></div>
         <p class="chart-caveat">This is what the plan looks like on paper, built from the pace you chose. Your body will not move in a straight line, and depending on how long this phase runs, that is completely normal. ${S.goal==="loss"?"Your body adapts to a sustained deficit over time, so a diet break or a change to your deficit may be exactly what keeps things moving. That is not the plan failing, that is us managing it correctly.":"Progress rarely arrives exactly on schedule, so treat the dates as a guide we adjust against real data, not a deadline."}</p>
       </div>`;
-  const requested = kg_(S.pace)*7700/7;
-  const floored = S.goal==="loss" && Math.abs(PLAN.dailyDelta) < requested-5;
-  const paceTxt = paceWt()+" a week";
-  const paceLine = S.goal==="loss"
-    ? (floored
-      ? `You chose ${paceTxt}, but we won't program below ${PLAN.cal.toLocaleString()} calories. That is the safety floor. At the pace it allows, you arrive around <b style="color:var(--accent)">${fmtDate(TL.arriveWk)}</b>. Slower on purpose: below this line you lose muscle, energy and consistency.`
-      : !TL.reached
-      ? `At ${paceTxt}, this is a long campaign. The chart shows your first five years; run the plan, then recalibrate with real data as the picture sharpens.`
-      : `At ${paceTxt} you arrive around <b style="color:var(--accent)">${fmtDate(TL.arriveWk)}</b>${lossPaceInfo().zone==="aggressive"?`. <span class="pace-warn">This is a fast pace for your size:</span> treat it as a short 6 to 8 week push, then re-assess`:", and the dashed line after it is the part most plans skip: keeping the result"}. The chart below maps the path week by week, so you always know whether you're on track.`)
-    : S.goal==="gain"
-    ? (!TL.reached
-      ? `On a +${(Math.round(S.surplusPct*1000)/10)}% surplus, this is a long campaign. The chart shows your first five years; run the plan, then recalibrate with real data as the picture sharpens.`
-      : `On a <b style="color:var(--accent)">+${(Math.round(S.surplusPct*1000)/10)}% surplus</b> over maintenance (+${PLAN.dailyDelta} calories a day, about ${fmtWt(PLAN.effPaceWk)} a week)${S.surplusPct>0.2?`, the <span class="pace-warn">aggressive lane</span>, size sooner with more fat by design,`:""} you reach ${fmtWt(TL.goalW)} around <b style="color:var(--accent)">${fmtDate(TL.arriveWk)}</b>, ${TL.arriveWk} weeks out. The chart below maps the path week by week.`)
-    : ``;
   return `
   <div class="rv-head">
     <button type="button" class="ghost" id="editBtn" style="margin-bottom:14px">&larr; Edit my answers</button>
-    <div class="rv-eyebrow">The reveal</div>
+    <div class="rv-eyebrow">Your results</div>
     <h1 class="rv-title">${esc(first)}, here are your numbers.</h1>
-    <p class="rv-sub">${WHY_LINE[S.why]||""} Engineered from your body, your week, and what you said matters: <b style="color:var(--ink)">${VISION_WORD[S.vision]||"the result"}</b>.</p>
+    <p class="rv-sub">Calculated from your body, your week, and your goal, not an average.</p>
   </div>
   <div class="stat3">
     <div><div class="st-num" id="nTdee">0</div><div class="st-lab">Maintenance (TDEE) · calories</div></div>
@@ -1328,57 +1276,41 @@ function revealHTML(){
     <div class="mc"><div class="mc-num" id="nC">0<small> g</small></div><div class="mc-lab">Carbs</div><div class="mc-bar" id="bC"></div></div>
     <div class="mc"><div class="mc-num" id="nF">0<small> g</small></div><div class="mc-lab">Fat</div><div class="mc-bar" id="bF"></div></div>
   </div>
-  <p style="color:var(--dim);font-size:.76rem;line-height:1.7;margin:-26px 0 40px;text-align:center;max-width:56ch;margin-left:auto;margin-right:auto">BMR is what your body burns at rest: <b style="color:var(--muted)">${PLAN.bmr.toLocaleString()} calories</b>. Multiplied by <b style="color:var(--muted)">${actFactor()}</b> for your ${ACT_LABEL[S.activity]} life, you get your maintenance — eat that and your weight stays the same.</p>
+  <p style="color:var(--dim);font-size:.76rem;line-height:1.7;margin:-26px 0 40px;text-align:center;max-width:56ch;margin-left:auto;margin-right:auto">BMR is what your body burns at rest: <b style="color:var(--muted)">${PLAN.bmr.toLocaleString()} calories</b>. Add your ${ACT_LABEL[S.activity]} life on top and you get your maintenance. Eat that and your weight stays the same.</p>
   <div class="rv-block">
-    <h3>${isMaint?"Your calibration protocol":isRecomp?"Your recomposition arc":"Your timeline: dated, numbered, including the part after the finish line"}</h3>
-    ${paceLine?`<p class="bk-sub">${paceLine}</p>`:""}
+    <h3>${isMaint?"Your calibration protocol":isRecomp?"Your recomposition plan":"Your timeline, including the part after you arrive"}</h3>
     ${tlBlock}
   </div>`;
 }
 
 /* ── Locked preview + gate ── */
 const BP_SECTIONS_META = [
-  ["Section 1","Personal breakdown","Your BMR, true maintenance, target and pace, plus a coach read on what you told us."],
+  ["Section 1","Personal breakdown","Your BMR, true maintenance, target and pace, plus coach's advice for your week."],
   ["Section 2","The strategy","What your numbers mean, why this calorie target, and the rules that make it stick."],
   ["Section 3","Real-food translator","Your macros converted into food blocks. Pick 3 of these today, not grams on a screen."],
   ["Section 4","3-day meal plan","Your targets arranged into breakfasts, lunches, dinners and snacks you'd actually eat."],
   ["Section 5","Smart grocery list","One categorized list that stocks your kitchen for the plan, filtered to your preferences."],
   ["Section 6","Your training week","A sample week built for the days you said you can train, at your level."],
-  ["Section 7","The progress protocol","Five instruments that prove it is working, even when the scale plays games."],
+  ["Section 7","The progress protocol","Six instruments that prove it is working, even when the scale stalls."],
   ["Section 8","The execution plan","The weekly structure, the tracking that matters, and why most people fail without it."]
 ];
 
-const TOLD_WHY = {
-  event:"A real deadline is on the calendar. We build backwards from it: your checkpoints are dated for a reason.",
-  guessing:"You came here to stop guessing. Every number in this blueprint has a formula behind it and every food block has a gram count. No guesswork.",
-  health:"Something got your attention. The right response is not panic, it is process: a measured target, high protein, training, sleep. All of it is in here.",
-  overdue:"You decided without a deadline. That is the strongest kind of start, and this plan honors it by being sustainable instead of dramatic.",
-  momentum:"You are already in motion. This plan turns momentum into compounding: measured targets, dated checkpoints, deliberate progression."
-};
-const TOLD_BLOCK = {
-  consistency:"You start strong and fade by week 3. So this plan is built to be boring on purpose: same targets daily, a weekly rhythm, checkpoints close enough to keep score.",
-  knowledge:"Grams never became meals for you before. That is exactly why Sections 3, 4 and 5 translate every target into food, plates and a shopping list.",
-  stress:"You said stress from work, family and everything else pushes the plan aside. So this plan runs on minimums: hit your protein, train the days you can, reset at the next meal. On a hard week, the minimums keep the plan alive.",
-  social:"Your weekends fight your weekdays. The tolerance built into your targets, plus judging weekly averages instead of days, exists so a Saturday out is a data point, not a derailment.",
-  allornothing:"One slip used to end the whole plan. Here the unit of success is the week, not the day. A rough day inside an on-target week is a rounding error.",
-  noplan:"There was never one plan in one place. Now there is. This page and its PDF are the single source of truth."
-};
 function coachAdvice(){
   const tips=[];
   const lowSteps = ["st35","st57"].includes(S.steps);
   const highSteps = ["st1113","st13"].includes(S.steps);
   const sedLife = S.activity==="sed" || S.activity==="light";
-  if(lowSteps && sedLife) tips.push(["Walk before you run","Training is set, but the rest of your day is still. A low step count with a seated life is the biggest silent brake on results. Add a 10 minute walk after two meals and you close most of that gap without touching the gym."]);
-  else if(lowSteps) tips.push(["Raise the daily floor","Your activity level helps, but the step count says the quiet hours sit. Aim one bracket up. A morning or evening walk is the cheapest progress available."]);
-  else if(highSteps) tips.push(["Your daily movement is a weapon","At your step count, non-exercise movement is doing real work for your calorie budget and recovery. Protect it, especially on rest days."]);
+  if(lowSteps && sedLife) tips.push(["Add walking first","Training is set, but the rest of your day is still. A low step count with a seated life is the biggest silent brake on results. Add a 10 minute walk after two meals and you close most of that gap without touching the gym."]);
+  else if(lowSteps) tips.push(["Raise the daily floor","Your activity level helps, but the step count says most of your day is spent sitting. Aim one bracket up. A morning or evening walk is the cheapest progress available."]);
+  else if(highSteps) tips.push(["Your daily movement is an advantage","At your step count, non-exercise movement is doing real work for your calorie budget and recovery. Protect it, especially on rest days."]);
   else tips.push(["Solid movement base","7 to 11 thousand steps is a healthy floor. On rest days, push toward the top of your bracket. Off-day movement is active recovery."]);
-  if(S.sleep==="s5") tips.push(["Sleep is the leak","Under 6 hours changes the game: hunger climbs, recovery drops, and the same plan feels twice as hard. Before optimizing anything else, buy back 45 minutes of sleep. It will outperform any supplement."]);
+  if(S.sleep==="s5") tips.push(["Fix sleep first","Under 6 hours works against you everywhere: hunger climbs, recovery drops, and the same plan feels twice as hard. Before you change anything else, buy back 45 minutes of sleep. It will outperform any supplement."]);
   else if(S.sleep==="s6") tips.push(["Guard the last hour","6 to 7 hours is workable, not optimal. A consistent lights-out time and no screens in the final 30 minutes usually buys back the half hour that changes how training feels."]);
-  if(S.stress>=7) tips.push(["Train the pressure, do not add to it","Your stress is running high, so build pressure-release into the plan: a daily walk, 5 minutes of slow breathing before bed, morning sunlight, time in nature, or simply a phone-free last hour. Keep sessions hard but short, and avoid stacking an aggressive deficit on a stressed system. Consistency beats intensity while the pressure is on."]);
+  if(S.stress>=7) tips.push(["Build in pressure release","Your stress is running high, so build pressure-release into the plan: a daily walk, 5 minutes of slow breathing before bed, morning sunlight, time in nature, or simply a phone-free last hour. Keep sessions hard but short, and avoid stacking an aggressive deficit on a stressed system. While the pressure is on, showing up consistently does more for you than training harder."]);
   const SPLIT = {
-    1:["One day is a start, two is a plan","One session a week maintains more than it builds. If you can find a second day, do it: two full-body sessions, each covering a squat, a hinge, a push and a pull, is the minimum effective dose that actually moves the needle. Until then, make your one day a full-body session with those same four patterns."],
-    2:["Two days, full body, no filler","Run two full-body sessions. Each one covers the big patterns: a squat, a hinge, a push and a pull, with a lunge or carry when you have gas left. Low frequency means every session counts, so effort and consistency carry the plan."],
-    3:["Three days, full body, rotating focus","Three full-body sessions is a genuinely great setup. Cover a squat, a hinge, a push and a pull each visit, and rotate the emphasis: day one leads with the squat, day two with the hinge, day three with a lunge. Simple, repeatable, effective."],
+    1:["Find a second day if you can","One session a week maintains more than it builds. If you can find a second day, do it: two full-body sessions, each covering a squat, a hinge, a push and a pull, is the minimum that actually builds muscle. Until then, make your one day a full-body session with those same four patterns."],
+    2:["Two days, full body","Run two full-body sessions. Each one covers the big patterns: a squat, a hinge, a push and a pull, with a lunge or carry when you have gas left. Low frequency means every session counts, so effort and consistency carry the plan."],
+    3:["Three days, full body, rotating focus","Three full-body sessions is a genuinely great setup. Cover a squat, a hinge, a push and a pull each visit, and rotate the emphasis: day one leads with the squat, day two with the hinge, day three with a lunge. It is simple and repeatable."],
     4:["Four days: upper / lower","Four days fits an upper/lower split perfectly. Upper days: a push and a pull, horizontal and vertical. Lower days: a squat, a hinge, and a lunge. Two of each per week is the rhythm most great physiques are built on."],
     5:["Five days: upper / lower / full","Run upper, lower, upper, lower, then a fifth full-body day for whatever needs the most work. Same vocabulary throughout: squat, lunge, hinge, push, pull. At five days, recovery starts becoming the thing to manage."],
     6:["Six days: push / pull / legs","Six days runs push / pull / legs, twice through. Push days press, pull days row and pull, leg days squat, hinge and lunge. This only works if sleep and food keep pace; if progress stalls, the fix is one less session, not one more."]
@@ -1386,19 +1318,6 @@ function coachAdvice(){
   tips.push(SPLIT[Math.min(6,Math.max(1,S.trainDays))]);
   return tips.slice(0,4);
 }
-const LEVEL_READ = {
-  nov:"You're a novice, which is the best hand in the deck: your body adapts faster right now than it ever will again. Simple training and consistent eating, repeated weekly, will look like magic for the next year.",
-  beg:"You're past the first wave of beginner gains. Progress now comes from doing the boring things well: the same lifts, a little heavier, week after week, with the nutrition holding steady underneath.",
-  int:"As an intermediate, the lever is precision. Small surpluses and deficits, tracked honestly, beat program-hopping every time. Your numbers above are tight for exactly that reason.",
-  adv:"You're advanced, so the margins are thin and earned. Recovery, sleep and adherence decide your results now more than any programming trick. Protect the basics like they're the secret, because at your stage they are."
-};
-const TOLD_VISION = {
-  look:"You are doing this for the mirror. Progress photos every 2 weeks and the waist tape will show it long before the scale does.",
-  energy:"You are doing this for energy and confidence. Expect the first returns inside 2 to 3 weeks: steadier mornings, better sessions, fewer crashes.",
-  perform:"You are chasing performance. Keep a training log; the bar tells the truth. Strength holding or climbing while the plan runs is the win condition.",
-  partner:"You want to show up with confidence when you meet people. That arrives early: better posture, better energy, clothes that fit. Give the plan 8 to 12 weeks and it shows before the goal weight does.",
-  longevity:"You are playing the long game. Every choice in this plan favors what you can hold for years over what impresses for weeks."
-};
 function gateHTML(){
   return `
   <div class="gate-zone">
@@ -1411,14 +1330,14 @@ function gateHTML(){
     <div class="gate-overlay">
       <div class="gate-card">
         <h3>Your numbers were the easy part.</h3>
-        <p>The full blueprint turns them into meals, a grocery list, and a weekly structure — built from your answers.</p>
+        <p>The full blueprint turns them into meals, a grocery list, and a weekly structure, built from your answers.</p>
         <form class="gate-form" id="gateForm" novalidate>
           <input class="f-in" type="text" id="gName" placeholder="First name" value="${esc(S.name)}" autocomplete="given-name">
           <input class="f-in" type="email" id="gEmail" placeholder="you@email.com" autocomplete="email" required>
           <button class="cta" type="submit" id="gateBtn">Unlock my full blueprint</button>
         </form>
         <div class="gate-err" id="gateErr">That email doesn't look right. Check it and try again.</div>
-        <p class="gate-fine">Your full blueprint opens right here, and a link to it lands in your inbox so you can come back to it anytime. No spam — just a few short emails on how to use your plan. Unsubscribe anytime.</p>
+        <p class="gate-fine">Your full blueprint opens right here. Save the PDF and bookmark your personal link, they're yours for good. No spam, ever. Unsubscribe anytime. <a href="https://www.alexmaywood.com/privacy.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Privacy policy</a>.</p>
       </div>
     </div>
   </div>`;
@@ -1430,7 +1349,7 @@ function mealDayHTML(dayIdx){
   const meals = dayMeals(dayIdx);
   const totK = meals.reduce((a,m)=>a+m.kcal,0), totP = meals.reduce((a,m)=>a+m.p,0);
   const rows = meals.map(m=>{
-    const fit = m.fac>1.12 ? `portions ×${m.fac.toFixed(1)} — scale ${m.dish.s}` : m.fac<0.88 ? `portions ×${m.fac.toFixed(1)} — lighter servings` : "as written";
+    const fit = m.fac>1.12 ? `portions ×${m.fac.toFixed(1)} · scale ${m.dish.s}` : m.fac<0.88 ? `portions ×${m.fac.toFixed(1)} · lighter servings` : "as written";
     return `<div class="meal">
       <div class="meal-slot">${m.slot}</div>
       <div class="meal-what"><b style="color:var(--ink);font-weight:600">${m.dish.n}</b><br><span style="color:var(--dim);font-size:.78rem">${m.dish.c} · ${fit}</span></div>
@@ -1452,7 +1371,7 @@ function trainDayHTML(i){
   const T=TRAIN[Math.min(6,Math.max(1,S.trainDays))];
   const d=T.days[i];
   return `<div style="font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin:6px 0 4px">${d.f}</div>`+
-    d.ex.map(e=>`<div class="meal"><div class="meal-slot">${e[2]}</div><div class="meal-what">${e[0]}</div><div class="meal-mac">${e[1]}</div></div>`).join("");
+    d.ex.map(e=>`<div class="meal"><div class="meal-slot">${e[2]}</div><div class="meal-what">${e[0]}</div><div class="meal-mac">${fmtSetsReps(e[1])}</div></div>`).join("");
 }
 function blueprintHTML(){
   const first=esc(S.name.trim().split(/\s+/)[0]);
@@ -1462,16 +1381,15 @@ function blueprintHTML(){
   <div class="rv-head" style="margin-top:64px">
     <div class="rv-eyebrow">Unlocked</div>
     <h1 class="rv-title">The ${first} Blueprint.</h1>
-    <p class="rv-sub">Eight sections. Everything above, turned into execution. This page is yours.</p>
+    <p class="rv-sub">Eight sections that turn your numbers into a plan you can run this week. This page is yours.</p>
   </div>
 
   <div class="bp-sec">
     <div class="bp-tag">Sections 1 + 2 <i></i> Breakdown and strategy</div>
     <h2>Where you're starting from, and what your numbers are doing.</h2>
-    <p class="bp-lead">Your body burns <b>${PLAN.bmr.toLocaleString()} calories</b> at rest. Your ${ACT_LABEL[S.activity]} life raises that to <b>${PLAN.tdee.toLocaleString()} calories</b> a day — your maintenance, the amount where your weight stays the same. Your ${goalWord()} target: <b>${PLAN.cal.toLocaleString()} calories</b> a day.</p>
+    <p class="bp-lead">Your body burns <b>${PLAN.bmr.toLocaleString()} calories</b> at rest. Your ${ACT_LABEL[S.activity]} life raises that to <b>${PLAN.tdee.toLocaleString()} calories</b> a day: your maintenance, the amount where your weight stays the same. Your ${goalWord()} target: <b>${PLAN.cal.toLocaleString()} calories</b> a day.</p>
     <div class="kv-grid">
       <div class="kv"><b>${PLAN.bmr.toLocaleString()}</b><span>BMR &middot; calories at rest</span></div>
-      <div class="kv"><b>&times;${actFactor()}</b><span>${ACT_LABEL[S.activity]}</span></div>
       <div class="kv"><b>${PLAN.tdee.toLocaleString()}</b><span>Maintenance calories</span></div>
       <div class="kv"><b>${PLAN.cal.toLocaleString()}</b><span>Daily target</span></div>
       ${S.goal==="loss"?`<div class="kv"><b>${paceWt()}</b><span>Per week</span></div>`:S.goal==="gain"?`<div class="kv"><b>+${(Math.round(S.surplusPct*1000)/10)}%</b><span>Over maintenance</span></div>`:S.goal==="recomp"?`<div class="kv"><b>${S.recompDef===0?"0":"-"+S.recompDef}</b><span>calories under maintenance</span></div>`:""}
@@ -1480,7 +1398,7 @@ function blueprintHTML(){
       S.goal==="loss"
       ? `Think of your body as a bank account. ${PLAN.tdee.toLocaleString()} calories a day is what it costs you to run, and eating ${PLAN.cal.toLocaleString()} is a withdrawal of ${Math.abs(PLAN.dailyDelta)} calories a day, about ${fmtWt(Math.abs(PLAN.effPaceWk))} a week paid out of stored fat. <b>Protein at ${PLAN.protein} g</b> is what tells your body to make that withdrawal from fat and not from muscle. The deficit sets the speed; protein and training decide what you actually lose.`
       : S.goal==="gain"
-      ? `Muscle is built, not bought. Think of your body as a bank account again, except this time we are making a deposit. ${PLAN.cal.toLocaleString()} calories gives it a <b>+${(Math.round(S.surplusPct*1000)/10)}%</b> deposit over maintenance (${PLAN.dailyDelta} calories a day)${S.surplusPct>0.2?", the aggressive lane, with the fat share that comes with it":""}. <b>${PLAN.protein} g of protein</b> is the raw material the deposit gets converted into; training is what tells your body to convert it into muscle instead of storing it as fat.`
+      ? `Think of your body as a bank account again, except this time we are making a deposit. ${PLAN.cal.toLocaleString()} calories gives it a <b>+${(Math.round(S.surplusPct*1000)/10)}%</b> deposit over maintenance (${PLAN.dailyDelta} calories a day)${S.surplusPct>0.2?", the aggressive lane, with the fat share that comes with it":""}. <b>${PLAN.protein} g of protein</b> is the raw material the deposit gets converted into; training is what tells your body to convert it into muscle instead of storing it as fat.`
       : S.goal==="maintain"
       ? `${PLAN.cal.toLocaleString()} calories is your line to hold, and holding it is a skill almost nobody is ever taught. With protein at <b>${PLAN.protein} g</b>, your weight becomes something you control instead of something that drifts. Verify the number for 3 weeks against your 7-day scale average, then trust it.`
       : `Just under maintenance (${PLAN.cal.toLocaleString()} calories, about 150 below) with protein pushed to <b>${PLAN.protein} g</b>: training creates demand for muscle, protein funds it, and stored fat quietly covers the gap. The scale holds still while your body changes underneath it.`
@@ -1492,12 +1410,6 @@ function blueprintHTML(){
       <div class="kv"><b>&plusmn;200</b><span>calories of wiggle room: a day within 200 of target is a day on plan</span></div>
     </div>
     <p style="color:var(--muted);font-size:.78rem;line-height:1.7;margin-top:14px">Split your protein across 3 to 5 meals. Not because your body can't handle more at once (it can), but because protein is your appetite's off switch: spread through the day, it keeps you full, steady and easy to coach.</p>
-    <div style="margin-top:26px">
-      <div class="lever"><div class="lever-n">01</div><div><b>Why you're here</b><p>${TOLD_WHY[S.why]||""}</p></div></div>
-      <div class="lever"><div class="lever-n">02</div><div><b>What breaks plans like this</b><p>${TOLD_BLOCK[S.blocker]||""}</p></div></div>
-      <div class="lever"><div class="lever-n">03</div><div><b>What winning looks like</b><p>${TOLD_VISION[S.vision]||""}</p></div></div>
-      <div class="lever"><div class="lever-n">04</div><div><b>Where you are as a lifter</b><p>${LEVEL_READ[S.level]||""}</p></div></div>
-    </div>
     <div class="bp-tag" style="margin-top:34px">Coach's advice <i></i></div>
     <div>
       ${coachAdvice().map((t,i)=>`<div class="lever"><div class="lever-n">0${i+1}</div><div><b>${t[0]}</b><p>${t[1]}</p></div></div>`).join("")}
@@ -1506,8 +1418,8 @@ function blueprintHTML(){
 
   <div class="bp-sec">
     <div class="bp-tag">Section 3 <i></i> The real-food translator</div>
-    <h2>Your macros, spoken in food.</h2>
-    <p class="bp-lead">Nobody eats grams. Each block below adds up to your daily target. <b>Pick your selections for the day and the math takes care of itself.</b> Filtered to ${dietLabel}${S.restrictions.length?" with your exclusions applied":""}.</p>
+    <h2>Your macros, translated into food.</h2>
+    <p class="bp-lead">Each block below adds up to your daily target. <b>Pick your selections for the day and the math takes care of itself.</b> Filtered to ${dietLabel}${S.restrictions.length?" with your exclusions applied":""}.</p>
     <div class="fb-target"><b>${PLAN.protein} g protein</b></div>
     <div class="fb-grid">${pb.list.map(f=>`<div class="fb"><div><b>${f.n}</b><small>${f.p}</small></div><em>${f.g} g</em></div>`).join("")}</div>
     ${S.diet!=="keto"?`
@@ -1521,7 +1433,7 @@ function blueprintHTML(){
   <div class="bp-sec">
     <div class="bp-tag">Section 4 <i></i> The 3-day meal plan</div>
     <h2>Three days, assembled for you.</h2>
-    <p class="bp-lead">Real meals, sized to your numbers. Each dish shows its calories and protein at the portion multiplier that fits your day — the scale notes tell you which component to adjust. Swap any dish for another from the same slot.</p>
+    <p class="bp-lead">Real meals, sized to your numbers. Each dish shows its calories and protein at the portion multiplier that fits your day. The scale notes tell you which component to adjust, and you can swap any dish for another from the same slot.</p>
     <div class="day-tabs" id="dayTabs">
       <button class="day-tab sel" data-day="0">Day 1</button>
       <button class="day-tab" data-day="1">Day 2</button>
@@ -1550,33 +1462,32 @@ function blueprintHTML(){
 
   <div class="bp-sec">
     <div class="bp-tag">Section 7 <i></i> The progress protocol</div>
-    <h2>Track like a professional. The scale is one instrument, not the verdict.</h2>
-    <p class="bp-lead">Day to day, weight lies. Water, salt, sleep and stress all move it. Run these five instruments and read the trend, not the noise.</p>
+    <h2>Track like a professional. The scale is only one of six instruments.</h2>
+    <p class="bp-lead">Your day-to-day weight is noisy. Water, salt, sleep and stress all move it. Run these six instruments and read the trend, not the noise.</p>
     <div style="margin-top:6px">
       <div class="lever"><div class="lever-n">01</div><div><b>Scale, 3 to 4 mornings a week</b><p>Same time, after the bathroom, before food. Judge only the 7-day average. Ignore any single day.</p></div></div>
       <div class="lever"><div class="lever-n">02</div><div><b>Waist at the navel, weekly</b><p>Relaxed, same day each week. ${S.goal==="loss"?"On a cut this often moves when the scale stalls. It is the honest one.":"If it climbs faster than planned, the surplus is running hot."}</p></div></div>
       <div class="lever"><div class="lever-n">03</div><div><b>Photos every 2 weeks</b><p>Front, side, back. Same light, same spot, same time of day. You cannot see daily change in the mirror; the camera can.</p></div></div>
       <div class="lever"><div class="lever-n">04</div><div><b>Training log, every session</b><p>${S.goal==="loss"?"Strength holding while weight drops means the loss is fat, not muscle. That is the whole test.":"Weights or reps climbing over the weeks is the proof your calories are being spent on muscle."}</p></div></div>
       <div class="lever"><div class="lever-n">05</div><div><b>Biofeedback check, weekly</b><p>Energy on waking, sleep quality, hunger, mood. Two bad weeks in a row is data: adjust, do not push through blindly.</p></div></div>
+      <div class="lever"><div class="lever-n">06</div><div><b>Food scale, first 4 weeks</b><p>Weigh portions in grams while you calibrate. Eyeballed portions drift 20 to 30 percent, and after a month you'll know your portions by sight.</p></div></div>
     </div>
     <p style="color:var(--dim);font-size:.78rem;line-height:1.7;margin-top:18px">Adjustment rule: if the 7-day average moves at less than half your target pace for 2 straight weeks, shift daily calories by 150 and re-measure. One change at a time.</p>
   </div>
 
   <div class="pivot">
     <div class="rv-eyebrow" style="margin-bottom:16px">Section 8 · The execution plan</div>
-    <h2>You now know more than 90% of people who fail.</h2>
-    <p>${BLOCKER_PIVOT[S.blocker]||"Most people who start with a plan this good still don't finish. Not because the numbers were wrong, but because nobody was watching."} Knowledge isn't the bottleneck anymore. <b style="color:var(--ink)">Structure and accountability are.</b></p>
+    <h2>Here's what decides if this works.</h2>
+    <p>Most people who start with a plan this good still don't finish. Not because the numbers were wrong, but because nobody was watching. Knowledge isn't the missing piece anymore. <b style="color:var(--ink)">Structure and accountability are.</b></p>
     <div class="pivot-stats">
       <div><b>${PLAN.cal.toLocaleString()}</b><span>Your daily target</span></div>
       <div><b>${(S.goal==="loss"||S.goal==="gain")&&TL?fmtDate(TL.arriveWk).split(",")[0]:S.goal==="maintain"?"3 wks":"16 wks"}</b><span>${S.goal==="recomp"?"First checkpoint":S.goal==="maintain"?"Calibration window":"Projected arrival"}</span></div>
       <div><b>${PLAN.protein} g</b><span>Protein, every day</span></div>
     </div>
-    <p>The AEM Method exists for exactly this gap: a coach who audits your week, engineers the adjustments, and holds the standard when motivation dips. If you want this blueprint executed, with someone in your corner who answers, apply below. It takes two minutes, and if it's not a fit, you'll hear that honestly too.</p>
     <div class="bp-actions">
-      <a class="cta" href="${CONFIG.COACHING_URL}" target="_blank" rel="noopener">Apply for 1:1 coaching</a>
-      <button class="cta-o" id="pdfBtn">Download the PDF</button>
+      <button class="cta" id="pdfBtn">Download your free blueprint</button>
     </div>
-    <div class="dl-note" id="pdfNote">Your blueprint as a keep-forever PDF, generated on your device.</div>
+    <div class="dl-note" id="pdfNote">Your blueprint as a PDF that's yours to keep, generated on your device.</div>
   </div>`;
 }
 
@@ -1627,15 +1538,17 @@ function wireBlueprint(){
 
 /* ── Gate: Kit submission ── */
 function blueprintLink(){
-  const c={n:S.name,a:S.age,x:S.sex,h:Math.round(S.htCm),w:Math.round(S.wtKg*10)/10,b:S.bf,g:S.goal,gw:S.goalWtKg?Math.round(S.goalWtKg*10)/10:null,p:S.pace,gp:S.surplusPct,rd:S.recompDef,lv:S.level,ac:S.activity,wy:S.why,bl:S.blocker,vi:S.vision,td:S.trainDays,sl:S.sleep,st:S.stress,sp:S.steps,d:S.diet,r:S.restrictions,u:S.unit};
+  const c={n:S.name,a:S.age,x:S.sex,h:Math.round(S.htCm),w:Math.round(S.wtKg*10)/10,b:S.bf,g:S.goal,gw:S.goalWtKg?Math.round(S.goalWtKg*10)/10:null,p:S.pace,gp:S.surplusPct,rd:S.recompDef,lv:S.level,ac:S.activity,td:S.trainDays,sl:S.sleep,st:S.stress,sp:S.steps,d:S.diet,r:S.restrictions,u:S.unit};
   return location.origin+location.pathname+"#d="+btoa(unescape(encodeURIComponent(JSON.stringify(c))));
 }
 function restoreFromHash(){
   if(!location.hash.startsWith("#d=")) return false;
   try{
     const c=JSON.parse(decodeURIComponent(escape(atob(location.hash.slice(3)))));
-    Object.assign(S,{name:c.n||"",age:c.a,sex:c.x,htCm:c.h,wtKg:c.w,bf:c.b,goal:c.g,goalWtKg:c.gw,pace:PACES.includes(c.p)?c.p:0.75,surplusPct:c.gp||0.15,recompDef:c.rd??150,level:c.lv||"int",activity:c.ac||"light",why:c.wy||"",blocker:c.bl||"",vision:c.vi||"",trainDays:c.td??3,sleep:c.sl,stress:c.st??5,steps:c.sp,diet:c.d||"standard",restrictions:c.r||[],unit:c.u||"imperial",unlocked:true});
-    return !!(S.age&&S.sex&&S.htCm&&S.wtKg&&S.goal&&S.activity&&S.sleep&&S.steps);
+    // Validate BEFORE touching S — a partial payload must not leave side effects (it would set unlocked and bypass the gate)
+    if(!(c.a&&c.x&&c.h&&c.w&&c.g&&c.sl&&c.sp)) return false;
+    Object.assign(S,{name:c.n||"",age:c.a,sex:c.x,htCm:c.h,wtKg:c.w,bf:c.b,goal:c.g,goalWtKg:c.gw,pace:PACES.includes(c.p)?c.p:0.75,surplusPct:c.gp||0.15,recompDef:c.rd??150,level:c.lv||"int",activity:c.ac||"light",trainDays:c.td??3,sleep:c.sl,stress:c.st??5,steps:c.sp,diet:c.d||"standard",restrictions:c.r||[],unit:c.u||"imperial",unlocked:true});
+    return true;
   }catch(e){ return false; }
 }
 function persist(){
@@ -1659,15 +1572,17 @@ function wireGate(){
         fd.append(`fields[${fields.goal}]`,S.goal);
         fd.append(`fields[${fields.calories}]`,PLAN.cal);
         fd.append(`fields[${fields.protein}]`,PLAN.protein);
-        fd.append(`fields[${fields.blocker}]`,S.blocker);
-        fd.append(`fields[${fields.why}]`,S.why);
         fd.append(`fields[${fields.link}]`,blueprintLink());
         await fetch(`https://app.kit.com/forms/${CONFIG.KIT_FORM_ID}/subscriptions`,{method:"POST",body:fd,headers:{"Accept":"application/json"}});
       } else {
-        console.warn("AEM Blueprint: KIT_FORM_ID not set. Running in preview mode, no email captured.");
+        console.warn("Blueprint: KIT_FORM_ID not set. Running in preview mode, no email captured.");
         await new Promise(r=>setTimeout(r,700));
       }
     }catch(ex){ /* network hiccup — don't hold their result hostage */ }
+    if(CONFIG.DATA_WEBHOOK_URL){
+      // fire-and-forget copy of the submission to the owner's sheet — must never block the unlock
+      try{ fetch(CONFIG.DATA_WEBHOOK_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify({t:new Date().toISOString(),email,name,age:S.age,sex:S.sex,htCm:S.htCm,wtKg:S.wtKg,bf:S.bf,goal:S.goal,goalWtKg:S.goalWtKg,pace:S.pace,surplusPct:S.surplusPct,recompDef:S.recompDef,level:S.level,activity:S.activity,steps:S.steps,trainDays:S.trainDays,sleep:S.sleep,stress:S.stress,diet:S.diet,restrictions:S.restrictions,unit:S.unit,calories:PLAN&&PLAN.cal,protein:PLAN&&PLAN.protein,link:blueprintLink()})}).catch(()=>{}); }catch(e){}
+    }
     S.unlocked=true; persist();
     showResults();
   });
@@ -1685,74 +1600,293 @@ function loadJsPDF(){
   });
   return jspdfLoading;
 }
+/* Image loader for the PDF. Returns {dataUri,w,h,fmt} or null — every caller degrades gracefully.
+   Sources are re-encoded through a canvas so webp assets work too (jsPDF only embeds PNG/JPEG). */
+const IMGS={};
+function loadImg(src,asJpeg){
+  if(IMGS[src]!==undefined) return Promise.resolve(IMGS[src]);
+  return fetch(src).then(r=>r.blob()).then(b=>new Promise(res=>{
+    const fr=new FileReader(); fr.onload=()=>res(fr.result); fr.onerror=()=>res(null); fr.readAsDataURL(b);
+  })).then(dataUri=>{ if(!dataUri){ IMGS[src]=null; return null; }
+    return new Promise(res=>{ const im=new Image();
+      im.onload=()=>{
+        let out={dataUri,w:im.naturalWidth,h:im.naturalHeight,fmt:"PNG"};
+        if(asJpeg){
+          try{
+            const c=document.createElement("canvas"); c.width=im.naturalWidth; c.height=im.naturalHeight;
+            c.getContext("2d").drawImage(im,0,0);
+            out={dataUri:c.toDataURL("image/jpeg",0.92),w:im.naturalWidth,h:im.naturalHeight,fmt:"JPEG"};
+          }catch(e){ /* keep the original bytes */ }
+        }
+        IMGS[src]=out; res(out);
+      };
+      im.onerror=()=>{ IMGS[src]=null; res(null); }; im.src=dataUri; });
+  }).catch(()=>{ IMGS[src]=null; return null; });
+}
+const loadLogo = ()=>loadImg("logo-am.png",false);
 async function generatePDF(){
   const note=$("#pdfNote"); note.textContent="Building your PDF…";
   try{ await loadJsPDF(); }catch(e){ note.textContent="Couldn't load the PDF engine. Check your connection and try again."; return; }
+  const logo=await loadLogo();                              // null if unavailable — the cover skips the mark
+  const portrait=await loadImg("images/alex-avatar.webp",true); // coach portrait; cover reflows without it
   const {jsPDF}=window.jspdf;
   const doc=new jsPDF({unit:"pt",format:"letter"});
   const W=612,H=792,M=54,FOOT=50;
-  // Two palettes: dark espresso cover, warm paper interior (prints better, reads warmer)
-  const COVER={bg:[10,9,8], ink:[233,226,212], dim:[157,148,134], accent:[255,172,46], line:[60,55,45]};
-  const PAPER={bg:[247,241,229], ink:[30,23,16], dim:[110,99,82], accent:[158,81,16], line:[205,192,168]};
+  doc.setLineHeightFactor(1.4); // airy paragraph leading — matches the 14pt/10pt reserve in body()
+  // Print system: the Blueprint in light mode. Espresso + ember over warm paper — the same
+  // identity as the web tool. Darks are warm brown-cast near-blacks (R>B), never true black.
+  const BLACK=[28,20,13], PAPER=[244,237,220], CARDW=[252,249,242], INK=[28,22,13];
+  const DIMC=[122,111,92], EMBER=[255,150,46], EMBERD=[172,84,14], LINEC=[216,206,186], BONE=[233,226,212];
+  const COVER={bg:[24,17,11], ink:BONE, dim:[172,160,142], accent:EMBER, line:[74,60,45], card:[42,31,22]};
+  const PAPER_T={bg:PAPER, ink:INK, dim:DIMC, accent:EMBERD, line:LINEC, card:CARDW};
   let P=COVER;
+  // WinAnsi safety net: the built-in PDF fonts can't draw characters outside Latin-1 (plus a few
+  // mapped punctuation marks) — anything else would silently render as garbage bytes, so map or drop it.
+  const san = s => String(s).replace(/→/g,">").replace(/[^\x00-\xFF–—‘’“”•…]/g,"");
   const first=S.name.trim().split(/\s+/)[0]||"Your";
   let pageN=0, y=0;
   // Flow layout: every block measures itself and breaks to a fresh page when it will not fit.
   function newPage(){
     doc.addPage && pageN>0 ? doc.addPage() : null;
     pageN++;
-    P = pageN===1 ? COVER : PAPER;
+    P = pageN===1 ? COVER : PAPER_T;
     doc.setFillColor(...P.bg); doc.rect(0,0,W,H,"F");
-    if(pageN>1){ doc.setFontSize(8); doc.setTextColor(...P.dim); doc.setFont("helvetica","normal");
-      doc.text("THE AEM BLUEPRINT  ·  "+first.toUpperCase(), M, H-28); doc.text(String(pageN), W-M, H-28,{align:"right"}); }
-    y=84;
+    if(pageN>1){ doc.setFontSize(7.5); doc.setTextColor(...P.dim); doc.setFont("helvetica","bold");
+      doc.text(san("THE BLUEPRINT  ·  "+first.toUpperCase()), M, H-28, {charSpace:1}); doc.text(String(pageN), W-M, H-28,{align:"right"}); }
+    y=76;
   }
   function ensure(h){ if(y+h > H-FOOT) newPage(); }
-  function tag(t){ ensure(46); doc.setFont("helvetica","bold"); doc.setFontSize(8); doc.setTextColor(...P.accent); doc.text(t.toUpperCase(),M,y,{charSpace:2}); y+=22; }
-  function h1(t){ ensure(46); doc.setFont("helvetica","bold"); doc.setFontSize(21); doc.setTextColor(...P.ink); doc.text(t,M,y); y+=26; }
-  function body(t,w){ doc.setFont("helvetica","normal"); doc.setFontSize(10); const lines=doc.splitTextToSize(t,w||W-2*M); ensure(lines.length*14+10); doc.setTextColor(...P.ink); doc.text(lines,M,y); y+=lines.length*14+10; }
-  function dim(t,w){ doc.setFont("helvetica","normal"); doc.setFontSize(9); const lines=doc.splitTextToSize(t,w||W-2*M); ensure(lines.length*12.5+8); doc.setTextColor(...P.dim); doc.text(lines,M,y); y+=lines.length*12.5+8; }
-  function goldLine(t){ ensure(22); doc.setFont("helvetica","bold"); doc.setFontSize(10.5); doc.setTextColor(...P.accent); doc.text(t,M,y); y+=16; }
-  function item(title,text){ ensure(60); goldLine(title); dim(text); y+=2; }
-  function rule(){ ensure(28); doc.setDrawColor(...P.line); doc.setLineWidth(0.5); doc.line(M,y,W-M,y); y+=20; }
-  function statRow(items){
-    ensure(84);
-    const w=(W-2*M-(items.length-1)*10)/items.length;
-    items.forEach((it,i)=>{
-      const x=M+i*(w+10);
-      doc.setDrawColor(...P.line); doc.setLineWidth(0.7); doc.roundedRect(x,y,w,58,3,3);
-      doc.setFont("helvetica","bold"); doc.setFontSize(15); doc.setTextColor(...P.accent); doc.text(String(it[1]),x+12,y+26);
-      doc.setFontSize(7); doc.setTextColor(...P.dim); doc.text(String(it[0]).toUpperCase(),x+12,y+44,{charSpace:1});
-    });
-    y+=78;
+  // Section starts get a fresh page — unless the current page is still nearly empty
+  // (an orphaned block just spilled here), in which case the section continues below it.
+  function sectionBreak(){ if(y>240) newPage(); else if(y>76) y+=18; }
+  /* Type scale — exactly four styles. Everything user-visible goes through these. */
+  function h1(t){ ensure(44); doc.setFont("helvetica","bold"); doc.setFontSize(17); doc.setTextColor(...P.ink); doc.text(san(String(t).toUpperCase()),M,y,{charSpace:0.5}); y+=27; }
+  function body(t,w){ doc.setFont("helvetica","normal"); doc.setFontSize(10); const lines=doc.splitTextToSize(san(t),w||W-2*M); ensure(lines.length*14+10); doc.setTextColor(...P.ink); doc.text(lines,M,y); y+=lines.length*14+10; }
+  function dim(t,w){ doc.setFont("helvetica","normal"); doc.setFontSize(8.5); const lines=doc.splitTextToSize(san(t),w||W-2*M); ensure(lines.length*12+8); doc.setTextColor(...P.dim); doc.text(lines,M,y); y+=lines.length*12+8; }
+  function subhead(t){ if(y>92) y+=8; ensure(140); doc.setFont("helvetica","bold"); doc.setFontSize(8.5); doc.setTextColor(...P.accent); doc.text(san(String(t).toUpperCase()),M,y,{charSpace:1.5}); y+=18; }
+  // Section band: ember bar with black caps label — the tool's CTA look.
+  function band(t){
+    ensure(70);
+    doc.setFillColor(...EMBER); doc.roundedRect(M,y,W-2*M,25,3,3,"F");
+    doc.setFont("helvetica","bold"); doc.setFontSize(8.5); doc.setTextColor(...BLACK);
+    doc.text(san(String(t).toUpperCase()),M+12,y+16.5,{charSpace:1.5});
+    y+=44;
   }
-  function rowLR(left,right,leftBold){
-    ensure(17);
-    doc.setFont("helvetica",leftBold?"bold":"normal"); doc.setFontSize(9.5); doc.setTextColor(...P.ink);
-    doc.text(left,M+8,y);
-    if(right!=null){ doc.setFont("helvetica","bold"); doc.setTextColor(...P.accent); doc.text(String(right),W-M,y,{align:"right"}); }
-    y+=15;
+  // Small black chip label (DAY 1, etc.)
+  function chip(t){
+    ensure(32);
+    doc.setFont("helvetica","bold"); doc.setFontSize(7.5);
+    const txt=san(String(t).toUpperCase());
+    const wpx=doc.getTextWidth(txt)+txt.length*1.5+20;
+    doc.setFillColor(...BLACK); doc.roundedRect(M,y,wpx,18,9,9,"F");
+    doc.setTextColor(...BONE); doc.text(txt,M+10,y+12.5,{charSpace:1.5});
+    y+=28;
+  }
+  // Numbered row card (coach's advice, progress protocol) — mirrors the web lever rows.
+  function leverCard(n, title, text){
+    doc.setFont("helvetica","normal"); doc.setFontSize(8.5);
+    const lines=doc.splitTextToSize(san(text),W-2*M-64);
+    const hgt=36+lines.length*12;
+    ensure(hgt+8);
+    doc.setFillColor(...P.card); doc.setDrawColor(...P.line); doc.setLineWidth(0.8);
+    doc.roundedRect(M,y,W-2*M,hgt,4,4,"FD");
+    doc.setFont("helvetica","bold"); doc.setFontSize(11); doc.setTextColor(...EMBERD);
+    doc.text(String(n).padStart(2,"0"),M+14,y+22);
+    doc.setFontSize(10); doc.setTextColor(...P.ink); doc.text(san(title),M+42,y+22);
+    doc.setFont("helvetica","normal"); doc.setFontSize(8.5); doc.setTextColor(...P.dim);
+    doc.text(lines,M+42,y+37);
+    y+=hgt+8;
+  }
+  // Table: black header band, alternating rows, right-aligned values in ember.
+  function table(cols, rows, widths, aligns){
+    const iw=W-2*M, xs=[]; let acc=M;
+    widths.forEach(f=>{ xs.push(acc); acc+=f*iw; });
+    const headH=21, rowH=17;
+    function head(){
+      ensure(headH+rowH*2);
+      doc.setFillColor(...BLACK); doc.roundedRect(M,y,iw,headH,3,3,"F");
+      doc.setFont("helvetica","bold"); doc.setFontSize(6.5); doc.setTextColor(...BONE);
+      cols.forEach((c,i)=>{ const right=aligns&&aligns[i]==="r";
+        doc.text(san(String(c).toUpperCase()), right? xs[i]+widths[i]*iw-10 : xs[i]+10, y+13.5, right?{align:"right",charSpace:1}:{charSpace:1}); });
+      y+=headH;
+    }
+    head();
+    rows.forEach((r,ri)=>{
+      if(y+rowH > H-FOOT){ newPage(); head(); }
+      if(ri%2===0){ doc.setFillColor(...P.card); doc.rect(M,y,iw,rowH,"F"); }
+      doc.setDrawColor(...P.line); doc.setLineWidth(0.4); doc.line(M,y+rowH,M+iw,y+rowH);
+      r.forEach((cell,i)=>{ const right=aligns&&aligns[i]==="r";
+        doc.setFont("helvetica",right?"bold":"normal"); doc.setFontSize(8.5);
+        doc.setTextColor(...(right?EMBERD:P.ink));
+        const txt=doc.splitTextToSize(san(String(cell)),widths[i]*iw-16)[0];
+        doc.text(txt, right? xs[i]+widths[i]*iw-10 : xs[i]+10, y+11.5, right?{align:"right"}:undefined); });
+      y+=rowH;
+    });
+    y+=14;
+  }
+  // The timeline: today → goal as a drawn line with date ticks only. No projected
+  // weights along the way — progress is judged against real data, not a forecast.
+  function timelineBlock(){
+    const hgt=118;
+    ensure(hgt+10);
+    doc.setFillColor(...P.card); doc.setDrawColor(...P.line); doc.setLineWidth(0.8);
+    doc.roundedRect(M,y,W-2*M,hgt,4,4,"FD");
+    const x0=M+40, x1=W-M-128, ly=y+58;
+    doc.setDrawColor(...EMBER); doc.setLineWidth(2.5); doc.line(x0,ly,x1,ly);
+    doc.setDrawColor(...P.dim); doc.setLineWidth(1); doc.setLineDashPattern([2,3],0); doc.line(x1,ly,W-M-26,ly); doc.setLineDashPattern([],0);
+    const wk=TL.arriveWk, stepWk = wk>36?8:4;
+    for(let w2=stepWk; w2<wk; w2+=stepWk){
+      const tx=x0+(x1-x0)*(w2/wk);
+      if(x1-tx<34) continue;
+      doc.setDrawColor(...LINEC); doc.setLineWidth(1); doc.line(tx,ly-5,tx,ly+5);
+      doc.setFont("helvetica","normal"); doc.setFontSize(6.5); doc.setTextColor(...P.dim);
+      doc.text("WK "+w2, tx, ly+16, {align:"center",charSpace:0.5});
+    }
+    doc.setFillColor(...P.ink); doc.circle(x0,ly,4,"F");
+    doc.setFont("helvetica","bold"); doc.setFontSize(7); doc.setTextColor(...P.dim);
+    doc.text("TODAY",x0,ly-28,{align:"center",charSpace:1});
+    doc.setFontSize(9.5); doc.setTextColor(...P.ink); doc.text(san(fmtWt(S.wtKg)),x0,ly-15,{align:"center"});
+    doc.setFillColor(...EMBER); doc.circle(x1,ly,5,"F");
+    doc.setFont("helvetica","bold"); doc.setFontSize(7); doc.setTextColor(...EMBERD);
+    doc.text(san(TL.reached ? "GOAL  ·  "+fmtDate(wk) : "GOAL  ·  BEYOND YEAR 5"),x1,ly-28,{align:"center",charSpace:0.5});
+    doc.setFontSize(9.5); doc.setTextColor(...P.ink); doc.text(san(fmtWt(TL.goalW)),x1,ly-15,{align:"center"});
+    doc.setFont("helvetica","bold"); doc.setFontSize(6); doc.setTextColor(...P.dim);
+    doc.text("MAINTAIN",W-M-26,ly-10,{align:"right",charSpace:0.5});
+    doc.setFont("helvetica","normal"); doc.setFontSize(7.5); doc.setTextColor(...P.dim);
+    doc.text(doc.splitTextToSize(san(wk+" weeks at your chosen pace. Bodies do not move in straight lines, so judge your 7-day trend and adjust with real data, not the calendar."),W-2*M-52),M+26,y+hgt-28);
+    y+=hgt+14;
+  }
+  // Three metric cards; the hero card is black with an ember number (the tool's stat look)
+  function metricCards(items, heroIdx){
+    ensure(92);
+    const gap=10, w=(W-2*M-(items.length-1)*gap)/items.length, hgt=62;
+    items.forEach((it,i)=>{
+      const x=M+i*(w+gap), hero=i===heroIdx;
+      if(hero){ doc.setFillColor(...BLACK); doc.roundedRect(x,y,w,hgt,4,4,"F"); }
+      else{ doc.setFillColor(...P.card); doc.setDrawColor(...P.line); doc.setLineWidth(0.8); doc.roundedRect(x,y,w,hgt,4,4,"FD"); }
+      doc.setFont("helvetica","bold"); doc.setFontSize(16);
+      doc.setTextColor(...(hero?EMBER:P.ink)); doc.text(san(String(it[1])),x+12,y+27);
+      doc.setFontSize(6.5); doc.setTextColor(...(hero?BONE:P.dim)); doc.text(san(String(it[0]).toUpperCase()),x+12,y+45,{charSpace:1});
+    });
+    y+=hgt+18;
+  }
+  // Card block with the 4pt ember left accent — one paragraph, or a bullet list
+  function callout(txt, bullets){
+    doc.setFont("helvetica","normal"); doc.setFontSize(9.5);
+    const inner=W-2*M-34;
+    const lines = bullets
+      ? bullets.flatMap(b=>doc.splitTextToSize(san(b),inner-12).map((t,j)=>({t,b:j===0})))
+      : doc.splitTextToSize(san(txt),inner).map(t=>({t,b:false}));
+    const lh=14, hgt=lines.length*lh+24;
+    ensure(hgt+12);
+    doc.setFillColor(...P.card); doc.setDrawColor(...P.line); doc.setLineWidth(0.8);
+    doc.roundedRect(M,y,W-2*M,hgt,3,3,"FD");
+    doc.setFillColor(...EMBER); doc.rect(M,y+1,4,hgt-2,"F");
+    let ty=y+18;
+    doc.setFont("helvetica","normal"); doc.setFontSize(9.5); doc.setTextColor(...P.ink);
+    lines.forEach(o=>{ doc.text((o.b?"•  ":"")+o.t, M+20+(!o.b&&bullets?11:0), ty); ty+=lh; });
+    y+=hgt+14;
+  }
+  // One meal slot as its own card: slot tag + macro badge header, dish title, ingredients
+  function mealCard(m){
+    const fit = m.fac>1.12||m.fac<0.88 ? ` (portions x${m.fac.toFixed(1)})` : "";
+    doc.setFont("helvetica","normal"); doc.setFontSize(8.5);
+    const ing=doc.splitTextToSize(san(m.dish.c+fit),W-2*M-32);
+    const hgt=42+ing.length*12;
+    ensure(hgt+8);
+    doc.setFillColor(...P.card); doc.setDrawColor(...P.line); doc.setLineWidth(0.8);
+    doc.roundedRect(M,y,W-2*M,hgt,4,4,"FD");
+    doc.setFont("helvetica","bold"); doc.setFontSize(7); doc.setTextColor(...EMBERD);
+    doc.text(san(m.slot.toUpperCase()),M+14,y+15,{charSpace:1.5});
+    doc.setTextColor(...P.dim);
+    doc.text(san(`~${m.kcal} CAL  ·  ${m.p} G PROTEIN`),W-M-14,y+15,{align:"right",charSpace:0.5});
+    doc.setFontSize(10.5); doc.setTextColor(...P.ink);
+    doc.text(san(m.dish.n),M+14,y+30);
+    doc.setFont("helvetica","normal"); doc.setFontSize(8.5); doc.setTextColor(...P.dim);
+    doc.text(ing,M+14,y+43);
+    y+=hgt+8;
+  }
+  // One training day as a container: black header bar with ember day label, rows of tag / exercise / sets
+  function workoutCard(title, exs){
+    const rowH=15, headH=22, hgt=headH+16+exs.length*rowH;
+    ensure(hgt+10);
+    doc.setFillColor(...P.card); doc.setDrawColor(...P.line); doc.setLineWidth(0.8);
+    doc.roundedRect(M,y,W-2*M,hgt,4,4,"FD");
+    doc.setFillColor(...BLACK);
+    doc.roundedRect(M,y,W-2*M,headH,4,4,"F");
+    doc.rect(M,y+headH-6,W-2*M,6,"F");
+    doc.setFont("helvetica","bold"); doc.setFontSize(8); doc.setTextColor(...EMBER);
+    doc.text(san(title.toUpperCase()),M+14,y+14.5,{charSpace:1.5});
+    let ty=y+headH+16;
+    exs.forEach(e=>{
+      doc.setFont("helvetica","bold"); doc.setFontSize(6); doc.setTextColor(...EMBERD);
+      doc.text(san(String(e[2]).toUpperCase()),M+14,ty,{charSpace:0.8});
+      doc.setFont("helvetica","normal"); doc.setFontSize(9.5); doc.setTextColor(...P.ink);
+      doc.text(san(e[0]),M+78,ty);
+      doc.setFont("helvetica","bold"); doc.setFontSize(8.5); doc.setTextColor(...EMBERD);
+      doc.text(san(fmtSetsReps(e[1])),W-M-14,ty,{align:"right"});
+      ty+=rowH;
+    });
+    y+=hgt+10;
   }
 
-  // ── Cover ──
+  // ── Cover ── black masthead (the tool's hero) over a cream lower half, portrait bleeding off the right edge
   newPage();
-  doc.setFont("helvetica","bold"); doc.setFontSize(9); doc.setTextColor(...P.accent);
-  doc.text("THE AEM METHOD",M,120,{charSpace:3});
-  doc.setFontSize(40); doc.setTextColor(...P.ink);
-  doc.text(`The ${first}\nBlueprint.`,M,180);
-  doc.setFontSize(11); doc.setTextColor(...P.dim); doc.setFont("helvetica","normal");
-  doc.text(`Engineered ${new Date().toLocaleDateString(undefined,{month:"long",day:"numeric",year:"numeric"})} · ${goalWord()} · the long game`,M,265);
-  y=330;
-  statRow([["Daily target · calories",PLAN.cal.toLocaleString()],["Protein · g",PLAN.protein],["Maintenance · calories",PLAN.tdee.toLocaleString()]]);
-  doc.setFontSize(9); doc.setTextColor(...P.dim);
-  doc.text("Educational tool, not medical advice. Every number is an estimate and a starting point.",M,H-70);
+  const BAND=430;
+  // soft ember glow on the espresso masthead — the print echo of the tool's warm orbs
+  try{
+    doc.saveGraphicsState();
+    doc.setGState(new doc.GState({opacity:0.016}));
+    doc.setFillColor(...EMBER);
+    for(let r=330; r>40; r-=24) doc.circle(430,130,r,"F");
+    doc.restoreGraphicsState();
+  }catch(e){}
+  doc.setFillColor(...PAPER); doc.rect(0,BAND,W,H-BAND,"F");
+  let titleW=W-2*M;
+  if(portrait){
+    let pw=224, ph=pw*portrait.h/portrait.w;
+    if(ph>296){ ph=296; pw=ph*portrait.w/portrait.h; }
+    doc.addImage(portrait.dataUri,portrait.fmt||"JPEG",W-pw,BAND-ph,pw,ph);
+    doc.setDrawColor(...EMBER); doc.setLineWidth(1.2); doc.line(W-pw,BAND-ph,W-pw,BAND);
+    titleW = W-pw-M-24;
+  }
+  if(logo){ const lh=34, lw=Math.round(logo.w/logo.h*lh); doc.addImage(logo.dataUri,"PNG",M,48,lw,lh); }
+  doc.setFont("helvetica","bold"); doc.setFontSize(8); doc.setTextColor(...BONE);
+  doc.text("ALEX MAYWOOD",W-M,68,{align:"right",charSpace:3});
+  doc.setDrawColor(...COVER.line); doc.setLineWidth(0.8); doc.line(M,116,M+34,116);
+  doc.setFontSize(8); doc.setTextColor(...EMBER); doc.text("THE BLUEPRINT",M+44,119,{charSpace:3});
+  doc.setFontSize(28); doc.setTextColor(...BONE);
+  doc.text(san(doc.splitTextToSize(("The "+first).toUpperCase(),titleW)[0]),M,166); doc.text("BLUEPRINT.",M,202);
+  doc.setFontSize(9.5); doc.setTextColor(...P.dim); doc.setFont("helvetica","normal");
+  doc.text(san(`Built ${new Date().toLocaleDateString(undefined,{month:"long",day:"numeric",year:"numeric"})} · ${goalWord()}`),M,232);
+  doc.setDrawColor(...EMBER); doc.setLineWidth(2); doc.line(M,258,M+38,258);
+  doc.setFontSize(10); doc.setTextColor(...BONE);
+  doc.text(doc.splitTextToSize("Your numbers, your meals, and your training week, built from your answers, not an average.",titleW),M,286);
+
+  // lower half reads as an interior page: warm paper, black hero card with ember number
+  P=PAPER_T;
+  y=470;
+  metricCards([["Daily target · calories",PLAN.cal.toLocaleString()],["Protein · g",PLAN.protein],["Maintenance · calories",PLAN.tdee.toLocaleString()]],0);
+  doc.setFont("helvetica","bold"); doc.setFontSize(8.5); doc.setTextColor(...EMBERD);
+  doc.text("WHAT'S INSIDE",M,576,{charSpace:2});
+  BP_SECTIONS_META.forEach((m,i)=>{
+    const cx = M + (i<4 ? 0 : 270), cy = 600 + (i%4)*17;
+    doc.setFont("helvetica","bold"); doc.setFontSize(8); doc.setTextColor(...EMBERD);
+    doc.text(String(i+1).padStart(2,"0"),cx,cy);
+    doc.setFont("helvetica","normal"); doc.setFontSize(9.5); doc.setTextColor(...P.ink);
+    doc.text(san(m[1]),cx+20,cy);
+  });
+  doc.setFontSize(9.5); doc.setTextColor(...P.dim);
+  doc.text(doc.splitTextToSize("Run it for four weeks before you judge it. The first month is calibration, and everything after that builds on it.",W-2*M),M,692);
+  doc.setFontSize(8.5);
+  doc.text("Educational tool, not medical advice. Every number is an estimate and a starting point.",M,H-40);
 
   // ── Sections 1 + 2 · Breakdown and strategy ──
   newPage();
-  tag("Sections 1 + 2 · Breakdown and strategy");
+  band("Sections 1 + 2  ·  Breakdown and strategy");
   h1("Where you're starting from.");
-  statRow([["BMR · calories",PLAN.bmr.toLocaleString()],["Multiplier","x "+actFactor()],["TDEE · calories",PLAN.tdee.toLocaleString()],["Target · calories",PLAN.cal.toLocaleString()]]);
-  body(`Goal: ${goalWord()}${S.goal==="loss"?` at ${paceWt()} per week (${PLAN.dailyDelta} calories/day)`:S.goal==="gain"?` at +${(Math.round(S.surplusPct*1000)/10)}% over maintenance (+${PLAN.dailyDelta} calories/day)`:S.goal==="recomp"?` at ${S.recompDef===0?"maintenance":S.recompDef+" calories under maintenance"}`:""}. Activity level: ${ACT_LABEL[S.activity]} (x ${actFactor()}). Fitness level: ${({nov:"novice",beg:"beginner",int:"intermediate",adv:"advanced"})[S.level]||""}.`);
+  metricCards([["BMR · calories",PLAN.bmr.toLocaleString()],["Maintenance (TDEE) · calories",PLAN.tdee.toLocaleString()],["Target · calories",PLAN.cal.toLocaleString()]],2);
+  body(`Goal: ${goalWord()}${S.goal==="loss"?` at ${paceWt()} per week (${PLAN.dailyDelta} calories/day)`:S.goal==="gain"?` at +${(Math.round(S.surplusPct*1000)/10)}% over maintenance (+${PLAN.dailyDelta} calories/day)`:S.goal==="recomp"?` at ${S.recompDef===0?"maintenance":S.recompDef+" calories under maintenance"}`:""}. Activity level: ${ACT_LABEL[S.activity]}. Fitness level: ${({nov:"novice",beg:"beginner",int:"intermediate",adv:"advanced"})[S.level]||""}.`);
   const strat = S.goal==="loss"
     ? `Think of your body as a bank account. ${PLAN.tdee.toLocaleString()} calories a day is what it costs to run, and eating ${PLAN.cal.toLocaleString()} is a withdrawal of ${Math.abs(PLAN.dailyDelta)} calories a day, roughly ${fmtWt(Math.abs(PLAN.effPaceWk))} a week, paid from stored fat. Protein at ${PLAN.protein} g is what tells your body to make that withdrawal from fat and not from muscle. The deficit sets the speed; protein and training decide what you actually lose.`
     : S.goal==="gain"
@@ -1760,122 +1894,104 @@ async function generatePDF(){
     : S.goal==="maintain"
     ? `${PLAN.cal.toLocaleString()} calories is your line to hold. For 3 weeks, eat to it and watch your 7-day scale average: steady within 1% means the number is true; drifting means adjust 100 calories and re-check. Protein stays at ${PLAN.protein} g so what you keep is muscle.`
     : `Just under maintenance with protein high (${PLAN.protein} g), training creates demand for muscle while stored fat quietly funds the energy gap. The scale holds; your body changes. Judge it by waist, photos and your training log, not the scale.`;
-  body(strat);
-  body(`Daily macros: ${PLAN.protein} g protein · ${PLAN.carbs} g carbs · ${PLAN.fat} g fat. Calories carry a ±200 calorie tolerance: a day within 200 of target is a day on plan.`);
-  dim("Split protein across 3 to 5 meals. Not a digestion limit, an appetite strategy: spread out, it keeps you full all day.");
+  callout(strat);
+  metricCards([["Protein · g/day",PLAN.protein],["Carbs · g/day",PLAN.carbs],["Fat · g/day",PLAN.fat]],-1);
+  dim("Calories carry a ±200 calorie tolerance: a day within 200 of target is a day on plan. Split protein across 3 to 5 meals. This is an appetite strategy, not a digestion limit: spread out, protein keeps you full all day.");
   if((S.goal==="loss"||S.goal==="gain") && TL && TL.arriveWk>1){
-    y+=4; goldLine("YOUR CHECKPOINTS");
-    const stepWk = TL.arriveWk>36?8:4;
-    const rows=[];
-    for(let wk=stepWk; wk<TL.arriveWk; wk+=stepWk){ const pt=TL.pts.find(pp=>pp.wk===wk); if(pt) rows.push([wk,pt.w,false]); }
-    rows.push([TL.arriveWk,TL.goalW,true]);
-    rows.forEach(r=>{
-      rowLR(`${r[2]?(TL.reached?"GOAL  ·  ":"YEAR FIVE  ·  "):""}${fmtDate(r[0])}  ·  week ${r[0]}`, `${fmtWt(r[1])}   (${S.goal==="loss"?"-":"+"}${fmtWt(Math.abs(S.wtKg-r[1]))})`, r[2]);
-    });
-    dim(`${TL.arriveWk} weeks total at your chosen ${S.goal==="loss"?"rate of loss":"surplus"}.`);
+    y+=4;
+    subhead("Your timeline");
+    timelineBlock();
   }
-  rule();
-  goldLine("THE RULES THAT MAKE IT STICK");
-  ["Hit protein daily. Everything else has a ±200 calorie tolerance.",
-   "Split protein across 3 to 5 meals. Not a digestion limit, an appetite strategy: spread out, it keeps you full all day.",
+  subhead("The rules that make it stick");
+  callout(null,["Hit protein daily. Everything else has a ±200 calorie tolerance.",
+   "Split protein across 3 to 5 meals. This is an appetite strategy, not a digestion limit: spread out, protein keeps you full all day.",
    "Weigh in 3 to 4 mornings a week; judge the weekly average, never a single day.",
-   S.goal==="loss"?"Every 6 to 8 weeks, take a 1-week diet break at maintenance. It's a strategy, not a failure.":"Add weight or reps to something every week. The surplus only works if training earns it.",
-   "When a day goes sideways, the next meal is the reset. Not Monday."].forEach(r=>dim("•  "+r));
-  rule();
-  goldLine("WHAT YOU TOLD US");
-  [["Why you're here",TOLD_WHY[S.why]],["What breaks plans like this",TOLD_BLOCK[S.blocker]],["What winning looks like",TOLD_VISION[S.vision]],["Where you are as a lifter",LEVEL_READ[S.level]]].forEach(r=>{ if(r[1]) item(r[0],r[1]); });
-  rule();
-  goldLine("COACH'S ADVICE");
-  coachAdvice().forEach(t=>item(t[0],t[1]));
+   S.goal==="loss"?"Every 6 to 8 weeks, take a 1-week diet break at maintenance. It's a strategy, not a failure.":S.goal==="gain"?"Add weight or reps to something every week. The surplus only works if training earns it.":"Add weight or reps to something every week. Progressive training is what holds and builds your muscle.",
+   "When a day goes sideways, the next meal is the reset, not next Monday."]);
+  subhead("Coach's advice");
+  coachAdvice().forEach((t,i)=>leverCard(i+1,t[0],t[1]));
 
   // ── Section 3 · Food blocks ──
-  newPage();
-  tag("Section 3 · The real-food translator");
-  h1("Your macros, spoken in food.");
-  const blocks=[["PROTEIN  ·  "+PLAN.protein+" g/day","protein"],(S.diet!=="keto"?["CARBS  ·  "+PLAN.carbs+" g/day","carb"]:null),["FAT  ·  "+PLAN.fat+" g/day","fat"]].filter(Boolean);
+  sectionBreak();
+  band("Section 3  ·  The real-food translator");
+  h1("Your macros, translated into food.");
+  const blocks=[["Protein  ·  "+PLAN.protein+" g/day","protein"],(S.diet!=="keto"?["Carbs  ·  "+PLAN.carbs+" g/day","carb"]:null),["Fat  ·  "+PLAN.fat+" g/day","fat"]].filter(Boolean);
   blocks.forEach(([title,kind])=>{
-    goldLine(title);
-    foodFilter(FOODS[kind]).forEach(f=>rowLR(`${f.n}  ·  ${f.p}`, f.g+" g"));
-    y+=10;
+    subhead(title);
+    table(["Food","Portion","Grams"], foodFilter(FOODS[kind]).map(f=>[f.n, f.p, f.g+" g"]), [0.44,0.38,0.18], [null,null,"r"]);
   });
   if(S.diet==="keto") dim("Carbs hold near 30 g: leafy greens, cauliflower rice, zucchini, and a small serving of berries.");
 
   // ── Section 4 · Meal plan ──
-  newPage();
-  tag("Section 4 · The 3-day meal plan");
+  sectionBreak();
+  band("Section 4  ·  The 3-day meal plan");
   h1("Three days, assembled.");
   for(let dIdx=0; dIdx<3; dIdx++){
-    ensure(90);
-    goldLine("DAY "+(dIdx+1));
-    dayMeals(dIdx).forEach(m=>{
-      const fit = m.fac>1.12 ? ` (portions x${m.fac.toFixed(1)})` : m.fac<0.88 ? ` (portions x${m.fac.toFixed(1)})` : "";
-      const lines=doc.splitTextToSize(`${m.dish.n} — ${m.dish.c}${fit}  ·  ~${m.kcal} cal / ${m.p} g protein`, W-2*M-90);
-      ensure(lines.length*12+9);
-      doc.setFont("helvetica","bold"); doc.setFontSize(8.5);
-      doc.setTextColor(...P.dim); doc.text(m.slot.toUpperCase(),M+8,y);
-      doc.setFont("helvetica","normal"); doc.setFontSize(9); doc.setTextColor(...P.ink);
-      doc.text(lines,M+90,y); y+=lines.length*12+9;
-    });
-    y+=8;
+    ensure(130);
+    chip("Day "+(dIdx+1));
+    dayMeals(dIdx).forEach(m=>mealCard(m));
+    y+=6;
   }
   dim("Swap any dish for another in the same slot, and scale the noted component to hit your targets.");
 
   // ── Section 5 · Grocery list ──
-  newPage();
-  tag("Section 5 · The smart grocery list");
-  h1("One trip, whole plan.");
-  const gCols=gatherGrocery().map(c=>[c[0].toUpperCase(), c[1]]);
-  const colW=(W-2*M)/2;
-  gCols.forEach(c=>{
-    ensure(30+Math.ceil(c[1].length/2)*14);
-    goldLine(c[0]);
-    for(let i=0;i<c[1].length;i+=2){
-      ensure(15);
-      doc.setFont("helvetica","normal"); doc.setFontSize(9); doc.setTextColor(...P.ink);
-      doc.text("□  "+c[1][i],M,y);
-      if(c[1][i+1]) doc.text("□  "+c[1][i+1],M+colW,y);
-      y+=13.5;
-    }
-    y+=10;
+  sectionBreak();
+  band("Section 5  ·  The smart grocery list");
+  h1("One trip stocks the whole plan.");
+  gatherGrocery().forEach(c=>{
+    const items=c[1], gcols=3, per=Math.ceil(items.length/gcols), colWi=(W-2*M-28)/gcols;
+    const hgt=36+per*13;
+    ensure(hgt+8);
+    doc.setFillColor(...P.card); doc.setDrawColor(...P.line); doc.setLineWidth(0.8);
+    doc.roundedRect(M,y,W-2*M,hgt,4,4,"FD");
+    doc.setFont("helvetica","bold"); doc.setFontSize(7.5); doc.setTextColor(...EMBERD);
+    doc.text(san(c[0].toUpperCase()),M+14,y+17,{charSpace:1.5});
+    doc.setDrawColor(...P.line); doc.setLineWidth(0.5); doc.line(M+14,y+23,W-M-14,y+23);
+    doc.setFont("helvetica","normal"); doc.setFontSize(8.5); doc.setTextColor(...P.ink);
+    items.forEach((it,ii)=>{
+      const cx=M+14+Math.floor(ii/per)*colWi, cy=y+36+(ii%per)*13;
+      doc.setFillColor(...EMBER); doc.circle(cx+2,cy-2.5,1.6,"F");
+      doc.text(san(doc.splitTextToSize(it,colWi-16)[0]),cx+9,cy);
+    });
+    y+=hgt+8;
   });
 
   // ── Section 6 · Training week ──
-  newPage();
+  sectionBreak();
   const TR = TRAIN[Math.min(6,Math.max(1,S.trainDays))];
-  tag("Section 6 · Your training week");
+  band("Section 6  ·  Your training week");
   h1(S.trainDays+" day"+(S.trainDays>1?"s":"")+" a week, structured.");
   body(TR.split+". "+(TRAIN_ADJ[S.level]||""));
-  TR.days.forEach((d,i)=>{
-    ensure(40+d.ex.length*15);
-    goldLine("DAY "+(i+1)+"  ·  "+d.f.toUpperCase());
-    d.ex.forEach(e=>rowLR(`${e[0]}  ·  ${e[2]}`, e[1]));
-    y+=8;
-  });
+  TR.days.forEach((d,i)=>workoutCard("Day "+(i+1)+"  ·  "+d.f, d.ex));
   dim("Dumbbells only? "+TR.sub);
 
   // ── Sections 7 + 8 · Protocol and execution ──
-  newPage();
-  tag("Section 7 · The progress protocol");
+  sectionBreak();
+  band("Section 7  ·  The progress protocol");
   h1("Track the trend, not the noise.");
   [["Scale, 3 to 4 mornings a week","Judge only the 7-day average. Ignore any single day."],
    ["Waist at the navel, weekly","Relaxed, same day each week. Often moves when the scale stalls."],
    ["Photos every 2 weeks","Front, side, back. Same light, same spot, same time of day."],
    ["Training log, every session","Strength holding or climbing is the proof the plan is working."],
-   ["Biofeedback, weekly","Energy, sleep, hunger, mood. Two bad weeks in a row means adjust, not push."]].forEach(r=>item(r[0],r[1]));
+   ["Biofeedback, weekly","Energy, sleep, hunger, mood. Two bad weeks in a row means adjust, not push."],
+   ["Food scale, first 4 weeks","Weigh portions in grams while you calibrate. Eyeballed portions drift 20 to 30 percent, and after a month you know your portions by sight."]].forEach((r,i)=>leverCard(i+1,r[0],r[1]));
   dim("Adjustment rule: if the 7-day average moves at less than half your target pace for 2 straight weeks, shift daily calories by 150 and re-measure. One change at a time.");
-  rule();
-  tag("Section 8 · The execution plan");
-  h1("Structure beats motivation.");
-  body("The weekly operating rhythm: hit protein daily · train "+S.trainDays+"x with progressive overload · walk toward "+({st35:"5,000",st57:"7,000",st79:"9,000",st911:"11,000",st1113:"13,000",st13:"your current 13,000+"}[S.steps]||"8,000")+" steps · protect a 7 to 9 hour sleep window · weigh 3 to 4 mornings and log the average · review your checkpoints every 2 weeks.");
-  body("Most people who fail don't fail the plan. They fail the weeks nobody was watching. If you want this executed with a coach auditing your week, engineering adjustments and holding the standard, apply for 1:1 coaching:");
+  sectionBreak();
+  band("Section 8  ·  The execution plan");
+  h1("The weekly rhythm.");
+  body("Your week, every week:");
+  callout(null,["Hit protein daily.",
+   "Train "+S.trainDays+"x with progressive overload.",
+   "Walk toward "+({st35:"5,000",st57:"7,000",st79:"9,000",st911:"11,000",st1113:"13,000",st13:"your current 13,000+"}[S.steps]||"8,000")+" steps a day.",
+   "Protect a 7 to 9 hour sleep window.",
+   "Weigh 3 to 4 mornings a week and log the average.",
+   "Review your trend every 2 weeks."]);
+  body("Most people don't fail because the plan was wrong. They fail in the weeks nobody was watching. Keep this plan where you can see it, and judge every week by the same few numbers.");
   ensure(50);
-  doc.setFont("helvetica","bold"); doc.setFontSize(11); doc.setTextColor(...P.accent);
-  doc.textWithLink("→  Apply for AEM 1:1 Coaching", M, y, {url: CONFIG.COACHING_URL});
-  y+=24;
   doc.setFont("helvetica","normal"); doc.setFontSize(10); doc.setTextColor(...P.dim);
   doc.textWithLink("Your live blueprint (bookmark it): re-open anytime", M, y, {url: blueprintLink().slice(0,180)});
 
-  doc.save(`AEM-Blueprint-${first}.pdf`);
+  doc.save(`Blueprint-${first}.pdf`);
   window.__pdfPages = doc.getNumberOfPages();
   note.textContent="Saved. It's in your downloads, and yours for good.";
 }
