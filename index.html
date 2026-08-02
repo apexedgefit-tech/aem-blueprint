@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>The Blueprint | Your Calories, Macros and Goal Date</title>
-<meta name="description" content="A 60-second assessment that calculates your calories, macros and a dated timeline for your goal, then turns them into your personal blueprint: meals, groceries and training.">
+<meta name="description" content="A 2-minute assessment that calculates your calories, macros and a dated timeline for your goal, then turns them into your personal blueprint: meals, groceries and training.">
 <link rel="icon" type="image/png" href="logo-am.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="The Blueprint | Your Calories, Macros and Goal Date">
-<meta property="og:description" content="Your calories, your macros, and a dated timeline for your goal, built from your answers in 60 seconds.">
+<meta property="og:description" content="Your calories, your macros, and a dated timeline for your goal, built from your answers in 2 minutes.">
 <meta property="og:url" content="https://www.alexmaywood.com/blueprint/">
 <meta property="og:image" content="https://www.alexmaywood.com/blueprint/logo-am.png">
 <meta name="twitter:card" content="summary">
@@ -31,12 +31,12 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden;}
-/* ambient light for the glass to refract */
+/* Warm ambient glow baked into multi-stop gradients — no filter:blur, no GPU cost (same technique as the landing page) */
 .orbs{position:fixed;inset:0;z-index:0;pointer-events:none;}
-.orbs i{position:absolute;display:block;border-radius:50%;filter:blur(90px);opacity:.3;}
-.orbs i:nth-child(1){width:540px;height:540px;left:-160px;top:6%;background:radial-gradient(circle,#8a5215,transparent 70%);}
-.orbs i:nth-child(2){width:660px;height:660px;right:-200px;top:36%;background:radial-gradient(circle,#5e3a10,transparent 70%);}
-.orbs i:nth-child(3){width:580px;height:580px;left:18%;bottom:-220px;background:radial-gradient(circle,#7a4a12,transparent 70%);}
+.orbs i{position:absolute;display:block;border-radius:50%;opacity:.3;}
+.orbs i:nth-child(1){width:540px;height:540px;left:-160px;top:6%;background:radial-gradient(circle,rgba(138,82,21,0.5) 0%,rgba(138,82,21,0.22) 38%,rgba(138,82,21,0.08) 58%,transparent 72%);}
+.orbs i:nth-child(2){width:660px;height:660px;right:-200px;top:36%;background:radial-gradient(circle,rgba(94,58,16,0.5) 0%,rgba(94,58,16,0.22) 38%,rgba(94,58,16,0.08) 58%,transparent 72%);}
+.orbs i:nth-child(3){width:580px;height:580px;left:18%;bottom:-220px;background:radial-gradient(circle,rgba(122,74,18,0.5) 0%,rgba(122,74,18,0.22) 38%,rgba(122,74,18,0.08) 58%,transparent 72%);}
 .grain{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 .gi{background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic;}
 a{color:var(--accent);}
@@ -44,7 +44,7 @@ button{font-family:inherit;}
 
 /* ── Header ── */
 .hdr{display:flex;align-items:center;justify-content:space-between;padding:16px min(6vw,72px);position:sticky;top:0;z-index:40;
-  background:rgba(0,0,0,0.5);-webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6);
+  background:rgba(4,3,2,0.92);
   border-bottom:1px solid rgba(var(--ink-rgb),0.08);}
 .hdr-lab{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);}
 /* progress rail */
@@ -60,8 +60,8 @@ button{font-family:inherit;}
 .paper, .bp-sec, .gate-card, .stat3, .mc, .chart-card{--ink:#e9e2d4;--ink-2:#d9d2c2;--muted:#e0d9c9;--dim:#b3aa9b;--ink-rgb:233,226,212;
   --zone:rgba(255,255,255,0.06);--card:rgba(255,255,255,0.06);--line:rgba(233,226,212,0.16);--accent:#ff962e;--accent-bright:#ffb066;--accent-rgb:255,150,46;
   color:var(--ink);}
+/* Blueprint glass, blur-free: translucent tint + hairline edge + top-edge light catch (no backdrop-filter) */
 #scr-quiz, .proof-wrap, .bp-sec, .gate-card, .pivot, .stat3, .mc, .chart-card, .proof-card, .quote-card, .lk, .hg-grid>div{
-  -webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);
   box-shadow:0 12px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.07);}
 .stat3 .st-num{background:none;color:var(--accent);-webkit-text-fill-color:var(--accent);}
 .mc .mc-bar{background:var(--accent);}
@@ -73,7 +73,7 @@ button{font-family:inherit;}
 /* ── Hero ── */
 .hero{min-height:78vh;flex-direction:column;justify-content:center;text-align:center;position:relative;max-width:1240px;}
 .hero.on{display:flex;}
-.hero-glow{position:absolute;left:50%;top:40%;width:min(680px,94%);height:440px;background:radial-gradient(ellipse at center,var(--glow),transparent 70%);filter:blur(14px);pointer-events:none;opacity:.20;transform:translate(-50%,-50%);z-index:-1;}
+.hero-glow{position:absolute;left:50%;top:40%;width:min(680px,94%);height:440px;background:radial-gradient(ellipse at center,var(--glow),transparent 62%);pointer-events:none;opacity:.20;transform:translate(-50%,-50%);z-index:-1;}
 .kicker{display:flex;align-items:center;gap:18px;justify-content:center;margin-bottom:40px;}
 .kicker-lab{color:var(--accent);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;white-space:nowrap;}
 .kicker-rule{width:56px;height:1px;background:rgba(var(--ink-rgb),0.16);}
@@ -110,7 +110,7 @@ button{font-family:inherit;}
 .video-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
 .video-card b{display:block;font-family:'Manrope',sans-serif;font-weight:700;font-size:.9rem;margin-top:14px;}
 .video-card span{display:block;font-size:.72rem;color:var(--dim);margin-top:3px;}
-.quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.quote-grid{display:grid;grid-template-columns:1fr;gap:24px;max-width:560px;margin:0 auto;}
 .quote-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:26px;display:flex;flex-direction:column;}
 .quote-stars{color:var(--accent);font-size:.82rem;letter-spacing:2.5px;margin-bottom:14px;}
 .quote-card p{font-size:.85rem;color:var(--ink-2);line-height:1.8;font-style:italic;flex:1;margin-bottom:20px;}
@@ -240,7 +240,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .lk p{font-size:.76rem;color:var(--ink-2);line-height:1.6;}
 .lk-lock{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:2;}
 .lk-lock svg{width:20px;height:20px;stroke:var(--muted);fill:none;stroke-width:1.5;}
-.gate-overlay{position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(ellipse at center,rgba(0,0,0,0.1),rgba(0,0,0,0.38));-webkit-backdrop-filter:blur(7px) saturate(1.3);backdrop-filter:blur(7px) saturate(1.3);}
+.gate-overlay{position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(ellipse at center,rgba(0,0,0,0.28),rgba(0,0,0,0.62));}
 .gate-card{max-width:520px;width:100%;background:rgba(22,17,12,0.72);border:1px solid rgba(255,150,46,0.4);border-radius:14px;padding:38px 34px;text-align:center;}
 .gate-card h3{font-family:'Manrope',sans-serif;font-weight:800;font-size:1.45rem;letter-spacing:-.015em;margin-bottom:10px;text-wrap:balance;}
 .gate-card>p{color:var(--muted);font-size:.85rem;line-height:1.75;margin-bottom:26px;}
@@ -374,7 +374,8 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
       <span class="kicker-rule"></span>
     </div>
     <h1>Your body runs on numbers. <span class="gi">Get yours.</span></h1>
-    <p class="hero-sub">A 60-second assessment that gives you your calories, your macros, and a dated timeline for your goal. Every number is calculated from your answers.</p>
+    <p class="hero-sub">A 2-minute assessment that gives you your calories, your macros, and a dated timeline for your goal. Every number is calculated from your answers.</p>
+    <p class="hero-sub" style="margin-top:-30px"><b style="color:var(--ink);font-weight:600">I built this because the plan is the part everyone can get. I wanted to see what happens when you actually have it.</b></p>
     <div><button class="cta" id="startBtn">Start your free assessment</button></div>
     <div class="hero-get">
       <p class="hg-lab">What you get</p>
@@ -398,14 +399,6 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
         <p class="proof-quote">&ldquo;I&rsquo;ve lost 20 lbs of fat and gained muscle at the same time. I was already working out and putting in the effort but wasn&rsquo;t seeing real results. He helped optimize my nutrition, habits, and gave me a program tailored to my goals and lifestyle.&rdquo;</p>
       </div>
       <div class="proof-card">
-        <div class="proof-who"><img src="images/abdullah-avatar.jpg" alt="Abdullah Al-Shalabi"><div><b>Abdullah Al-Shalabi</b><span>Capital Planner</span></div></div>
-        <div class="proof-ba">
-          <div><img src="images/abdullah-before.webp" alt="Abdullah before"><span>Before</span></div>
-          <div><img src="images/abdullah-after.webp" alt="Abdullah after"><span>After</span></div>
-        </div>
-        <p class="proof-quote">&ldquo;Within just 6 weeks I noticed my belt size. I moved from the 3rd hole to the 4th hole. My body composition clearly changed. I lost fat and gained muscle. The biggest change has been understanding that nutrition truly drives results.&rdquo;</p>
-      </div>
-      <div class="proof-card">
         <div class="proof-who"><img src="images/alex-avatar.webp" alt="Alex Maywood"><div><b>Alex Maywood</b><span>Coach, and the first client</span></div></div>
         <div class="proof-ba">
           <div><img src="images/alex-before.webp" alt="Alex Maywood before"><span>Before</span></div>
@@ -415,39 +408,12 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
       </div>
     </div>
 
-    <p class="proof-sub">Hear it from them</p>
-    <div class="video-grid">
-      <div class="video-card">
-        <div class="video-frame"><iframe src="https://www.youtube.com/embed/xvERIBby2xg" title="Omar testimonial" loading="lazy" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>
-        <b>Omar Tarabishi</b><span>Founder, Leftover Love Inc.</span>
-      </div>
-      <div class="video-card">
-        <div class="video-frame"><iframe src="https://www.youtube.com/embed/V8GRGtSlNwY" title="Raghda testimonial" loading="lazy" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>
-        <b>Raghda</b><span>Program Coordinator</span>
-      </div>
-    </div>
-
     <p class="proof-sub">In their words</p>
     <div class="quote-grid">
       <div class="quote-card">
         <div class="quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p>&ldquo;I lost 10 lbs in the first 6 weeks! Alex helped me optimize my nutrition and protein intake throughout the entire day, not just around my workout. Before starting with Alex, I ate a lot of sweets and now I only have one sweet thing at dinner, if that. I highly recommend Alex as your coach. Access to Alex is great!&rdquo;</p>
-        <div class="quote-by"><img src="images/omar-avatar.jpg" alt="Omar Tarabishi"><div><b>Omar Tarabishi</b><span>Founder, Leftover Love Inc.</span></div></div>
-      </div>
-      <div class="quote-card">
-        <div class="quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p>&ldquo;My online experience with Alex has been amazing and very helpful. He listened to my needs and concerns and then took actions that benefited me and my goals. After one month of consistency, I saw improvements and changes that proved his program was working. I went down from a size 6 to a size 4 and most of my clothes are big on me now. I&rsquo;ve had three coaches in the last two years including Alex, and Alex has been the best coach I&rsquo;ve had so far.&rdquo;</p>
-        <div class="quote-by"><img src="images/raghda-avatar.jpg" alt="Raghda"><div><b>Raghda</b><span>Program Coordinator</span></div></div>
-      </div>
-      <div class="quote-card">
-        <div class="quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p>&ldquo;Working with Alex was different from the first conversation. He asked me questions nobody had asked me before, about my schedule, my pain history, my actual goal, and my lifestyle as a whole. I went from deadlifting a 35lb kettlebell to deadlifting 105lb using a trap bar and no back pain or knee pain. My energy is consistent in a way it was not before.&rdquo;</p>
         <div class="quote-by"><img src="images/maha-avatar.jpg" alt="Maha Mahmood"><div><b>Maha Mahmood</b><span>Lead Technical Architect</span></div></div>
-      </div>
-      <div class="quote-card">
-        <div class="quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p>&ldquo;Training with Alex has been an exceptional experience. From the beginning, he demonstrated a high level of professionalism. Not only is he highly knowledgeable and motivating, but also very patient, making the training both easier and more enjoyable. His structured and safety-focused approach allowed me to progress effectively toward my goals and train safely without risk of injury.&rdquo;</p>
-        <div class="quote-by"><img src="images/lana-avatar.jpg" alt="Lana Adnan"><div><b>Lana Adnan</b><span>Geotechnical Project Engineer</span></div></div>
       </div>
     </div>
 
@@ -1062,7 +1028,7 @@ const SCREENS = [
 /* 5 · training days */
 { part:"The lifestyle",
   render(){ return header("The lifestyle","How many days are you realistically able to train?",
-      "Be honest about your week. The program is built for the days you'll actually show up.")+
+      "Be honest about your week. The program is built for the days you'll actually show up, not the days you wish you would.")+
     `<div class="q-fields">
       <div class="opts cols2">
         ${optBtn("trainDays","1","1 day","")}
@@ -1103,7 +1069,7 @@ const SCREENS = [
 /* 7 · diet + restrictions */
 { part:"The lifestyle",
   render(){ return header("The lifestyle","How do you like to eat?",
-      "Your meal plan and grocery list are built from foods you'll actually eat.")+
+      "Your meal plan and grocery list are built from food you actually like. Nothing gets taken away that doesn't need to be.")+
     `<div class="q-fields">
       <div class="opts cols2">
         ${optBtn("diet","standard","Balanced","ex: chicken and rice, eggs, yogurt, fruit · everything on the table")}
@@ -1330,7 +1296,7 @@ function gateHTML(){
     <div class="gate-overlay">
       <div class="gate-card">
         <h3>Your numbers were the easy part.</h3>
-        <p>The full blueprint turns them into meals, a grocery list, and a weekly structure, built from your answers.</p>
+        <p>The full blueprint turns them into meals, a grocery list, and a weekly structure, built from your answers. I put the same thinking into this that I put into a paying client's first two weeks.</p>
         <form class="gate-form" id="gateForm" novalidate>
           <input class="f-in" type="text" id="gName" placeholder="First name" value="${esc(S.name)}" autocomplete="given-name">
           <input class="f-in" type="email" id="gEmail" placeholder="you@email.com" autocomplete="email" required>
@@ -1479,6 +1445,7 @@ function blueprintHTML(){
     <div class="rv-eyebrow" style="margin-bottom:16px">Section 8 · The execution plan</div>
     <h2>Here's what decides if this works.</h2>
     <p>Most people who start with a plan this good still don't finish. Not because the numbers were wrong, but because nobody was watching. Knowledge isn't the missing piece anymore. <b style="color:var(--ink)">Structure and accountability are.</b></p>
+    <p>That's why nothing I do starts with a plan. It starts with two weeks of watching what's actually happening, then building from that. Everything you're holding right now is the part that comes free.</p>
     <div class="pivot-stats">
       <div><b>${PLAN.cal.toLocaleString()}</b><span>Your daily target</span></div>
       <div><b>${(S.goal==="loss"||S.goal==="gain")&&TL?fmtDate(TL.arriveWk).split(",")[0]:S.goal==="maintain"?"3 wks":"16 wks"}</b><span>${S.goal==="recomp"?"First checkpoint":S.goal==="maintain"?"Calibration window":"Projected arrival"}</span></div>
@@ -1488,6 +1455,10 @@ function blueprintHTML(){
       <button class="cta" id="pdfBtn">Download your free blueprint</button>
     </div>
     <div class="dl-note" id="pdfNote">Your blueprint as a PDF that's yours to keep, generated on your device.</div>
+    <div style="width:min(420px,78%);height:1px;background:var(--line);margin:38px auto 30px" aria-hidden="true"></div>
+    <p style="color:var(--ink);font-weight:600;font-size:.95rem;margin:0 auto 10px;max-width:54ch">Structure and accountability are what I do.</p>
+    <p style="color:var(--muted);font-size:.87rem;line-height:1.8;max-width:46ch;margin:0 auto 24px">Sixteen weeks, built from a real audit of your life, with someone reading your check-in every Monday. Ten clients at a time.</p>
+    <a class="cta-o" href="${CONFIG.COACHING_URL}">See the coaching program</a>
   </div>`;
 }
 
@@ -1990,6 +1961,16 @@ async function generatePDF(){
   ensure(50);
   doc.setFont("helvetica","normal"); doc.setFontSize(10); doc.setTextColor(...P.dim);
   doc.textWithLink("Your live blueprint (bookmark it): re-open anytime", M, y, {url: blueprintLink().slice(0,180)});
+
+  // Coaching block — mirrors the web pivot's secondary CTA, below its own divider
+  y+=34;
+  ensure(110);
+  doc.setDrawColor(...P.line); doc.setLineWidth(0.5); doc.line(M,y,M+130,y); y+=24;
+  doc.setFont("helvetica","bold"); doc.setFontSize(10.5); doc.setTextColor(...P.ink);
+  doc.text("Structure and accountability are what I do.",M,y); y+=17;
+  body("Sixteen weeks, built from a real audit of your life, with someone reading your check-in every Monday. Ten clients at a time.");
+  doc.setFont("helvetica","bold"); doc.setFontSize(10); doc.setTextColor(...EMBERD);
+  doc.textWithLink("See the coaching program: www.alexmaywood.com", M, y, {url: CONFIG.COACHING_URL});
 
   doc.save(`Blueprint-${first}.pdf`);
   window.__pdfPages = doc.getNumberOfPages();
