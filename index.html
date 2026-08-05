@@ -657,13 +657,64 @@ function slotPool(slot){
   return [safe[slot]];
 }
 function dayMeals(d){
-  return Object.keys(SLOT_SHARE).map(slot=>{
+  const meals = Object.keys(SLOT_SHARE).map(slot=>{
     const pool=slotPool(slot);
     const dish=DISHES[pool[d % pool.length]];
     const target=PLAN.cal*SLOT_SHARE[slot];
     const fac=Math.min(1.5, Math.max(0.7, target/dish.kcal));
-    return {slot, dish, fac, p:Math.round(dish.p*fac), kcal:Math.round(dish.kcal*fac/10)*10};
+    return {slot, dish, fac};
   });
+  // Protein-accuracy pass: the slot dishes are picked by calorie share, so protein can land
+  // well under target. Size a shake to close the gap, rescale the other meals so the day
+  // still lands on the calorie target, then scale portions up (cap x1.8, with the noted
+  // scale component) when the dish pool alone can't reach a high-calorie/protein day.
+  // Deterministic — same inputs, same plan.
+  const SCOOP_P=24, SCOOP_K=120, FAC_CAP=1.8;
+  const sumK=()=>meals.reduce((a,m)=>a+m.dish.kcal*m.fac,0);
+  const sumP=()=>meals.reduce((a,m)=>a+m.dish.p*m.fac,0);
+  let scoops=0;
+  if(PLAN.protein - sumP() > 8){
+    scoops = Math.min(6, Math.ceil((PLAN.protein-sumP())/SCOOP_P*2)/2);
+    const s = Math.max(0.6,(PLAN.cal - scoops*SCOOP_K)/sumK());
+    meals.forEach(m=>{ m.fac = Math.min(FAC_CAP, Math.max(0.6, m.fac*s)); });
+    for(let pass=0; pass<3; pass++){
+      const resid = PLAN.protein - sumP() - scoops*SCOOP_P;
+      if(resid > 4 && scoops < 6) scoops = Math.min(6, scoops + Math.ceil(resid/SCOOP_P*2)/2);
+      else break;
+    }
+  }
+  // Calorie rescue: high-TDEE profiles cap out the written portions and land short.
+  const roomK = PLAN.cal - scoops*SCOOP_K;
+  if(sumK() < roomK - 60){
+    const u = roomK/sumK();
+    meals.forEach(m=>{ m.fac = Math.min(FAC_CAP, m.fac*u); });
+  }
+  if(scoops > 0){
+    const plant = S.restrictions.includes("dairyfree");
+    const scoopTxt = (scoops%1 ? scoops.toFixed(1) : String(scoops))+" scoop"+(scoops===1?"":"s");
+    meals.push({slot:"shake", fac:1, dish:{
+      n:"Protein shake"+(scoops>=2.5?" (split into two servings)":""),
+      c:scoopTxt+" "+(plant?"plant protein":"whey or plant protein")+" in water or milk of choice",
+      p:Math.round(scoops*SCOOP_P), cb:Math.round(scoops*3), f:Math.round(scoops*2), kcal:Math.round(scoops*SCOOP_K),
+      t:[], s:"scoops", g:["p:"+(plant?"Plant protein powder":"Whey or plant protein powder")]
+    }});
+  }
+  // Very high surplus targets outrun even scaled-up written portions — close the last
+  // stretch with liquid calories, the standard tool for a big surplus.
+  const residK = PLAN.cal - meals.reduce((a,m)=>a+m.dish.kcal*m.fac,0);
+  if(residK > 150){
+    const keto = S.diet==="keto", nonuts = S.restrictions.includes("nonuts");
+    const per = keto
+      ? {kcal:400, p:4, cb:6, f:40, c:"avocado, coconut milk and olive oil, blended", g:["f:Avocado","f:Coconut milk","f:Olive oil"]}
+      : {kcal:400, p:8, cb:52, f:16, c:"oats, banana"+(nonuts?"":", nut butter")+" and olive oil, blended", g:["c:Rolled oats","v:Bananas"].concat(nonuts?["f:Olive oil"]:["f:Nut butter"])};
+    const srv = Math.min(3, Math.max(0.5, Math.round(residK/per.kcal*2)/2));
+    meals.push({slot:"shake", fac:1, dish:{
+      n:"Calorie builder shake", c:(srv%1?srv.toFixed(1):String(srv))+" serving"+(srv===1?"":"s")+": "+per.c,
+      p:Math.round(srv*per.p), cb:Math.round(srv*per.cb), f:Math.round(srv*per.f), kcal:Math.round(srv*per.kcal),
+      t:[], s:"servings", g:per.g
+    }});
+  }
+  return meals.map(m=>({slot:m.slot, dish:m.dish, fac:m.fac, p:Math.round(m.dish.p*m.fac), kcal:Math.round(m.dish.kcal*m.fac/10)*10}));
 }
 function gatherGrocery(){
   const cats={p:"Proteins", c:"Carbs & grains", v:"Produce", d:"Dairy", f:"Fats & nuts", s:"Pantry & sauces"};
@@ -1195,9 +1246,20 @@ function timelineSVG(){
   const gx=X(TL.arriveWk), gy=Y(TL.goalW);
   const yTicks=[minW, (minW+maxW)/2, maxW];
   const labX = Math.min(Math.max(gx, padL+90), W-120);
+  // Week ticks scale to the actual plan length (never a fixed axis); skip any that would
+  // sit under the goal label plate.
+  const stepWk = TL.arriveWk>36?8:4;
+  let wkTicks="";
+  for(let w2=stepWk; w2<TL.arriveWk; w2+=stepWk){
+    const tx=X(w2);
+    if(Math.abs(tx-labX)<104 || gx-tx<40) continue;
+    wkTicks+=`<line x1="${tx.toFixed(1)}" y1="${padT}" x2="${tx.toFixed(1)}" y2="${H-padB}" stroke="rgba(233,226,212,0.05)" stroke-width="1"/>
+    <text x="${tx.toFixed(1)}" y="${H-padB+16}" text-anchor="middle" font-family="Inter" font-size="9.5" fill="#8d8577" letter-spacing="0.5">WK ${w2}</text>`;
+  }
   return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Projected weight timeline">
     ${yTicks.map(w=>`<line x1="${padL}" y1="${Y(w)}" x2="${W-padR}" y2="${Y(w)}" stroke="rgba(233,226,212,0.08)" stroke-width="1"/>
       <text x="${padL-8}" y="${Y(w)+4}" text-anchor="end" font-family="Manrope" font-weight="600" font-size="11" fill="#b3aa9b">${S.unit==="imperial"?Math.round(lb(w)):Math.round(w)}</text>`).join("")}
+    ${wkTicks}
     <polyline points="${dash}" fill="none" stroke="rgba(233,226,212,0.4)" stroke-width="2" stroke-dasharray="3 6" stroke-linecap="round"/>
     <path d="${stair}" fill="none" stroke="#ff962e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
     <circle cx="${X(0)}" cy="${Y(S.wtKg)}" r="4" fill="#e9e2d4"/>
@@ -1272,7 +1334,7 @@ function coachAdvice(){
   else if(highSteps) tips.push(["Your daily movement is an advantage","At your step count, non-exercise movement is doing real work for your calorie budget and recovery. Protect it, especially on rest days."]);
   else tips.push(["Solid movement base","7 to 11 thousand steps is a healthy floor. On rest days, push toward the top of your bracket. Off-day movement is active recovery."]);
   if(S.sleep==="s5") tips.push(["Fix sleep first","Under 6 hours works against you everywhere: hunger climbs, recovery drops, and the same plan feels twice as hard. Before you change anything else, buy back 45 minutes of sleep. It will outperform any supplement."]);
-  else if(S.sleep==="s6") tips.push(["Guard the last hour","6 to 7 hours is workable, not optimal. A consistent lights-out time and no screens in the final 30 minutes usually buys back the half hour that changes how training feels."]);
+  else if(S.sleep==="s6") tips.push(["Close the sleep gap","You're under the 7 to 9 hour window this plan is built around. Closing even 30 to 45 minutes of that gap is usually the highest-leverage change available: pick a consistent lights-out time and keep screens out of the final 30 minutes."]);
   if(S.stress>=7) tips.push(["Build in pressure release","Your stress is running high, so build pressure-release into the plan: a daily walk, 5 minutes of slow breathing before bed, morning sunlight, time in nature, or simply a phone-free last hour. Keep sessions hard but short, and avoid stacking an aggressive deficit on a stressed system. While the pressure is on, showing up consistently does more for you than training harder."]);
   const SPLIT = {
     1:["Find a second day if you can","One session a week maintains more than it builds. If you can find a second day, do it: two full-body sessions, each covering a squat, a hinge, a push and a pull, is the minimum that actually builds muscle. Until then, make your one day a full-body session with those same four patterns."],
@@ -1323,10 +1385,9 @@ function mealDayHTML(dayIdx){
       <div class="meal-mac">~${m.kcal} cal · ${m.p} g protein</div>
     </div>`;
   }).join("");
-  const short = totP < PLAN.protein*0.9 ? ` <span style="color:var(--accent)">Short on protein? Add a whey shake or upsize the protein in any meal.</span>` : "";
   return rows+`<div class="meal" style="border-top:1px solid var(--line)">
     <div class="meal-slot">day total</div>
-    <div class="meal-what" style="color:var(--muted)">Your targets: ${PLAN.cal.toLocaleString()} cal · ${PLAN.protein} g protein.${short}</div>
+    <div class="meal-what" style="color:var(--muted)">Your targets: ${PLAN.cal.toLocaleString()} cal · ${PLAN.protein} g protein.</div>
     <div class="meal-mac">~${totK} cal · ${totP} g protein</div>
   </div>`;
 }
@@ -1341,14 +1402,13 @@ function trainDayHTML(i){
     d.ex.map(e=>`<div class="meal"><div class="meal-slot">${e[2]}</div><div class="meal-what">${e[0]}</div><div class="meal-mac">${fmtSetsReps(e[1])}</div></div>`).join("");
 }
 function blueprintHTML(){
-  const first=esc(S.name.trim().split(/\s+/)[0]);
   const pb=pickBlock("protein"), cb=pickBlock("carb"), fb=pickBlock("fat");
   const dietLabel={standard:"balanced",mediterranean:"Mediterranean",vegetarian:"vegetarian",paleo:"paleo",keto:"low-carb"}[S.diet];
   return `
   <div class="rv-head" style="margin-top:64px">
     <div class="rv-eyebrow">Unlocked</div>
-    <h1 class="rv-title">The ${first} Blueprint.</h1>
-    <p class="rv-sub">Eight sections that turn your numbers into a plan you can run this week. This page is yours.</p>
+    <h1 class="rv-title">The Blueprint.</h1>
+    <p class="rv-sub">Built for ${esc(S.name.trim())} · ${new Date().toLocaleDateString(undefined,{month:"long",day:"numeric",year:"numeric"})}. Eight sections that turn your numbers into a plan you can run this week. This page is yours.</p>
   </div>
 
   <div class="bp-sec">
@@ -1657,7 +1717,7 @@ async function generatePDF(){
     P = pageN===1 ? COVER : PAPER_T;
     doc.setFillColor(...P.bg); doc.rect(0,0,W,H,"F");
     if(pageN>1){ doc.setFontSize(7.5); doc.setTextColor(...P.dim); doc.setFont(F_DISPLAY,"bold");
-      doc.text(san("THE BLUEPRINT  ·  "+first.toUpperCase()), M, H-28, {charSpace:1}); doc.text(String(pageN), W-M, H-28,{align:"right"}); }
+      doc.text("THE BLUEPRINT", M, H-28, {charSpace:1}); doc.text(String(pageN), W-M, H-28,{align:"right"}); }
     y=76;
   }
   function ensure(h){ if(y+h > H-FOOT) newPage(); }
@@ -1747,6 +1807,10 @@ async function generatePDF(){
       doc.setFont(F_BODY,"normal"); doc.setFontSize(6.5); doc.setTextColor(...P.dim);
       doc.text("WK "+w2, tx, ly+16, {align:"center",charSpace:0.5});
     }
+    // The axis ends at the true plan length — label the goal tick with the actual week count
+    // so the timeline never under-reports itself (culled intermediate ticks made it read as 16 weeks).
+    doc.setFont(F_BODY,"bold"); doc.setFontSize(6.5); doc.setTextColor(...P.dim);
+    doc.text("WK "+wk, x1, ly+16, {align:"center",charSpace:0.5});
     doc.setFillColor(...P.ink); doc.circle(x0,ly,4,"F");
     doc.setFont(F_BODY,"bold"); doc.setFontSize(7); doc.setTextColor(...P.dim);
     doc.text("TODAY",x0,ly-28,{align:"center",charSpace:1});
@@ -1859,11 +1923,11 @@ async function generatePDF(){
   doc.setFont(F_DISPLAY,"bold"); doc.setFontSize(8); doc.setTextColor(...BONE);
   doc.text("ALEX MAYWOOD",W-M,68,{align:"right",charSpace:3});
   doc.setDrawColor(...COVER.line); doc.setLineWidth(0.8); doc.line(M,116,M+34,116);
-  doc.setFontSize(8); doc.setTextColor(...EMBER); doc.text("THE BLUEPRINT",M+44,119,{charSpace:3});
+  doc.setFontSize(8); doc.setTextColor(...EMBER); doc.text(san(goalWord().toUpperCase()),M+44,119,{charSpace:3});
   doc.setFontSize(28); doc.setTextColor(...BONE);
-  doc.text(san(doc.splitTextToSize(("The "+first).toUpperCase(),titleW)[0]),M,166); doc.text("BLUEPRINT.",M,202);
+  doc.text("THE",M,166); doc.text("BLUEPRINT.",M,202);
   doc.setFontSize(9.5); doc.setTextColor(...P.dim); doc.setFont(F_BODY,"normal");
-  doc.text(san(`Built ${new Date().toLocaleDateString(undefined,{month:"long",day:"numeric",year:"numeric"})} · ${goalWord()}`),M,232);
+  doc.text(doc.splitTextToSize(san(`Built for ${S.name.trim()} · ${new Date().toLocaleDateString(undefined,{month:"long",day:"numeric",year:"numeric"})}`),titleW),M,232);
   doc.setDrawColor(...EMBER); doc.setLineWidth(2); doc.line(M,258,M+38,258);
   doc.setFontSize(10); doc.setTextColor(...BONE);
   doc.text(doc.splitTextToSize("Your numbers, your meals, and your training week, built from your answers, not an average.",titleW),M,286);
@@ -1882,7 +1946,7 @@ async function generatePDF(){
     doc.text(san(m[1]),cx+20,cy);
   });
   doc.setFontSize(9.5); doc.setTextColor(...P.dim);
-  doc.text(doc.splitTextToSize("Run it for four weeks before you judge it. The first month is calibration, and everything after that builds on it.",W-2*M),M,692);
+  doc.text(doc.splitTextToSize("Run it for two weeks before you judge it. That's when change typically starts to show, and everything after that builds on it.",W-2*M),M,692);
   doc.setFontSize(8.5);
   doc.text("Educational tool, not medical advice. Every number is an estimate and a starting point.",M,H-40);
 
@@ -1934,7 +1998,10 @@ async function generatePDF(){
   for(let dIdx=0; dIdx<3; dIdx++){
     ensure(130);
     chip("Day "+(dIdx+1));
-    dayMeals(dIdx).forEach(m=>mealCard(m));
+    const dm=dayMeals(dIdx);
+    dm.forEach(m=>mealCard(m));
+    const dK=dm.reduce((a,m)=>a+m.kcal,0), dP=dm.reduce((a,m)=>a+m.p,0);
+    dim(`Day total: ~${dK.toLocaleString()} cal · ${dP} g protein. Targets: ${PLAN.cal.toLocaleString()} cal · ${PLAN.protein} g.`);
     y+=6;
   }
   dim("Swap any dish for another in the same slot, and scale the noted component to hit your targets.");
@@ -1983,7 +2050,7 @@ async function generatePDF(){
   dim("Adjustment rule: if the 7-day average moves at less than half your target pace for 2 straight weeks, shift daily calories by 150 and re-measure. One change at a time.");
   sectionBreak();
   band("Section 8  ·  The execution plan");
-  h1("The weekly rhythm.");
+  h1("Here's what decides if this works.");
   body("Your week, every week:");
   callout(null,["Hit protein daily.",
    "Train "+S.trainDays+"x with progressive overload.",
